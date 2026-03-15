@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="File Cleaner"/>
+<meta name="theme-color" content="#1a9e75"/>
+<title>File Cleaner</title>
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAE9klEQVR4nO3csVHcQBiG4b0bN2EIid2BnTPjyAUQHIE7gHEJnqMDAghcAKlz3IbDow0cMGDdoZN2pV3t/t//PiE2oODl80oavAoNOLm7eq59DZjv6fJmVfsaqlwAAftQI/DFviER+7ZU3EW/CRGjT8m4i3xhQkaMEmGvc39BYkasEq1k+wkhZMyRa62zLDQxY65cDc36qSBklDBnrScvNDGjlDltTQqamFHa1MaSgyZmLGVKa0lBEzOWltpcdNDEjFpS2osKmphRW2yDo0ETM1oR02L2V99ATYNBs85ozViTR4MmZrRqqE2OHJDSGzTrjNYda/Rd0MQMK/pa5cgBKXtBs86w5rBZFhpSCBpS3oLmuAGruu2y0JBC0JCyDoHjBux7bZiFhhSChhSChpQV52coYaENuT2/qH0JzSNoA3abbdhttiEEoh5D0A3rhtxF1Md9qH0B2NcXcJ/b84vw/fevwldjDwvdiGNrPISlfo+gK5sSchdR7yPoSuaG3EXU/xH0wnKG3EXUL7gpXECJgPtwo8hCF1VqjYd4X2qCLqBGyF2eoybojGqH3OU1aoLOoKWQuzxGzU3hRC0G3MfbjSILnajVNR7iaakJOpLFkLu8RE3QI6yH3OUhas7QPVQC7qN+pmahO5TWeIjyUhN08BNyl2rUroP2GHKXYtQug/Yecpda1G5uCgn4OKUbRfmFZo3jqCy1bNCEnE4harmgCXke61HLBE3I+ViO2vRNIQGXY/VG0eRCs8bLsLjUpoIm5OVZi9r0kcObrx8/1b6E5plaaGAMQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUOKy1+SPb2/rn0Ji/D4G/IsNKQQNKQQNKQQNKQQNKS4fMrh8e7fCxYaUggaUggaUggaUggaUggaUggaUggaUggaUly+KTy9v/5T+xpS7Tbbz7WvwQIWGlIIGlIIGlIIGlIIGlJcPuXgiYEuFhpSCBpSCFrc329fal/CogjaoNhIX/+ep6gJ2pjYSA//3EvUBG1IbKSpH1dC0EbERjoU7dnDY9ZrahFBGzEUY8wxxEPMIRC0KTFRp36eGpdvCk/vr3/W/P67zfbH1M89e3hMOgt7ijkEFtqk2Ei9xRwCQZs1FqvHmEMgaLNSn0N7QdAGpb4p9ISgjUmN1FvULp9yzHnKUNPYo7mhly9eztQstBExz5mnPqdWQtBGHIv18OPeoyZoQ2LjTf24EoI2JuZ40ffnHmIOgaBNSn1T6CXmEAhanqeYQyBoiCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSFmd3F09174IIJf10+XNqvZFADk8Xd6sOHJACkFDCkFDyjqEl7NH7QsB5nhtmIWGFIKGlLegOXbAqm67LDSkEDSk7AXNsQPWHDbLQkPKu6BZaVjR12rvQhM1WnesUY4ckHI0aFYarRpqc3ChiRqtGWuSIwekjAbNSqMVMS1GLTRRo7bYBqOPHESNWlLaSzpDEzWWltpc8k0hUWMpU1qb9JSDqFHa1MYmP7YjapQyp60sUfK/LyGHHCOZ5cUKa425cjWUPUTWGilyj2H2V9+sNWKVaKVofKw1+pQcvcXWlLh9W+pf7irHA+L2ocbxs4nzLoFraOH+6R+z5bjLEGlGigAAAABJRU5ErkJggg=="/>
+<link rel="apple-touch-icon" sizes="152x152" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAYAAAAYwiAhAAAEL0lEQVR4nO3aPU4bQRyG8THKJQIldW6Q9EipcgAKU+QGoBwhghtQQJED0KYn10hprkGKxGQw+zE7O+98/Of5lciYlfzo3VmLjcvs+O7yOfffxH9PFzebnH9P/scIqm7q4CRvTlRtUsSW9A0Jy4aUoSV5I8KyKUVoq96AsPqwJrSj2F8krn6s+ayjAiOu/sR+5oumj7Dg3LJbZvCCERf2lrQQFBhx4VBoE7OBERfGhLQR/RQJhJgMjPXCnLlGRgMjLoSaamUwMOLCUmPNcAaD1JvAWC/EGmqHBYPUq8BYL6x12BALBqmXwFgvpOK3xIJBisAgdeQct0ekt2+KBYMUgUGKwCC14fwFJRYsk9uz89KXUASBie221263vXbO9RkZgYn4Yfl6i4zAEhsLy9dTZO9KX4AFc0ENuT07d19//hBcTV1YsBVC1mpKD0tGYBHWhuWzHhmBLZAyLJ/lyAgsgCosn9XICGxCjrB8FiPjKfJAzqCGWHu6ZMH+yb1WUywtWfeB1RSWz0pk3QZWa1g+C5F1F1gLYflaj6ybwFoLy9dyZKafIlsNakirT5cmF6zltZrS4pKZCsxqWL7WIjMRWA9h+VqKrOnAegvL10pkTQbWc1i+FiJr5imSoIbV/nRZ/YKxVvNqXrJqAyOsZWqNrLrACCtejZE1cwZr3ef3H0pfQhHVLRhsITBIERikCAxSBAYpAoMUgUGKwCBFYJAiMEgRGKQIDFIEBikCgxSBQYrAIGXqHw5P7q9KX0ISlv6jlwWDFIFBisAgRWCQMnXIt3Q4toIFgxSBQYrAIEVgkCIwSBEYpAgMUgQGKVNftJ7cX/0qfQ1jdtvrj6WvoQQWDFIEBikCgxSBQcrUIb/Xg3TNWDBIERikCAxSBJbZ7y+fkr6udgSW0T6auXhCX9cCAsvkMJaxeEJf1woCy+T04fHNz0JiGvq9lhBYRlORWYzLOWNftJ7cX33P+fd22+tvS3/n9OGxi+XaY8EKmIvHSlzOEVgxYxFZiss5Aism9CmydQRWQOj3YBaYOuTHHLpzGzvQDx38LdwuWbCMpp4WQ74naxGBZRLyVYTFyAgsk5CYlryuFQSW0dTtMOZ1LSCwzEKjsRCXcwQGMQKDFIFBisAgRWCQIjBIERikCAxSBAYpAoMUgUGKwCBFYJDaOOfc8d3lc+kLgT1PFzcbFgxSBAYpAoPUkXN/75WlLwS27JtiwSBFYJB6CYzbJFLxW2LBIPUqMFYMax02xIJB6k1grBhiDbXDgkFqMDBWDEuNNTO6YESGUFOtTN4iiQxz5hrhDAap2cBYMYwJaSNowYgMh0KbCL5FEhn2lrQQFQ3/w9+nmJGJOuSzZv2J/cyjnyKJrB9rPuskkXDLtCnFiCRdIUKzIeXdSXKbI7Q2KY498nMUsdVNfZbOflAnuLJyP5z9AQ/Ud104LDN2AAAAAElFTkSuQmCC"/>
+<link rel="apple-touch-icon" sizes="120x120" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAADTklEQVR4nO3ZMW4aQRSH8VmUS8SUrnODpLeUKgdwAUVuYJQjRHADF6bIAdymd66REq7hFBHWGnZmdtlZ5r0/36+zwbDypzdvEU2YwM3Tw+sUr6tuv9w0pV+z2AsStaxSsUe9CFEvY0zss/6QsHWcE3o29A+IW885//tBgYlb39AGvUaesDb1ObKzE0xcu/q0SQYmrn25RtHAxPUj1WrwXTR86QzM9PoTa3YSmLh+dbWb5Z4AX44bsoPFvQVmenW0WzLB4ggsbhYCx7OiQ1MmWByBxTUcz9qYYHEEzni8u699CaMQOGK3WIfdYh1C8B35Q+0LsOQQtMvj3X34/vvXBa+mDCY4vJ/WFI+TfNWB+4Zt8xb5KgOfE7bNU+Sr2cFjgnbxspPlJ3jstKZ4mGTZwFOGbbMeWS7wpcK2WY4ssYMvHbSL1Z3seoJrTGuKxUl2Gdha2DZrkV0Fthy2zVJk8zvYQ9AuVnay2Qn2Mq0pFibZXGCFsG21I5sJrBa2rWbkqjtYNWiXWju5ygQrT2tKjUk2fxdd29ePn2pfwihmdjCmQWBxBBZHYHEEFkdgcQQWR2BxBBZHYHEEFkdgcQQW5+LbpPl2VfsSoqx/7ckEiyOwOAKLc7GDre85y5hgcQQWR2BxBBZHYHEEFufiY9J8u/pT4313i/XnGu9bEhMsjsDiCCzOxQ5W2IW1MMHiCJzx99uXUY/XRuCEQ7xYxNzjFhA44jja0J+tIHDE7fPLye9SE9v1fAsInJCKnHueFS4+Js23q5+lX3O3WP/o87zb55fk8Ws5bghMcC+xiNbjhkDgXnJ30ZYROMP752AXO7jvviwtdkPV9RHJ6nHNBEek7pb73l1bQOCI44hDf7aCwAmpie3zuAUEzsjFsxw3BALLI7A4AosjsDgCiyOwOAKLI7A4AosjsLjm5unhtfZFYDqz/XLT1L4ITGO/3DQc0eIILG4Wwv9Rrn0hKOvQlAkWR2Bxb4E5pnW0WzLB4t4FZor9O254MsFE9qurXecRTWR/Ys3YweKigZliP1KtkhNMZPtyjbJHNJHt6tNmUDy+O7ZhyNANuslimusb2mDwXTSR6znnfz8qFkf2ZYwZqmLTSOyySp2Ukxy3xD7PFOvvH++0L64RNVPBAAAAAElFTkSuQmCC"/>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0faf5;--surface:#ffffff;--surface2:#e8f7f0;
+  --border:rgba(26,158,117,0.15);--border2:rgba(26,158,117,0.28);
+  --text:#0d2e22;--text2:#3d7a5f;--text3:#7ab89a;
+  --accent:#1a9e75;--accent-fg:#ffffff;
+  --green-bg:#eaf3de;--green-txt:#3b6d11;
+  --blue-bg:#e6f1fb;--blue-txt:#185fa5;
+  --radius:16px;--radius-sm:10px;
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#071a12;--surface:#0f2a1e;--surface2:#163d2c;
+    --border:rgba(26,158,117,0.18);--border2:rgba(26,158,117,0.32);
+    --text:#d4f0e5;--text2:#5fcca0;--text3:#2e7a56;
+    --green-bg:#04342c;--green-txt:#9fe1cb;
+    --blue-bg:#042c53;--blue-txt:#b5d4f4;
+  }
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Text','Helvetica Neue',sans-serif;-webkit-tap-highlight-color:transparent}
+body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,16px) env(safe-area-inset-left,0px)}
+
+#topbar{background:var(--accent);padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+#topbar img{width:30px;height:30px;border-radius:8px}
+#topbar .t{color:#fff;font-size:18px;font-weight:700;letter-spacing:-0.3px}
+#topbar .s{color:rgba(255,255,255,0.7);font-size:12px;margin-top:1px}
+
+#wrap{max-width:560px;margin:0 auto;padding:20px 16px 40px}
+
+/* Drop zone */
+#drop-zone{
+  border:2px dashed var(--border2);border-radius:var(--radius);
+  padding:30px 20px 24px;text-align:center;
+  background:var(--surface);margin-bottom:0;
+  transition:background 0.15s,border-color 0.15s;
+}
+#drop-zone.drag-over{background:var(--surface2);border-color:var(--accent)}
+#drop-zone img{width:48px;height:48px;border-radius:12px;margin:0 auto 10px;display:block}
+#drop-zone .dz-title{font-size:16px;font-weight:600;color:var(--text)}
+#drop-zone .dz-sub{font-size:13px;color:var(--text2);margin-top:4px;margin-bottom:16px}
+#file-input{display:none}
+
+.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pick-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0 22px;height:42px;
+  background:var(--accent);color:#fff;font-size:14px;font-weight:600;
+  border-radius:99px;cursor:pointer;border:none;-webkit-appearance:none;
+}
+.paste-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0 22px;height:42px;
+  background:var(--surface2);color:var(--text);font-size:14px;font-weight:600;
+  border-radius:99px;cursor:pointer;border:0.5px solid var(--border2);-webkit-appearance:none;
+}
+.paste-btn:active,.pick-btn:active{opacity:0.8;transform:scale(0.97)}
+
+/* Paste hint */
+#paste-hint{
+  display:none;margin-top:10px;
+  font-size:12px;color:var(--text3);text-align:center;
+}
+
+/* Bulk bar */
+#bulk-bar{display:none;margin-top:14px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px;flex-direction:column;gap:10px}
+#bulk-bar .bulk-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em}
+#bulk-bar .bulk-fields{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#bulk-bar input{flex:1;min-width:90px;height:38px;padding:0 12px;font-size:14px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text)}
+#bulk-bar input:focus{outline:2px solid var(--accent)}
+#bulk-apply{height:38px;padding:0 16px;font-size:14px;font-weight:600;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;white-space:nowrap}
+
+/* File list */
+#file-list{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+
+.file-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px;animation:fadeIn 0.2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.file-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.file-badge{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--blue-txt);flex-shrink:0}
+.file-info{flex:1;min-width:0}
+.file-info .fname{font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-info .fsize{font-size:12px;color:var(--text3);margin-top:1px}
+.file-status{font-size:11px;padding:3px 9px;border-radius:99px;font-weight:600;flex-shrink:0}
+.status-ready{background:var(--surface2);color:var(--text2)}
+.status-done{background:var(--green-bg);color:var(--green-txt)}
+.del-btn{background:none;border:none;color:var(--text3);font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;border-radius:var(--radius-sm)}
+
+/* Rename row with random btn */
+.rename-row{display:flex;gap:6px;align-items:center;margin-bottom:10px}
+.rename-row input{flex:1;height:42px;padding:0 12px;font-size:15px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text)}
+.rename-row input:focus{outline:2px solid var(--accent)}
+.rename-row .ext{font-size:13px;color:var(--text2);font-weight:600;white-space:nowrap}
+.rand-btn{height:42px;width:42px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rand-btn:active{opacity:0.7}
+
+.opts{display:flex;gap:14px;flex-wrap:wrap}
+.opt-label{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--text2);cursor:pointer}
+.opt-label input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+
+/* Actions */
+#actions{display:none;margin-top:16px;gap:10px}
+#actions button{flex:1;height:52px;font-size:16px;font-weight:700;border-radius:var(--radius);border:none;cursor:pointer;transition:opacity 0.15s,transform 0.1s}
+#actions button:active{transform:scale(0.97)}
+#process-btn{background:var(--accent);color:#fff}
+#process-btn:disabled{opacity:0.35;cursor:not-allowed}
+#clear-btn{background:var(--surface2);color:var(--text);border:0.5px solid var(--border2)!important}
+
+/* Progress */
+#progress-wrap{display:none;margin-top:14px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px}
+#progress-bar-bg{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden}
+#progress-bar{height:100%;background:var(--accent);border-radius:99px;width:0%;transition:width 0.3s ease}
+#progress-label{font-size:13px;color:var(--text2);margin-top:10px;text-align:center}
+
+.note{font-size:12px;color:var(--text3);margin-top:14px;line-height:1.6;display:none;padding:0 2px}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAABvUlEQVR4nO2bMVLDMBBFvzVcAihTcwPSZ4YqB0jhFNwAJkdgnBukgIIDpKUP10jpXAMqzwh5Ywt5115Jfo3HlqLkzd+sXcgFPLh7f/nxmTcVl+2+6JvTOUG7oEuXMDkQm6ALJWzcC7FLArSD6ZsQK66LuTaQArZTq3RTxQBpptnQuGWTaJFymjbZJKpK9LDaiK2tQrQuK9RlBUBO9kZkVQ8aMYrDaoPnr0/W7xs9UTu9LriTHU3UV9CGU1a0dP8rRsFVxiKJhqTXBUeyrKLcgjZDZQeXrpQYxZAyDk5UMr0uQpOd7D5K8XT7ILa2iiejMZhFU2MWTQ32rnv/8cq2Fufta040lCkeInzIJtFsRCWa0XfoZ+uyeuT8LTbqEz2vlyzrSDSj4FTO6yUWx9Ofc+p6CGoStaXsI4DBkoAiUSpJ9/oQJJrRm+/cuqx29vnieBKRBBQlCrQbD1cjAmSa0a5/Vhs3Sc5GBChKtJFxjwBPsmpEgfZ/kpIORZUoBVdDUi/KxSyaGtmIzrtSUsP4bOqNnct2X+STKOC3VTtWGre8EgXSTNV2MtcGYsd1aZVuCrKUQ96vg7hoF/apwl8KNKm1r8lSsAAAAABJRU5ErkJggg==" alt="logo"/>
+  <div>
+    <div class="t">File Cleaner</div>
+    <div class="s">Metadata remover &amp; renamer</div>
+  </div>
+</div>
+
+<div id="wrap">
+  <div id="drop-zone">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAABvUlEQVR4nO2bMVLDMBBFvzVcAihTcwPSZ4YqB0jhFNwAJkdgnBukgIIDpKUP10jpXAMqzwh5Ywt5115Jfo3HlqLkzd+sXcgFPLh7f/nxmTcVl+2+6JvTOUG7oEuXMDkQm6ALJWzcC7FLArSD6ZsQK66LuTaQArZTq3RTxQBpptnQuGWTaJFymjbZJKpK9LDaiK2tQrQuK9RlBUBO9kZkVQ8aMYrDaoPnr0/W7xs9UTu9LriTHU3UV9CGU1a0dP8rRsFVxiKJhqTXBUeyrKLcgjZDZQeXrpQYxZAyDk5UMr0uQpOd7D5K8XT7ILa2iiejMZhFU2MWTQ32rnv/8cq2Fufta040lCkeInzIJtFsRCWa0XfoZ+uyeuT8LTbqEz2vlyzrSDSj4FTO6yUWx9Ofc+p6CGoStaXsI4DBkoAiUSpJ9/oQJJrRm+/cuqx29vnieBKRBBQlCrQbD1cjAmSa0a5/Vhs3Sc5GBChKtJFxjwBPsmpEgfZ/kpIORZUoBVdDUi/KxSyaGtmIzrtSUsP4bOqNnct2X+STKOC3VTtWGre8EgXSTNV2MtcGYsd1aZVuCrKUQ96vg7hoF/apwl8KNKm1r8lSsAAAAABJRU5ErkJggg==" alt="logo"/>
+    <div class="dz-title">Remove metadata &amp; rename</div>
+    <div class="dz-sub">Pick files, paste an image, or drag &amp; drop</div>
+    <div class="btn-row">
+      <button class="pick-btn" id="pick-btn">Choose files</button>
+      <button class="paste-btn" id="paste-btn">Paste image</button>
+    </div>
+    <div id="paste-hint">Clipboard ready — tap "Paste image" after copying an image</div>
+    <input type="file" id="file-input" multiple/>
+  </div>
+
+  <div id="bulk-bar">
+    <div class="bulk-title">Bulk rename</div>
+    <div class="bulk-fields">
+      <input type="text" id="bulk-prefix" placeholder="Add prefix…"/>
+      <input type="text" id="bulk-sep" value="_" style="max-width:72px" placeholder="space→_"/>
+      <button id="bulk-apply">Apply all</button>
+    </div>
+  </div>
+
+  <div id="file-list"></div>
+
+  <div id="progress-wrap">
+    <div id="progress-bar-bg"><div id="progress-bar"></div></div>
+    <div id="progress-label">Processing…</div>
+  </div>
+
+  <div id="actions">
+    <button id="clear-btn">Clear</button>
+    <button id="process-btn" disabled>Process &amp; Save</button>
+  </div>
+
+  <p class="note" id="note">
+    JPEG &amp; PNG: EXIF data (GPS, camera info, timestamps) fully stripped via canvas redraw.
+    PDF, DOCX, and other formats are renamed only.
+  </p>
+</div>
+
+<script>
+var files = [];
+
+function randId() {
+  return Math.random().toString(36).slice(2,7).toUpperCase();
+}
+function randName() {
+  var ts = new Date();
+  var d = ts.getFullYear().toString().slice(2) +
+    String(ts.getMonth()+1).padStart(2,'0') +
+    String(ts.getDate()).padStart(2,'0');
+  return 'img_' + d + '_' + randId();
+}
+
+function ext(n) { var i = n.lastIndexOf('.'); return i > 0 ? n.slice(i) : ''; }
+function base(n) { var i = n.lastIndexOf('.'); return i > 0 ? n.slice(0, i) : n; }
+function fmtSize(b) { return b < 1024 ? b + ' B' : b < 1048576 ? (b/1024).toFixed(1) + ' KB' : (b/1048576).toFixed(1) + ' MB'; }
+function typeLabel(n) {
+  var e = ext(n).toLowerCase();
+  var m = {'.jpg':'JPG','.jpeg':'JPG','.png':'PNG','.gif':'GIF','.webp':'WBP','.pdf':'PDF','.docx':'DOC','.xlsx':'XLS','.mp4':'MP4','.mov':'MOV','.mp3':'MP3','.zip':'ZIP'};
+  return m[e] || (e.slice(1,4).toUpperCase() || 'FILE');
+}
+
+function addFiles(newFiles) {
+  for (var i = 0; i < newFiles.length; i++) {
+    var f = newFiles[i];
+    files.push({ id: 'f' + Date.now() + i, file: f, newName: randName(), status: 'ready', stripExif: true });
+  }
+  render();
+}
+
+function addBlob(blob, suggestedName) {
+  var name = suggestedName || (randName() + '.png');
+  var file = new File([blob], name, { type: blob.type || 'image/png' });
+  files.push({ id: 'f' + Date.now(), file: file, newName: base(name), status: 'ready', stripExif: true });
+  render();
+}
+
+function render() {
+  var list = document.getElementById('file-list');
+  var bulk = document.getElementById('bulk-bar');
+  var actions = document.getElementById('actions');
+  var note = document.getElementById('note');
+  var btn = document.getElementById('process-btn');
+  var prog = document.getElementById('progress-wrap');
+
+  list.innerHTML = '';
+
+  for (var i = 0; i < files.length; i++) {
+    var f = files[i];
+    var e = ext(f.file.name).toLowerCase();
+    var isImg = ['.jpg','.jpeg','.png','.gif','.webp'].indexOf(e) >= 0;
+    var card = document.createElement('div');
+    card.className = 'file-card';
+    card.innerHTML =
+      '<div class="file-header">' +
+        '<div class="file-badge">' + typeLabel(f.file.name) + '</div>' +
+        '<div class="file-info">' +
+          '<div class="fname">' + f.file.name + '</div>' +
+          '<div class="fsize">' + fmtSize(f.file.size) + '</div>' +
+        '</div>' +
+        '<span class="file-status ' + (f.status==='done'?'status-done':'status-ready') + '">' + (f.status==='done'?'✓ done':'ready') + '</span>' +
+        '<button class="del-btn" data-id="' + f.id + '">×</button>' +
+      '</div>' +
+      '<div class="rename-row">' +
+        '<input type="text" value="' + f.newName + '" placeholder="filename" autocomplete="off" autocorrect="off" spellcheck="false" data-id="' + f.id + '" class="rename-input"/>' +
+        '<button class="rand-btn" data-id="' + f.id + '" title="Random name">⟳</button>' +
+        '<span class="ext">' + (e||'—') + '</span>' +
+      '</div>' +
+      '<div class="opts">' +
+        '<label class="opt-label">' +
+          '<input type="checkbox" ' + (f.stripExif?'checked':'') + ' ' + (!isImg?'disabled':'') + ' data-id="' + f.id + '" class="exif-check"/>' +
+          (isImg ? 'Strip EXIF / GPS' : 'Rename only') +
+        '</label>' +
+      '</div>';
+    list.appendChild(card);
+  }
+
+  var delBtns = list.querySelectorAll('.del-btn');
+  for (var d = 0; d < delBtns.length; d++) {
+    delBtns[d].addEventListener('click', function() { removeFile(this.getAttribute('data-id')); });
+  }
+  var renameInputs = list.querySelectorAll('.rename-input');
+  for (var r = 0; r < renameInputs.length; r++) {
+    renameInputs[r].addEventListener('input', function() { updateName(this.getAttribute('data-id'), this.value); });
+  }
+  var exifChecks = list.querySelectorAll('.exif-check');
+  for (var c = 0; c < exifChecks.length; c++) {
+    exifChecks[c].addEventListener('change', function() { toggle(this.getAttribute('data-id'), 'stripExif', this.checked); });
+  }
+  var randBtns = list.querySelectorAll('.rand-btn');
+  for (var rb = 0; rb < randBtns.length; rb++) {
+    randBtns[rb].addEventListener('click', function() { reRandomize(this.getAttribute('data-id')); });
+  }
+
+  var show = files.length > 0;
+  bulk.style.display = show ? 'flex' : 'none';
+  actions.style.display = show ? 'flex' : 'none';
+  note.style.display = show ? 'block' : 'none';
+  btn.disabled = files.length === 0;
+  if (!show) prog.style.display = 'none';
+}
+
+function removeFile(id) {
+  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files.splice(i,1); break; } }
+  render();
+}
+function updateName(id, v) {
+  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files[i].newName=v; break; } }
+}
+function toggle(id, k, v) {
+  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files[i][k]=v; break; } }
+}
+function reRandomize(id) {
+  for (var i = 0; i < files.length; i++) {
+    if (files[i].id===id) {
+      files[i].newName = randName();
+      break;
+    }
+  }
+  render();
+}
+function clearAll() { files = []; render(); }
+
+function applyBulk() {
+  var prefix = document.getElementById('bulk-prefix').value.trim();
+  var sep = document.getElementById('bulk-sep').value || '_';
+  for (var i = 0; i < files.length; i++) {
+    var n = base(files[i].file.name).replace(/\s+/g, sep);
+    if (prefix) n = prefix + n;
+    files[i].newName = n;
+  }
+  render();
+}
+
+function stripImage(file) {
+  return new Promise(function(resolve) {
+    var img = new Image();
+    var url = URL.createObjectURL(file);
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+      var mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+      canvas.toBlob(function(b) { resolve(b || file); }, mime, 0.96);
+    };
+    img.onerror = function() { URL.revokeObjectURL(url); resolve(file); };
+    img.src = url;
+  });
+}
+
+function processAll() {
+  var btn = document.getElementById('process-btn');
+  var prog = document.getElementById('progress-wrap');
+  var bar = document.getElementById('progress-bar');
+  var label = document.getElementById('progress-label');
+  btn.disabled = true; btn.textContent = 'Working…'; prog.style.display = 'block';
+
+  var i = 0;
+  function next() {
+    if (i >= files.length) {
+      bar.style.width = '100%';
+      label.textContent = 'Done! ' + files.length + ' file' + (files.length>1?'s':'') + ' saved.';
+      btn.textContent = 'Process & Save'; btn.disabled = false;
+      render();
+      document.getElementById('progress-wrap').style.display = 'block';
+      document.getElementById('progress-bar').style.width = '100%';
+      return;
+    }
+    bar.style.width = Math.round((i/files.length)*100) + '%';
+    label.textContent = 'Processing ' + (i+1) + ' of ' + files.length + '…';
+    var f = files[i];
+    var e = ext(f.file.name).toLowerCase();
+    var finalName = (f.newName.trim() || randName()) + ext(f.file.name);
+
+    function doDownload(blob) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = finalName;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+      f.status = 'done'; i++;
+      setTimeout(next, 500);
+    }
+
+    if (f.stripExif && ['.jpg','.jpeg','.png'].indexOf(e) >= 0) {
+      stripImage(f.file).then(doDownload);
+    } else {
+      doDownload(f.file);
+    }
+  }
+  next();
+}
+
+/* ── Paste support ── */
+document.getElementById('paste-btn').addEventListener('click', function() {
+  if (!navigator.clipboard || !navigator.clipboard.read) {
+    alert('Paste not supported in this browser. Try copying the image and using the clipboard shortcut, or use Chrome/Safari 13.1+.');
+    return;
+  }
+  navigator.clipboard.read().then(function(items) {
+    var found = false;
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      for (var t = 0; t < item.types.length; t++) {
+        var type = item.types[t];
+        if (type.startsWith('image/')) {
+          found = true;
+          item.getType(type).then(function(blob) {
+            var ext2 = type === 'image/png' ? '.png' : type === 'image/jpeg' ? '.jpg' : '.png';
+            addBlob(blob, randName() + ext2);
+          });
+        }
+      }
+    }
+    if (!found) {
+      alert('No image found in clipboard. Copy an image first, then tap Paste image.');
+    }
+  }).catch(function(err) {
+    alert('Could not read clipboard. Make sure you allow clipboard access when prompted.');
+    console.error(err);
+  });
+});
+
+/* Global paste event (Ctrl+V / Command+V on desktop) */
+document.addEventListener('paste', function(e) {
+  var items = e.clipboardData && e.clipboardData.items;
+  if (!items) return;
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].type.startsWith('image/')) {
+      var blob = items[i].getAsFile();
+      if (blob) addBlob(blob, randName() + '.png');
+    }
+  }
+});
+
+/* File input */
+document.getElementById('pick-btn').addEventListener('click', function(e) {
+  e.preventDefault(); e.stopPropagation();
+  document.getElementById('file-input').click();
+});
+document.getElementById('file-input').addEventListener('change', function() {
+  if (this.files && this.files.length > 0) addFiles(this.files);
+  this.value = '';
+});
+
+/* Drag & drop */
+var dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', function(e) { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', function() { dz.classList.remove('drag-over'); });
+dz.addEventListener('drop', function(e) {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+});
+
+document.getElementById('clear-btn').addEventListener('click', clearAll);
+document.getElementById('process-btn').addEventListener('click', processAll);
+document.getElementById('bulk-apply').addEventListener('click', applyBulk);
+</script>
+</body>
+</html>
