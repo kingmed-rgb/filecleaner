@@ -76,29 +76,12 @@ img{max-width:100%;display:block}
 .nav-links a:hover{opacity:1}
 .nav-cta{background:#fff;color:#12372a;border:1px solid rgba(255,255,255,.52);border-radius:6px;padding:10px 14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .site-header.is-scrolled .nav-cta{background:#12372a;color:#fff;border-color:#12372a;box-shadow:none}
-.hero{min-height:88vh;position:relative;display:grid;align-items:end;overflow:hidden;background:radial-gradient(circle at 76% 22%,rgba(72,213,151,.18),transparent 30%),radial-gradient(circle at 20% 18%,rgba(143,184,255,.12),transparent 28%),linear-gradient(135deg,#070a09 0%,#0b1511 50%,#07100d 100%);color:#fff}
-.hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(7,10,9,.08) 0%,rgba(7,10,9,.24) 55%,#070a09 100%)}
-.hero::after{content:"";position:absolute;right:clamp(18px,8vw,120px);bottom:clamp(110px,18vw,210px);z-index:0;width:min(460px,42vw);aspect-ratio:1.25;border:1px solid rgba(237,247,241,.12);border-radius:8px;background:linear-gradient(145deg,rgba(237,247,241,.08),rgba(237,247,241,.02));box-shadow:0 26px 90px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.08)}
-.hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;padding:150px clamp(18px,4vw,42px) 88px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border-radius:999px;padding:8px 12px;color:#eef8f3;font-size:13px;font-weight:800}
-.eyebrow::before{content:"";width:8px;height:8px;border-radius:99px;background:#56d49f;box-shadow:0 0 0 6px rgba(86,212,159,.14)}
-.hero h1{max-width:700px;margin:20px 0 18px;font-size:clamp(48px,8vw,104px);line-height:.92;letter-spacing:0;font-weight:900}
-.hero-copy{max-width:640px;margin:0;color:#e8f2ed;font-size:clamp(17px,2.4vw,22px)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;padding:0 18px;font-weight:850}
-.primary-link{background:#fff;color:#12372a;border:1px solid #fff}
-.secondary-link{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.34);color:#fff}
-.trust-strip{position:relative;z-index:3;width:min(1120px,calc(100% - 36px));margin:-42px auto 0;background:#fbfaf7;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:8px;display:grid;grid-template-columns:repeat(3,1fr)}
-.trust-item{padding:24px;border-right:1px solid var(--line)}
-.trust-item:last-child{border-right:0}
-.trust-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--quiet);font-weight:900}
-.trust-item strong{display:block;margin-top:6px;font-size:18px;letter-spacing:-.01em}
 .section{padding:84px clamp(18px,4vw,42px)}
 .section-inner{max-width:1120px;margin:0 auto}
 .section-title{max-width:760px;margin:0 0 34px}
 .section-title h2{font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:0;margin:0 0 14px}
 .section-title p{font-size:18px;color:var(--muted);margin:0}
-.workspace-band{padding-top:76px}
+.workspace-band{padding-top:120px}
 .workspace{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start}
 .rail{position:sticky;top:96px;border-left:3px solid var(--green);padding:8px 0 8px 18px}
 .rail h2{font-size:30px;line-height:1.05;margin:0 0 12px;letter-spacing:0}
@@ -198,7 +181,7 @@ img{max-width:100%;display:block}
 .nav-cta,.primary-link{background:var(--green);color:#06100c;border-color:var(--green)}
 .site-header.is-scrolled .nav-cta{background:var(--green);color:#06100c;border-color:var(--green)}
 .secondary-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
-.trust-strip,.tool-shell,.feature-card,.format-table,.faq details{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
+.tool-shell,.feature-card,.format-table,.faq details{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
 .tool-header,#bulk-bar,.file-card,#progress-wrap,.format-row.head{background:#121b16;border-color:var(--line)}
 #drop-zone{background:#0d1411;border-color:rgba(72,213,151,.35)}
 #drop-zone.drag-over{background:#12231b;border-color:var(--green)}
@@ -220,12 +203,11 @@ img{max-width:100%;display:block}
 
 @media (max-width:900px){
   .nav-links a:not(.nav-cta){display:none}
-  .trust-strip,.feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
-  .trust-strip{margin-top:-28px}
+  .feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
   .trust-item{border-right:0;border-bottom:1px solid var(--line)}
   .trust-item:last-child{border-bottom:0}
   .rail{position:static;border-left:0;border-top:3px solid var(--green);padding:18px 0 0}
-  .workspace-band{padding-top:58px}
+  .workspace-band{padding-top:96px}
 }
 @media (max-width:640px){
   .site-header{padding:12px 14px}
@@ -235,12 +217,6 @@ img{max-width:100%;display:block}
   .nav{gap:10px}
   .nav-links{gap:0}
   .nav-cta{display:none}
-  .hero{min-height:86vh;background-position:58% center}
-  .hero::before{background:linear-gradient(90deg,rgba(10,25,20,.88),rgba(10,25,20,.64))}
-  .hero-inner{padding:120px 18px 74px}
-  .hero h1{font-size:clamp(46px,14vw,62px);max-width:7ch}
-  .hero-copy{max-width:330px}
-  .hero-actions{max-width:360px}
   .section{padding:62px 18px}
   .tool-header{align-items:flex-start;flex-direction:column}
   .app-area{padding:14px}
@@ -276,33 +252,6 @@ img{max-width:100%;display:block}
 </header>
 
 <main id="top">
-  <section class="hero" aria-label="File Cleaner landing page">
-    <div class="hero-inner">
-      <span class="eyebrow">Client-side file cleanup</span>
-      <h1>File Cleaner</h1>
-      <p class="hero-copy">Remove image metadata, rename batches, and save cleaner copies in a fast web app that runs directly in your browser.</p>
-      <div class="hero-actions">
-        <a class="primary-link" href="#app">Clean files now</a>
-        <a class="secondary-link" href="#privacy">See privacy details</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="trust-strip" aria-label="Product highlights">
-    <div class="trust-item">
-      <span class="trust-kicker">Private by design</span>
-      <strong>No file uploads or account required.</strong>
-    </div>
-    <div class="trust-item">
-      <span class="trust-kicker">Image cleanup</span>
-      <strong>JPEG and PNG metadata stripped by redraw.</strong>
-    </div>
-    <div class="trust-item">
-      <span class="trust-kicker">Batch ready</span>
-      <strong>Rename, randomize, process, and save.</strong>
-    </div>
-  </section>
-
   <section class="section workspace-band" id="app">
     <div class="section-inner workspace">
       <aside class="rail" aria-label="App summary">
