@@ -144,12 +144,36 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 .account-actions{display:flex;justify-content:center;margin-top:14px}
 #sign-in-toggle{border:0;background:transparent;color:var(--accent-strong);min-height:auto;padding:0;border-radius:0;text-decoration:underline;text-underline-offset:4px;font-size:14px;font-weight:550}
 #sign-in-toggle:hover{color:#8df0bf}
-#google-sign-in,#upgrade-pro{display:none}
-.auth-form{display:none;grid-template-columns:minmax(180px,1fr) minmax(88px,.35fr) auto auto;gap:8px;align-items:center;margin:18px auto 0;max-width:720px}
-.auth-form.is-open{display:grid}
-.auth-form input{height:44px;border:1px solid var(--line-strong);border-radius:6px;background:#070c09;color:var(--ink);padding:0 12px;outline:none}
-.auth-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(73,213,150,.12)}
-.message{display:none;margin:12px auto 0;max-width:720px;color:var(--muted);font-size:13px}
+#upgrade-pro{display:none}
+.auth-modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.58)}
+.auth-modal.is-open{display:flex}
+.auth-dialog{position:relative;width:min(560px,100%);max-height:calc(100vh - 44px);overflow:auto;background:#f4efe6;color:#231f1a;border:1px solid #d6cfc2;border-radius:8px;box-shadow:0 26px 90px rgba(0,0,0,.42)}
+.auth-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:28px 30px 24px;border-bottom:1px solid #d8d0c3}
+.auth-head h2{font-family:Georgia,"Times New Roman",serif;font-size:42px;line-height:1;margin:0;font-weight:500;letter-spacing:0;color:#201c18}
+.auth-close{width:40px;height:40px;border:0;background:transparent;color:#7f776d;font-size:38px;line-height:1;display:grid;place-items:center;border-radius:6px}
+.auth-close:hover{background:rgba(35,31,26,.06);color:#201c18}
+.auth-body{padding:30px}
+.google-auth-btn{width:100%;min-height:56px;border:1px solid #d0c8ba;border-radius:6px;background:#fbf8f1;color:#231f1a;font-weight:750;font-size:18px;display:flex;align-items:center;justify-content:center;gap:14px}
+.google-auth-btn:hover{border-color:#b9ad9d;background:#fffdf8}
+.google-g{width:26px;height:26px;border-radius:999px;background:conic-gradient(from -45deg,#4285f4 0 25%,#34a853 0 50%,#fbbc05 0 75%,#ea4335 0);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px;font-family:Arial,sans-serif}
+.auth-divider{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin:26px 0;color:#8a8176;font-size:13px;font-weight:850;letter-spacing:0}
+.auth-divider::before,.auth-divider::after{content:"";height:1px;background:#d3cabd}
+.auth-form{display:grid;gap:18px}
+.modal-field{display:grid;gap:8px}
+.modal-field span{color:#514b43;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:850}
+.modal-field input,.code-row input{width:100%;height:52px;border:1px solid #d0c8ba;border-radius:6px;background:#fbf8f1;color:#231f1a;padding:0 16px;outline:none;font-size:18px}
+.modal-field input:focus,.code-row input:focus{border-color:#e94020;box-shadow:0 0 0 3px rgba(233,64,32,.12)}
+.code-row{display:none;grid-template-columns:1fr auto;gap:10px;align-items:end}
+.code-row.is-visible{display:grid}
+.code-row label{display:grid;gap:8px}
+.code-row span{color:#514b43;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:850}
+.auth-primary{height:56px;border:1px solid #ef3b1d;border-radius:6px;background:#ef3b1d;color:#fff;font-size:18px;font-weight:800}
+.auth-primary:hover{background:#d93016;border-color:#d93016}
+.auth-secondary{height:52px;border:1px solid #d0c8ba;border-radius:6px;background:#fbf8f1;color:#231f1a;font-weight:800;padding:0 18px}
+.auth-secondary:hover{border-color:#b9ad9d;background:#fffdf8}
+.auth-switch{margin:22px 0 0;text-align:center;color:#82796f;font-size:16px}
+.auth-switch button{border:0;background:transparent;color:#4b4238;text-decoration:underline;text-underline-offset:3px;font:inherit;cursor:pointer}
+.message{display:none;margin:14px 0 0;color:#6d655c;font-size:14px;text-align:center}
 .message.is-visible{display:block}
 .utility-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-top:14px}
 #bulk-bar{display:none;gap:10px;align-items:end;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:14px}
@@ -233,14 +257,6 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
               <button class="link-btn" id="sign-in-toggle" type="button">Sign up free for 10 images/day - 3x your limit</button>
               <button class="small-btn" id="upgrade-pro" type="button">Upgrade to Pro</button>
             </div>
-            <form class="auth-form" id="auth-form">
-              <input id="auth-email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address">
-              <input id="auth-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Code" aria-label="Registration code">
-              <button class="small-btn" id="send-code" type="button">Send code</button>
-              <button class="small-btn" id="verify-code" type="button">Verify</button>
-              <button class="small-btn" id="google-sign-in" type="button">Continue with Google</button>
-            </form>
-            <div class="message" id="account-message"></div>
           </div>
 
           <div id="bulk-bar" aria-label="Bulk rename controls">
@@ -478,6 +494,38 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   </div>
 </footer>
 
+<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <section class="auth-dialog" aria-label="Create account">
+    <div class="auth-head">
+      <h2 id="auth-title">Create Account</h2>
+      <button class="auth-close" type="button" data-auth-close aria-label="Close account window">&times;</button>
+    </div>
+    <div class="auth-body">
+      <button class="google-auth-btn" id="google-sign-in" type="button">
+        <span class="google-g" aria-hidden="true">G</span>
+        <span>Continue with Google</span>
+      </button>
+      <div class="auth-divider"><span>OR</span></div>
+      <form class="auth-form" id="auth-form">
+        <label class="modal-field" for="auth-email">
+          <span>Email address</span>
+          <input id="auth-email" type="email" inputmode="email" autocomplete="email" placeholder="Enter your email address" required>
+        </label>
+        <div class="code-row" id="code-row">
+          <label for="auth-code">
+            <span>Email code</span>
+            <input id="auth-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" aria-label="Registration code">
+          </label>
+          <button class="auth-secondary" id="verify-code" type="button">Verify</button>
+        </div>
+        <button class="auth-primary" id="send-code" type="submit">Create Account</button>
+      </form>
+      <div class="message" id="account-message"></div>
+      <p class="auth-switch">Already have an account? <button type="button" id="auth-sign-in-link">Sign In</button></p>
+    </div>
+  </section>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -506,13 +554,16 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   var quotaFill = document.getElementById("quota-fill");
   var signInToggle = document.getElementById("sign-in-toggle");
   var navRegister = document.getElementById("nav-register");
+  var authModal = document.getElementById("auth-modal");
   var authForm = document.getElementById("auth-form");
   var authEmail = document.getElementById("auth-email");
   var authCode = document.getElementById("auth-code");
+  var codeRow = document.getElementById("code-row");
   var sendCodeBtn = document.getElementById("send-code");
   var verifyCodeBtn = document.getElementById("verify-code");
   var accountMessage = document.getElementById("account-message");
   var googleSignIn = document.getElementById("google-sign-in");
+  var authSignInLink = document.getElementById("auth-sign-in-link");
   var upgradePro = document.getElementById("upgrade-pro");
   var apiBase = (window.FILECLEANER_API_BASE || "").replace(/\/$/, "");
   var usageState = null;
@@ -628,12 +679,24 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   }
 
   function openAuth(){
-    authForm.classList.add("is-open");
-    authEmail.focus();
+    clearMessage();
+    authModal.classList.add("is-open");
+    authModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    window.setTimeout(function(){ authEmail.focus(); }, 0);
   }
 
-  function sendCode(){
+  function closeAuth(){
+    authModal.classList.remove("is-open");
+    authModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+
+  function sendCode(event){
+    if (event) event.preventDefault();
     clearMessage();
+    if (!authForm.reportValidity()) return;
     sendCodeBtn.disabled = true;
     apiRequest("/api/auth/start", {
       method:"POST",
@@ -641,6 +704,8 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
       body:JSON.stringify({ email:authEmail.value })
     }).then(function(data){
       backendOnline = true;
+      codeRow.classList.add("is-visible");
+      sendCodeBtn.textContent = "Resend code";
       showMessage(data.devCode ? "Dev registration code: " + data.devCode : "Check your email for a 6-digit registration code.");
       authCode.focus();
     }).catch(function(error){
@@ -658,8 +723,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({ email:authEmail.value, code:authCode.value })
     }).then(function(){
-      authForm.classList.remove("is-open");
-      showMessage("Registered. Your free limit is now 10 images/day.");
+      closeAuth();
       return refreshUsage();
     }).catch(function(error){
       showMessage(error.message || "Could not verify that code.");
@@ -1044,11 +1108,23 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   pasteBtn.addEventListener("click", pasteFromClipboard);
   signInToggle.addEventListener("click", openAuth);
   navRegister.addEventListener("click", openAuth);
-  sendCodeBtn.addEventListener("click", sendCode);
+  authForm.addEventListener("submit", sendCode);
   verifyCodeBtn.addEventListener("click", verifyCode);
   googleSignIn.addEventListener("click", startGoogleSignIn);
+  authSignInLink.addEventListener("click", function(){
+    codeRow.classList.add("is-visible");
+    sendCodeBtn.textContent = "Send code";
+    authEmail.focus();
+  });
   upgradePro.addEventListener("click", function(){ startCheckout("monthly"); });
   Array.prototype.forEach.call(document.querySelectorAll("[data-auth-open]"), function(button){ button.addEventListener("click", openAuth); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-auth-close]"), function(button){ button.addEventListener("click", closeAuth); });
+  document.addEventListener("keydown", function(event){
+    if (event.key === "Escape" && authModal.classList.contains("is-open")) closeAuth();
+  });
+  authModal.addEventListener("click", function(event){
+    if (event.target === authModal) closeAuth();
+  });
 
   if (navigator.clipboard && navigator.clipboard.read) {
     pasteHint.style.display = "block";
