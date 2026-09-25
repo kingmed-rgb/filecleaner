@@ -16,7 +16,11 @@ Files are still processed locally in the browser. The Vercel backend only stores
 2. Add Vercel KV or Upstash Redis and copy `KV_REST_API_URL` and `KV_REST_API_TOKEN` into the project environment variables.
 3. Create a Stripe product with two recurring prices: monthly `$10` and yearly `$89`.
 4. Add the environment variables from `.env.example`.
-5. Add a Stripe webhook pointing to:
+5. Optional Google OAuth: create a Google OAuth web client and add this authorized redirect URI:
+
+   `https://your-filecleaner-app.vercel.app/api/auth/google/callback`
+
+6. Add a Stripe webhook pointing to:
 
    `https://your-filecleaner-app.vercel.app/api/stripe/webhook`
 
@@ -26,7 +30,7 @@ Files are still processed locally in the browser. The Vercel backend only stores
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
 
-6. Deploy.
+7. Deploy.
 
 ## GitHub Pages front end
 

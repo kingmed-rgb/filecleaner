@@ -324,6 +324,7 @@ module.exports = {
   json,
   readJson,
   readRawBody,
+  parseCookies,
   appendCookie,
   cookie,
   clearCookie,
