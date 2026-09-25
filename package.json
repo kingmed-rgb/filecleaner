@@ -1,0 +1,8 @@
+{
+  "name": "filecleaner",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check api/_lib.js && find api -name '*.js' -maxdepth 3 -print -exec node --check {} \\;"
+  }
+}

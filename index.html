@@ -169,6 +169,34 @@ img{max-width:100%;display:block}
 .action-btn{min-height:52px;width:100%}
 .action-btn:disabled{opacity:.45;cursor:not-allowed}
 .note{display:none;margin:14px 0 0;color:var(--muted);font-size:13px}
+.link-btn{border:0;background:transparent;color:inherit;padding:0;font:inherit;font-weight:800;cursor:pointer;opacity:.9}
+.link-btn:hover{opacity:1}
+.account-panel{display:grid;gap:12px;border:1px solid var(--line);background:#0d1411;border-radius:8px;padding:14px;margin-bottom:14px}
+.account-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.account-title{font-weight:900;color:var(--ink)}
+.account-sub{color:var(--muted);font-size:13px;margin-top:2px}
+.plan-pill{display:inline-flex;align-items:center;border-radius:999px;background:var(--green-soft);color:var(--green);padding:5px 10px;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.06em}
+.quota-meter{height:8px;border-radius:99px;background:#24302a;overflow:hidden}
+.quota-meter span{display:block;height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .2s ease}
+.account-actions{display:flex;gap:10px;flex-wrap:wrap}
+.auth-form{display:none;grid-template-columns:minmax(180px,1fr) minmax(92px,.45fr) auto auto;gap:8px;align-items:end}
+.auth-form.is-open{display:grid}
+.auth-form input{height:42px;border:1px solid var(--line-strong);border-radius:6px;background:#0b100e;color:var(--ink);padding:0 11px;outline:none}
+.auth-form input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(72,213,151,.12)}
+.message{display:none;border:1px solid rgba(72,213,151,.26);background:rgba(72,213,151,.08);border-radius:8px;padding:10px 12px;color:#cdeee0;font-size:13px}
+.message.is-visible{display:block}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.price-card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:16px;box-shadow:var(--shadow)}
+.price-card.featured{border-color:rgba(72,213,151,.48);box-shadow:0 18px 70px rgba(72,213,151,.12)}
+.price-kicker{color:var(--green);font-size:12px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.price-card h3{font-size:24px;margin:0;color:var(--ink)}
+.price{font-size:36px;line-height:1;font-weight:950;color:var(--ink)}
+.price span{font-size:14px;color:var(--muted);font-weight:800}
+.price-card p{margin:0;color:var(--muted)}
+.plan-list{display:grid;gap:9px;margin:0;padding:0;list-style:none;color:var(--muted)}
+.plan-list li{display:flex;gap:8px;align-items:flex-start}
+.plan-list li::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--green);margin-top:8px;flex:0 0 auto}
+.price-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
 .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .feature-card{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;padding:20px}
 .feature-token{width:42px;height:42px;border-radius:8px;display:grid;place-items:center;font-weight:950;margin-bottom:16px}
@@ -216,7 +244,7 @@ img{max-width:100%;display:block}
 .nav-cta,.primary-link{background:var(--green);color:#06100c;border-color:var(--green)}
 .site-header.is-scrolled .nav-cta{background:var(--green);color:#06100c;border-color:var(--green)}
 .secondary-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
-.tool-shell,.feature-card,.format-table,.faq details{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
+.tool-shell,.feature-card,.format-table,.faq details,.price-card,.seo-card{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
 #bulk-bar,.file-card,#progress-wrap,.format-row.head{background:#121b16;border-color:var(--line)}
 #drop-zone{background:#0d1411;border-color:rgba(72,213,151,.35)}
 #drop-zone.drag-over{background:#12231b;border-color:var(--green)}
@@ -251,7 +279,7 @@ img{max-width:100%;display:block}
   .section{padding:48px 18px}
   .app-area{padding:12px}
   #drop-zone{padding:30px 14px}
-  #bulk-bar .bulk-fields,.utility-row,.format-row{grid-template-columns:1fr}
+  #bulk-bar .bulk-fields,.utility-row,.format-row,.auth-form{grid-template-columns:1fr}
   .format-row.head{display:none}
   .format-row div{padding:11px 14px}
   .file-header{grid-template-columns:auto minmax(0,1fr) auto}
@@ -360,6 +388,58 @@ img{max-width:100%;display:block}
     </div>
   </section>
 
+  <section class="section" id="pricing">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>Simple limits, with Pro when you need more.</h2>
+        <p>Start without an account, sign in for a higher free daily limit, or upgrade for unlimited image cleanup and batch workflows.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <div class="price-kicker">Guest</div>
+          <h3>No sign-in</h3>
+          <div class="price">$0 <span>/ day</span></div>
+          <p>For quick one-off cleanup.</p>
+          <ul class="plan-list">
+            <li>3 image uses per day</li>
+            <li>Single-image processing</li>
+            <li>Local browser cleanup</li>
+          </ul>
+          <div class="price-actions"><a class="small-btn" href="#app">Start cleaning</a></div>
+        </article>
+        <article class="price-card">
+          <div class="price-kicker">Free</div>
+          <h3>Signed in</h3>
+          <div class="price">$0 <span>/ month</span></div>
+          <p>For regular lightweight use.</p>
+          <ul class="plan-list">
+            <li>10 image uses per day</li>
+            <li>Single-image processing</li>
+            <li>Email code sign-in</li>
+          </ul>
+          <div class="price-actions"><button class="small-btn" type="button" data-auth-open>Sign in free</button></div>
+        </article>
+        <article class="price-card featured">
+          <div class="price-kicker">Pro</div>
+          <h3>Unlimited</h3>
+          <div class="price">$10 <span>/ month</span></div>
+          <p>Or $89 yearly. Built for publishing, marketplaces, and client work.</p>
+          <ul class="plan-list">
+            <li>Unlimited images per day</li>
+            <li>Batch processing</li>
+            <li>No ads</li>
+            <li>Priority support</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <div class="price-actions">
+            <button class="small-btn action-primary" type="button" data-checkout="monthly">Monthly</button>
+            <button class="small-btn" type="button" data-checkout="yearly">Yearly $89</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="removes">
     <div class="section-inner">
       <div class="section-title">
@@ -425,7 +505,7 @@ img{max-width:100%;display:block}
     <div class="section-inner privacy-grid">
       <div class="section-title">
         <h2>Designed for public use, without collecting private files.</h2>
-        <p>Processing happens inside the browser tab. There is no upload endpoint in this static site, and the app creates local downloads from the files you select.</p>
+        <p>Image processing happens inside the browser tab. The backend manages accounts, daily limits, and billing without receiving the private files you select.</p>
       </div>
       <div class="proof-list">
         <div class="proof-item">
@@ -525,7 +605,7 @@ img{max-width:100%;display:block}
       <span class="brand-mark">FC</span>
       <span>File Cleaner</span>
     </div>
-    <span>Free browser metadata cleaner hosted on GitHub Pages.</span>
+    <span>Free browser metadata cleaner with Vercel-backed plans.</span>
     <div class="footer-links" aria-label="Footer links">
       <a href="privacy.html">Privacy</a>
       <a href="disclaimer.html">Disclaimer</a>
@@ -559,10 +639,196 @@ img{max-width:100%;display:block}
   var progressWrap = document.getElementById("progress-wrap");
   var progressBar = document.getElementById("progress-bar");
   var progressLabel = document.getElementById("progress-label");
+  var planLabel = document.getElementById("plan-label");
+  var usageLabel = document.getElementById("usage-label");
+  var quotaFill = document.getElementById("quota-fill");
+  var signInToggle = document.getElementById("sign-in-toggle");
+  var navSignIn = document.getElementById("nav-sign-in");
+  var authForm = document.getElementById("auth-form");
+  var authEmail = document.getElementById("auth-email");
+  var authCode = document.getElementById("auth-code");
+  var sendCodeBtn = document.getElementById("send-code");
+  var verifyCodeBtn = document.getElementById("verify-code");
+  var accountMessage = document.getElementById("account-message");
+  var upgradeMonthly = document.getElementById("upgrade-monthly");
+  var manageBilling = document.getElementById("manage-billing");
+  var apiBase = (window.FILECLEANER_API_BASE || "").replace(/\/$/, "");
+  var usageState = null;
+  var backendOnline = false;
 
   function syncHeader(){
     header.classList.toggle("is-scrolled", window.scrollY > 18);
   }
+
+
+  function todayKey(){
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function localUsage(){
+    var key = "fc_usage_" + todayKey();
+    return Number(localStorage.getItem(key) || 0);
+  }
+
+  function localStatus(){
+    var used = localUsage();
+    return { authenticated:false, plan:"guest", limit:3, used:used, remaining:Math.max(0, 3 - used), canBatch:false, pro:false };
+  }
+
+  function localConsume(count){
+    var amount = Math.max(1, Number(count || 1));
+    if (amount > 1) {
+      return Promise.reject(new Error("Batch processing is included with Pro."));
+    }
+    var status = localStatus();
+    if (status.used + amount > status.limit) {
+      return Promise.reject(new Error("Daily limit reached. Sign in for 10 images per day or upgrade to Pro."));
+    }
+    localStorage.setItem("fc_usage_" + todayKey(), String(status.used + amount));
+    usageState = localStatus();
+    updateUsageUI();
+    return Promise.resolve(usageState);
+  }
+
+  function apiUrl(path){
+    return apiBase + path;
+  }
+
+  function apiRequest(path, options){
+    return fetch(apiUrl(path), Object.assign({ credentials:"include" }, options || {})).then(function(response){
+      return response.text().then(function(text){
+        var data = text ? JSON.parse(text) : {};
+        if (!response.ok) {
+          var message = data.message || data.error || "Request failed";
+          var error = new Error(message);
+          error.status = response.status;
+          error.code = data.error;
+          throw error;
+        }
+        return data;
+      });
+    });
+  }
+
+  function showMessage(text){
+    accountMessage.textContent = text;
+    accountMessage.classList.add("is-visible");
+  }
+
+  function clearMessage(){
+    accountMessage.textContent = "";
+    accountMessage.classList.remove("is-visible");
+  }
+
+  function updateUsageUI(){
+    var state = usageState || localStatus();
+    var name = state.plan === "pro" ? "Pro" : state.plan === "free" ? "Free" : "Guest";
+    planLabel.textContent = name;
+    if (state.limit == null) {
+      usageLabel.textContent = state.authenticated && state.email ? "Unlimited images. Signed in as " + state.email + "." : "Unlimited images.";
+      quotaFill.style.width = "100%";
+    } else {
+      usageLabel.textContent = state.used + " of " + state.limit + " daily image uses. " + state.remaining + " left.";
+      quotaFill.style.width = Math.min(100, Math.round((state.used / state.limit) * 100)) + "%";
+    }
+    signInToggle.style.display = state.authenticated ? "none" : "inline-flex";
+    manageBilling.style.display = state.pro ? "inline-flex" : "none";
+    upgradeMonthly.style.display = state.pro ? "none" : "inline-flex";
+    render();
+  }
+
+  function refreshUsage(){
+    return apiRequest("/api/usage/status").then(function(data){
+      backendOnline = true;
+      usageState = data;
+      updateUsageUI();
+      return data;
+    }).catch(function(){
+      backendOnline = false;
+      usageState = localStatus();
+      updateUsageUI();
+      showMessage("Backend not connected yet. Guest limits are running in this browser until the Vercel API is live.");
+      return usageState;
+    });
+  }
+
+  function consumeQuota(count){
+    if (!backendOnline) return localConsume(count);
+    return apiRequest("/api/usage/consume", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ count:count })
+    }).then(function(data){
+      usageState = data;
+      updateUsageUI();
+      return data;
+    });
+  }
+
+  function openAuth(){
+    authForm.classList.add("is-open");
+    authEmail.focus();
+  }
+
+  function sendCode(){
+    clearMessage();
+    sendCodeBtn.disabled = true;
+    apiRequest("/api/auth/start", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ email:authEmail.value })
+    }).then(function(data){
+      backendOnline = true;
+      showMessage(data.devCode ? "Dev sign-in code: " + data.devCode : "Check your email for a 6-digit sign-in code.");
+      authCode.focus();
+    }).catch(function(error){
+      showMessage(error.message || "Could not send a sign-in code.");
+    }).finally(function(){
+      sendCodeBtn.disabled = false;
+    });
+  }
+
+  function verifyCode(){
+    clearMessage();
+    verifyCodeBtn.disabled = true;
+    apiRequest("/api/auth/verify", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ email:authEmail.value, code:authCode.value })
+    }).then(function(){
+      authForm.classList.remove("is-open");
+      showMessage("Signed in. Your free limit is now 10 images per day.");
+      return refreshUsage();
+    }).catch(function(error){
+      showMessage(error.message || "Could not verify that code.");
+    }).finally(function(){
+      verifyCodeBtn.disabled = false;
+    });
+  }
+
+  function startCheckout(interval){
+    clearMessage();
+    apiRequest("/api/billing/checkout", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ interval:interval })
+    }).then(function(data){
+      window.location.href = data.url;
+    }).catch(function(error){
+      if (error.status === 401) openAuth();
+      showMessage(error.message || "Sign in before upgrading.");
+    });
+  }
+
+  function openBillingPortal(){
+    clearMessage();
+    apiRequest("/api/billing/portal", { method:"POST" }).then(function(data){
+      window.location.href = data.url;
+    }).catch(function(error){
+      showMessage(error.message || "Could not open billing settings.");
+    });
+  }
+
 
   function randId(){
     return Math.random().toString(36).slice(2, 7).toUpperCase();
@@ -731,10 +997,13 @@ img{max-width:100%;display:block}
     });
 
     var hasFiles = files.length > 0;
-    bulkBar.style.display = hasFiles ? "flex" : "none";
+    var pro = usageState && usageState.pro;
+    var batchLocked = hasFiles && files.length > 1 && !pro;
+    bulkBar.style.display = hasFiles && pro ? "flex" : "none";
     actions.style.display = hasFiles ? "grid" : "none";
     note.style.display = hasFiles ? "block" : "none";
     processBtn.disabled = !hasFiles;
+    processBtn.textContent = batchLocked ? "Upgrade for batch" : "Process and save";
     if (!hasFiles) {
       progressWrap.style.display = "none";
       progressBar.style.width = "0%";
@@ -823,6 +1092,20 @@ img{max-width:100%;display:block}
   function processAll(){
     if (!files.length) return;
     processBtn.disabled = true;
+    processBtn.textContent = "Checking limit...";
+    clearMessage();
+
+    consumeQuota(files.length).then(function(){
+      beginProcessing();
+    }).catch(function(error){
+      showMessage(error.message || "Daily limit reached.");
+      processBtn.disabled = false;
+      render();
+    });
+  }
+
+  function beginProcessing(){
+    processBtn.disabled = true;
     processBtn.textContent = "Working...";
     progressWrap.style.display = "block";
     progressBar.style.width = "0%";
@@ -837,6 +1120,7 @@ img{max-width:100%;display:block}
         render();
         progressWrap.style.display = "block";
         progressBar.style.width = "100%";
+        refreshUsage();
         return;
       }
 
@@ -891,6 +1175,14 @@ img{max-width:100%;display:block}
   });
 
   pasteBtn.addEventListener("click", pasteFromClipboard);
+  signInToggle.addEventListener("click", openAuth);
+  navSignIn.addEventListener("click", openAuth);
+  sendCodeBtn.addEventListener("click", sendCode);
+  verifyCodeBtn.addEventListener("click", verifyCode);
+  upgradeMonthly.addEventListener("click", function(){ startCheckout("monthly"); });
+  manageBilling.addEventListener("click", openBillingPortal);
+  Array.prototype.forEach.call(document.querySelectorAll("[data-auth-open]"), function(button){ button.addEventListener("click", openAuth); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-checkout]"), function(button){ button.addEventListener("click", function(){ startCheckout(button.getAttribute("data-checkout")); }); });
 
   if (navigator.clipboard && navigator.clipboard.read) {
     pasteHint.style.display = "block";
