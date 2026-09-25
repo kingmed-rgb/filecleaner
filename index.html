@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="File Cleaner is a private, browser-based tool for removing JPEG and PNG metadata, renaming files in bulk, and saving cleaner copies without uploads.">
+<meta name="description" content="Free browser-based metadata cleaner for JPEG and PNG images. Remove EXIF, GPS, C2PA, AI tags, and Stable Diffusion PNG metadata without uploads.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#070a09">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,27 +12,63 @@
 <link rel="canonical" href="https://kingmed-rgb.github.io/filecleaner/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kingmed-rgb.github.io/filecleaner/">
-<meta property="og:title" content="File Cleaner">
-<meta property="og:description" content="Clean metadata, rename files, and save polished copies directly in your browser.">
+<meta property="og:title" content="Free Metadata Cleaner & AI Tag Remover">
+<meta property="og:description" content="Remove EXIF, GPS, C2PA, AI tags, and PNG metadata from images directly in your browser. No account or file uploads required.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="File Cleaner">
-<meta name="twitter:description" content="A private browser app for cleaning image metadata and renaming files in batches.">
+<meta name="twitter:title" content="Free Metadata Cleaner & AI Tag Remover">
+<meta name="twitter:description" content="Clean JPEG and PNG metadata locally in your browser, including EXIF, GPS, AI tags, and Stable Diffusion PNG chunks.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312372a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='white'%3EFC%3C/text%3E%3C/svg%3E">
-<title>File Cleaner | Private Metadata Remover and Bulk Renamer</title>
+<title>Free Metadata Cleaner & AI Tag Remover | Remove EXIF, GPS, C2PA</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "File Cleaner",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Web",
-  "url": "https://kingmed-rgb.github.io/filecleaner/",
-  "description": "A private, browser-based utility for removing JPEG and PNG metadata and renaming files in bulk.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
+  "@graph": [
+    {
+      "@type": ["SoftwareApplication", "WebApplication"],
+      "@id": "https://kingmed-rgb.github.io/filecleaner/#app",
+      "name": "File Cleaner",
+      "alternateName": "Free Metadata Cleaner & AI Tag Remover",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "url": "https://kingmed-rgb.github.io/filecleaner/",
+      "description": "A free browser-based metadata cleaner that removes EXIF, GPS, C2PA, AI tags, and PNG metadata from JPEG and PNG images without uploading files.",
+      "browserRequirements": "Requires a modern browser with HTML5 File API and Canvas support.",
+      "featureList": [
+        "Remove EXIF metadata from JPEG images",
+        "Remove GPS location metadata from photos",
+        "Remove PNG text chunks and Stable Diffusion parameters",
+        "Remove file-level AI and C2PA metadata from supported images",
+        "Bulk rename files before download",
+        "Process images locally in the browser"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://kingmed-rgb.github.io/filecleaner/#how-it-works",
+      "name": "How to remove metadata from an image online",
+      "description": "Clean JPEG and PNG image metadata locally in your browser.",
+      "step": [
+        {"@type": "HowToStep", "name": "Choose images", "text": "Select JPEG or PNG images, paste an image, or drag files into the cleaner."},
+        {"@type": "HowToStep", "name": "Redraw the image", "text": "The browser redraws supported images to a fresh canvas export, leaving embedded metadata behind."},
+        {"@type": "HowToStep", "name": "Download clean copies", "text": "Save the processed images with custom or random filenames."}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kingmed-rgb.github.io/filecleaner/#faq-schema",
+      "mainEntity": [
+        {"@type": "Question", "name": "Are my files uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. File Cleaner runs as a static browser app. Selected files are read locally by your browser and saved back as downloads."}},
+        {"@type": "Question", "name": "Does it remove EXIF and GPS metadata?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Supported JPEG and PNG images are redrawn in the browser, which removes embedded file metadata such as EXIF camera data, GPS location tags, timestamps, and PNG text chunks."}},
+        {"@type": "Question", "name": "Can it remove AI metadata and C2PA tags?", "acceptedAnswer": {"@type": "Answer", "text": "It can remove file-level metadata from supported images when the browser redraws the image. It cannot remove invisible watermarks or signals baked into the pixels."}},
+        {"@type": "Question", "name": "Does it clean every file type?", "acceptedAnswer": {"@type": "Answer", "text": "No. JPEG and PNG files can be cleaned. PDF, DOCX, ZIP, video, and other files are currently renamed only."}}
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -84,7 +120,7 @@ img{max-width:100%;display:block}
 .workspace-band{padding-top:104px;padding-bottom:54px}
 .workspace{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;max-width:920px}
 .rail{position:static;border-left:0;padding:0;text-align:center;max-width:840px;margin:0 auto}
-.rail h2{font-size:clamp(32px,4.6vw,52px);line-height:1.06;margin:0 0 14px;letter-spacing:0;font-weight:900}
+.rail h1{font-size:clamp(32px,4.6vw,52px);line-height:1.06;margin:0 0 14px;letter-spacing:0;font-weight:900}
 .rail p{color:var(--muted);margin:0 auto;font-size:clamp(15px,1.6vw,18px);max-width:720px}
 .tool-shell{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.32);overflow:hidden;width:100%;max-width:900px;margin:0 auto}
 .app-area{padding:18px}
@@ -141,6 +177,14 @@ img{max-width:100%;display:block}
 .token-amber{background:var(--amber-soft);color:var(--amber)}
 .feature-card h3{margin:0 0 8px;font-size:19px;letter-spacing:-.01em}
 .feature-card p{margin:0;color:var(--muted)}
+.seo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.seo-card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:20px;box-shadow:var(--shadow)}
+.seo-card h3{margin:0 0 8px;font-size:20px;line-height:1.2;color:var(--ink)}
+.seo-card p{margin:0;color:var(--muted)}
+.step-card{display:grid;gap:10px}
+.step-number{width:34px;height:34px;border-radius:999px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-weight:950}
+.footer-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.footer-links a{text-decoration:underline;text-underline-offset:3px}
 .privacy-band{background:#12372a;color:#fff}
 .privacy-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:28px;align-items:start}
 .privacy-band .section-title p{color:#d3e8dd}
@@ -193,7 +237,7 @@ img{max-width:100%;display:block}
 
 @media (max-width:900px){
   .nav-links a:not(.nav-cta){display:none}
-  .feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
+  .feature-grid,.privacy-grid,.workspace,.faq,.seo-grid{grid-template-columns:1fr}
   .workspace-band{padding-top:88px;padding-bottom:44px}
 }
 @media (max-width:640px){
@@ -241,8 +285,8 @@ img{max-width:100%;display:block}
   <section class="section workspace-band" id="app">
     <div class="section-inner workspace">
       <aside class="rail" aria-label="App summary">
-        <h2>Free Metadata Cleaner & AI Tag Remover</h2>
-        <p>Drop files in, adjust names, and save processed copies. Images can have GPS, camera, and timestamp metadata removed before download.</p>
+        <h1>Free Metadata Cleaner & AI Tag Remover</h1>
+        <p>Remove EXIF, GPS, camera details, AI image tags, C2PA metadata, and Stable Diffusion PNG chunks from supported images without uploading private files.</p>
       </aside>
 
       <section class="tool-shell" aria-label="File Cleaner app">
@@ -316,6 +360,67 @@ img{max-width:100%;display:block}
     </div>
   </section>
 
+  <section class="section" id="removes">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>What this metadata cleaner removes.</h2>
+        <p>File Cleaner is focused on the hidden image data people search for before publishing, selling, or sharing files online.</p>
+      </div>
+      <div class="seo-grid">
+        <article class="seo-card">
+          <h3>EXIF camera data</h3>
+          <p>Remove camera make, model, lens details, software fields, timestamps, and other EXIF information from supported JPEG images.</p>
+        </article>
+        <article class="seo-card">
+          <h3>GPS location tags</h3>
+          <p>Strip embedded location metadata from photos before posting, sending to clients, or uploading to public marketplaces.</p>
+        </article>
+        <article class="seo-card">
+          <h3>AI tags and C2PA metadata</h3>
+          <p>Redrawing supported images can remove file-level provenance tags, Content Credentials metadata, and AI generator labels stored in the image file.</p>
+        </article>
+        <article class="seo-card">
+          <h3>Stable Diffusion PNG chunks</h3>
+          <p>PNG text chunks can store prompts, seeds, model names, workflow data, and generation parameters. A fresh export helps leave those chunks behind.</p>
+        </article>
+        <article class="seo-card">
+          <h3>XMP and IPTC fields</h3>
+          <p>Creator, copyright, caption, keyword, editor, and workflow fields can be removed from supported images through browser canvas export.</p>
+        </article>
+        <article class="seo-card">
+          <h3>File names in bulk</h3>
+          <p>Rename batches with prefixes, random names, or safer formatting so clean downloads are ready for publishing workflows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>How online image metadata removal works.</h2>
+        <p>The cleaner uses browser APIs instead of uploads. That keeps the workflow fast, private, and simple enough for everyday image cleanup.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card step-card">
+          <div class="step-number">1</div>
+          <h3>Choose JPEG or PNG images</h3>
+          <p>Pick files, paste an image, or drag photos into the app. The file is read by your browser on your device.</p>
+        </article>
+        <article class="feature-card step-card">
+          <div class="step-number">2</div>
+          <h3>Redraw to a clean file</h3>
+          <p>Supported images are rendered to canvas and exported again, which drops embedded metadata while preserving the visible pixels.</p>
+        </article>
+        <article class="feature-card step-card">
+          <div class="step-number">3</div>
+          <h3>Download renamed copies</h3>
+          <p>Save each processed image locally with a custom or random filename. Originals stay untouched unless you delete them yourself.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section privacy-band" id="privacy">
     <div class="section-inner privacy-grid">
       <div class="section-title">
@@ -381,8 +486,24 @@ img{max-width:100%;display:block}
           <p>No. This is a static browser app. Files are read locally by your browser and saved back as downloads.</p>
         </details>
         <details>
+          <summary>Does it remove EXIF and GPS metadata?</summary>
+          <p>Yes. JPEG and PNG files can be redrawn as fresh images, which removes embedded EXIF camera data, GPS location tags, timestamps, and many file-level metadata fields.</p>
+        </details>
+        <details>
+          <summary>Does it remove AI tags and C2PA metadata?</summary>
+          <p>For supported images, canvas export can remove file-level AI metadata, C2PA Content Credentials metadata, and PNG text chunks. It cannot remove invisible watermarks or anything baked into the pixels.</p>
+        </details>
+        <details>
+          <summary>Does it remove Stable Diffusion prompts?</summary>
+          <p>Stable Diffusion prompts and workflow data are often stored in PNG text chunks. Redrawing the PNG and exporting a new file helps remove those embedded chunks.</p>
+        </details>
+        <details>
           <summary>Does it remove metadata from every file type?</summary>
-          <p>No. JPEG and PNG files can be cleaned by redrawing them. Other file types are currently renamed only.</p>
+          <p>No. JPEG and PNG files can be cleaned by redrawing them. PDF, DOCX, ZIP, video, audio, and other file types are currently renamed only.</p>
+        </details>
+        <details>
+          <summary>Will image quality change?</summary>
+          <p>Cleaned images are exported as new JPEG or PNG files. PNG keeps lossless output, while JPEG is re-encoded at high quality.</p>
         </details>
         <details>
           <summary>Why do multiple download prompts appear?</summary>
@@ -395,6 +516,7 @@ img{max-width:100%;display:block}
       </div>
     </div>
   </section>
+
 </main>
 
 <footer class="footer">
@@ -403,8 +525,14 @@ img{max-width:100%;display:block}
       <span class="brand-mark">FC</span>
       <span>File Cleaner</span>
     </div>
-    <span>Public static web app hosted on GitHub Pages.</span>
-    <a href="#app">Launch app</a>
+    <span>Free browser metadata cleaner hosted on GitHub Pages.</span>
+    <div class="footer-links" aria-label="Footer links">
+      <a href="privacy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="#app">Launch app</a>
+    </div>
   </div>
 </footer>
 
