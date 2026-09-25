@@ -83,14 +83,13 @@ img{max-width:100%;display:block}
 .section-title p{font-size:18px;color:var(--muted);margin:0}
 .workspace-band{padding-top:120px}
 .workspace{display:grid;grid-template-columns:1fr;gap:28px;align-items:start;max-width:980px}
-.rail{position:static;border-left:0;padding:0;text-align:center;max-width:760px;margin:0 auto}
-.rail h2{font-size:clamp(44px,8vw,86px);line-height:.95;margin:0 0 18px;letter-spacing:0;font-weight:900}
-.rail p{color:var(--muted);margin:0 auto;font-size:clamp(18px,2.3vw,24px);max-width:720px}
+.rail{position:static;border-left:0;padding:0;text-align:center;max-width:920px;margin:0 auto}
+.rail h2{font-size:clamp(34px,5vw,58px);line-height:1.06;margin:0 0 16px;letter-spacing:0;font-weight:900}
+.rail p{color:var(--muted);margin:0 auto;font-size:clamp(16px,2vw,20px);max-width:760px}
 .tool-shell{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;width:100%}
 .app-area{padding:24px}
 #drop-zone{position:relative;border:1.5px dashed #9cb8aa;border-radius:8px;background:#f7fbf8;padding:54px 24px;text-align:center;transition:border-color .15s ease,background .15s ease,transform .15s ease}
 #drop-zone.drag-over{border-color:var(--green);background:#edf8f1;transform:translateY(-1px)}
-.drop-icon{width:58px;height:58px;margin:0 auto 14px;border-radius:8px;background:#12372a;color:#fff;display:grid;place-items:center;font-weight:950;font-size:18px;box-shadow:0 14px 34px rgba(18,55,42,.24)}
 .dz-title{font-size:24px;font-weight:900;letter-spacing:-.01em}
 .dz-sub{font-size:15px;color:var(--muted);margin-top:5px}
 .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
@@ -169,7 +168,7 @@ img{max-width:100%;display:block}
 .skip-link{background:#edf7f1;color:#070a09;border-color:#edf7f1}
 .site-header.is-scrolled{background:rgba(7,10,9,.86);box-shadow:0 1px 0 var(--line)}
 .site-header.is-scrolled .brand,.site-header.is-scrolled .nav-links{color:var(--ink)}
-.brand-mark,.drop-icon{background:#12372a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 12px 28px rgba(72,213,151,.12)}
+.brand-mark{background:#12372a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 12px 28px rgba(72,213,151,.12)}
 .nav-cta,.primary-link{background:var(--green);color:#06100c;border-color:var(--green)}
 .site-header.is-scrolled .nav-cta{background:var(--green);color:#06100c;border-color:var(--green)}
 .secondary-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
@@ -242,14 +241,13 @@ img{max-width:100%;display:block}
   <section class="section workspace-band" id="app">
     <div class="section-inner workspace">
       <aside class="rail" aria-label="App summary">
-        <h2>Clean files without leaving the page.</h2>
+        <h2>Free Metadata Cleaner & AI Tag Remover</h2>
         <p>Drop files in, adjust names, and save processed copies. Images can have GPS, camera, and timestamp metadata removed before download.</p>
       </aside>
 
       <section class="tool-shell" aria-label="File Cleaner app">
         <div class="app-area">
           <div id="drop-zone">
-            <div class="drop-icon" aria-hidden="true">FC</div>
             <div class="dz-title">Drop files here</div>
             <div class="dz-sub">Choose files, paste an image, or drag files into this panel.</div>
             <div class="btn-row">
