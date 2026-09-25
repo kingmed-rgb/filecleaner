@@ -82,21 +82,13 @@ img{max-width:100%;display:block}
 .section-title h2{font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:0;margin:0 0 14px}
 .section-title p{font-size:18px;color:var(--muted);margin:0}
 .workspace-band{padding-top:120px}
-.workspace{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start}
-.rail{position:sticky;top:96px;border-left:3px solid var(--green);padding:8px 0 8px 18px}
-.rail h2{font-size:30px;line-height:1.05;margin:0 0 12px;letter-spacing:0}
-.rail p{color:var(--muted);margin:0 0 20px}
-.rail-list{display:grid;gap:10px;margin-top:18px}
-.rail-list div{display:flex;gap:10px;align-items:flex-start;color:#36433d;font-weight:700}
-.rail-num{width:24px;height:24px;border-radius:99px;background:var(--green-soft);color:var(--green-dark);display:grid;place-items:center;font-size:12px;flex:0 0 auto}
-.tool-shell{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
-.tool-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);background:#fff}
-.tool-title{display:flex;align-items:center;gap:12px;font-weight:900}
-.tool-logo{width:34px;height:34px;border-radius:8px;background:var(--green-dark);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900}
-.tool-status{display:flex;align-items:center;gap:8px;color:var(--green);font-size:13px;font-weight:850;white-space:nowrap}
-.tool-status::before{content:"";width:8px;height:8px;border-radius:99px;background:#2fb47c}
-.app-area{padding:20px}
-#drop-zone{position:relative;border:1.5px dashed #9cb8aa;border-radius:8px;background:#f7fbf8;padding:32px 20px;text-align:center;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+.workspace{display:grid;grid-template-columns:1fr;gap:28px;align-items:start;max-width:980px}
+.rail{position:static;border-left:0;padding:0;text-align:center;max-width:760px;margin:0 auto}
+.rail h2{font-size:clamp(44px,8vw,86px);line-height:.95;margin:0 0 18px;letter-spacing:0;font-weight:900}
+.rail p{color:var(--muted);margin:0 auto;font-size:clamp(18px,2.3vw,24px);max-width:720px}
+.tool-shell{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;width:100%}
+.app-area{padding:24px}
+#drop-zone{position:relative;border:1.5px dashed #9cb8aa;border-radius:8px;background:#f7fbf8;padding:54px 24px;text-align:center;transition:border-color .15s ease,background .15s ease,transform .15s ease}
 #drop-zone.drag-over{border-color:var(--green);background:#edf8f1;transform:translateY(-1px)}
 .drop-icon{width:58px;height:58px;margin:0 auto 14px;border-radius:8px;background:#12372a;color:#fff;display:grid;place-items:center;font-weight:950;font-size:18px;box-shadow:0 14px 34px rgba(18,55,42,.24)}
 .dz-title{font-size:24px;font-weight:900;letter-spacing:-.01em}
@@ -177,20 +169,19 @@ img{max-width:100%;display:block}
 .skip-link{background:#edf7f1;color:#070a09;border-color:#edf7f1}
 .site-header.is-scrolled{background:rgba(7,10,9,.86);box-shadow:0 1px 0 var(--line)}
 .site-header.is-scrolled .brand,.site-header.is-scrolled .nav-links{color:var(--ink)}
-.brand-mark,.tool-logo,.drop-icon{background:#12372a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 12px 28px rgba(72,213,151,.12)}
+.brand-mark,.drop-icon{background:#12372a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 12px 28px rgba(72,213,151,.12)}
 .nav-cta,.primary-link{background:var(--green);color:#06100c;border-color:var(--green)}
 .site-header.is-scrolled .nav-cta{background:var(--green);color:#06100c;border-color:var(--green)}
 .secondary-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
 .tool-shell,.feature-card,.format-table,.faq details{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
-.tool-header,#bulk-bar,.file-card,#progress-wrap,.format-row.head{background:#121b16;border-color:var(--line)}
+#bulk-bar,.file-card,#progress-wrap,.format-row.head{background:#121b16;border-color:var(--line)}
 #drop-zone{background:#0d1411;border-color:rgba(72,213,151,.35)}
 #drop-zone.drag-over{background:#12231b;border-color:var(--green)}
 .field input,#bulk-bar input,.rename-input,.paste-btn,.small-btn,.action-secondary,.del-btn,.rand-btn{background:#0b100e;color:var(--ink);border-color:var(--line-strong)}
 .pick-btn,.action-primary{background:var(--green);color:#06100c;border-color:var(--green)}
 .pick-btn:hover,.action-primary:hover{background:#75e3b1}
 .paste-btn:hover,.small-btn:hover,.action-secondary:hover{border-color:rgba(237,247,241,.4)}
-.rail-list div,.fname,.format-name,.faq summary,.feature-card h3,.trust-item strong{color:var(--ink)}
-.rail-num{background:var(--green-soft);color:var(--green)}
+.fname,.format-name,.faq summary,.feature-card h3{color:var(--ink)}
 .file-badge{background:var(--blue-soft);color:var(--blue)}
 .status-ready{background:var(--amber-soft);color:var(--amber)}
 .status-done{background:var(--green-soft);color:var(--green)}
@@ -204,10 +195,7 @@ img{max-width:100%;display:block}
 @media (max-width:900px){
   .nav-links a:not(.nav-cta){display:none}
   .feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
-  .trust-item{border-right:0;border-bottom:1px solid var(--line)}
-  .trust-item:last-child{border-bottom:0}
-  .rail{position:static;border-left:0;border-top:3px solid var(--green);padding:18px 0 0}
-  .workspace-band{padding-top:96px}
+  .workspace-band{padding-top:92px}
 }
 @media (max-width:640px){
   .site-header{padding:12px 14px}
@@ -218,9 +206,8 @@ img{max-width:100%;display:block}
   .nav-links{gap:0}
   .nav-cta{display:none}
   .section{padding:62px 18px}
-  .tool-header{align-items:flex-start;flex-direction:column}
   .app-area{padding:14px}
-  #drop-zone{padding:26px 14px}
+  #drop-zone{padding:34px 14px}
   #bulk-bar .bulk-fields,.utility-row,.format-row{grid-template-columns:1fr}
   .format-row.head{display:none}
   .format-row div{padding:11px 14px}
@@ -257,21 +244,9 @@ img{max-width:100%;display:block}
       <aside class="rail" aria-label="App summary">
         <h2>Clean files without leaving the page.</h2>
         <p>Drop files in, adjust names, and save processed copies. Images can have GPS, camera, and timestamp metadata removed before download.</p>
-        <div class="rail-list">
-          <div><span class="rail-num">1</span><span>Add files or paste an image.</span></div>
-          <div><span class="rail-num">2</span><span>Rename one by one or in bulk.</span></div>
-          <div><span class="rail-num">3</span><span>Process and download clean copies.</span></div>
-        </div>
       </aside>
 
       <section class="tool-shell" aria-label="File Cleaner app">
-        <div class="tool-header">
-          <div class="tool-title">
-            <span class="tool-logo">FC</span>
-            <span>Cleaner workspace</span>
-          </div>
-          <div class="tool-status">Runs locally</div>
-        </div>
         <div class="app-area">
           <div id="drop-zone">
             <div class="drop-icon" aria-hidden="true">FC</div>
