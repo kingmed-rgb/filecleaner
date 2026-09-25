@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="File Cleaner is a private, browser-based tool for removing JPEG and PNG metadata, renaming files in bulk, and saving cleaner copies without uploads.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#12372a">
+<meta name="theme-color" content="#070a09">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="File Cleaner">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,11 +14,9 @@
 <meta property="og:url" content="https://kingmed-rgb.github.io/filecleaner/">
 <meta property="og:title" content="File Cleaner">
 <meta property="og:description" content="Clean metadata, rename files, and save polished copies directly in your browser.">
-<meta property="og:image" content="https://kingmed-rgb.github.io/filecleaner/assets/hero-workspace.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="File Cleaner">
 <meta name="twitter:description" content="A private browser app for cleaning image metadata and renaming files in batches.">
-<meta name="twitter:image" content="https://kingmed-rgb.github.io/filecleaner/assets/hero-workspace.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312372a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='white'%3EFC%3C/text%3E%3C/svg%3E">
 <title>File Cleaner | Private Metadata Remover and Bulk Renamer</title>
 <script type="application/ld+json">
@@ -40,28 +38,28 @@
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#f6f4ef;color:#17211d;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+body{margin:0;background:#070a09;color:#edf7f1;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 button,input{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 :root{
-  --ink:#17211d;
-  --muted:#5d6a63;
-  --quiet:#7d8982;
-  --paper:#fbfaf7;
-  --cream:#f6f4ef;
-  --line:#dedbd2;
-  --line-strong:#c9d0c8;
-  --green:#176b52;
+  --ink:#edf7f1;
+  --muted:#a5b5ac;
+  --quiet:#74837a;
+  --paper:#101713;
+  --cream:#070a09;
+  --line:rgba(237,247,241,.12);
+  --line-strong:rgba(237,247,241,.22);
+  --green:#48d597;
   --green-dark:#12372a;
-  --green-soft:#e4f1ea;
-  --blue:#315c9b;
-  --blue-soft:#e8eef8;
-  --amber:#b7791f;
-  --amber-soft:#fff1d7;
-  --danger:#9d2d22;
-  --shadow:0 22px 80px rgba(24,32,28,.16);
+  --green-soft:#14271f;
+  --blue:#8fb8ff;
+  --blue-soft:#111d2d;
+  --amber:#f0b95b;
+  --amber-soft:#2d2312;
+  --danger:#ff806f;
+  --shadow:0 24px 90px rgba(0,0,0,.46);
   --radius:8px;
 }
 .skip-link{position:absolute;left:12px;top:-80px;z-index:100;background:#fff;color:#111;padding:10px 12px;border-radius:6px;border:1px solid #111}
@@ -78,9 +76,9 @@ img{max-width:100%;display:block}
 .nav-links a:hover{opacity:1}
 .nav-cta{background:#fff;color:#12372a;border:1px solid rgba(255,255,255,.52);border-radius:6px;padding:10px 14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .site-header.is-scrolled .nav-cta{background:#12372a;color:#fff;border-color:#12372a;box-shadow:none}
-.hero{min-height:88vh;position:relative;display:grid;align-items:end;overflow:hidden;background:#12372a url("assets/hero-workspace.png") center/cover no-repeat;color:#fff}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,25,20,.88) 0%,rgba(10,25,20,.62) 43%,rgba(10,25,20,.16) 100%)}
-.hero::after{content:"";position:absolute;inset:auto 0 0;height:32%;background:linear-gradient(180deg,rgba(246,244,239,0),#f6f4ef 88%)}
+.hero{min-height:88vh;position:relative;display:grid;align-items:end;overflow:hidden;background:radial-gradient(circle at 76% 22%,rgba(72,213,151,.18),transparent 30%),radial-gradient(circle at 20% 18%,rgba(143,184,255,.12),transparent 28%),linear-gradient(135deg,#070a09 0%,#0b1511 50%,#07100d 100%);color:#fff}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(7,10,9,.08) 0%,rgba(7,10,9,.24) 55%,#070a09 100%)}
+.hero::after{content:"";position:absolute;right:clamp(18px,8vw,120px);bottom:clamp(110px,18vw,210px);z-index:0;width:min(460px,42vw);aspect-ratio:1.25;border:1px solid rgba(237,247,241,.12);border-radius:8px;background:linear-gradient(145deg,rgba(237,247,241,.08),rgba(237,247,241,.02));box-shadow:0 26px 90px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.08)}
 .hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;padding:150px clamp(18px,4vw,42px) 88px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border-radius:999px;padding:8px 12px;color:#eef8f3;font-size:13px;font-weight:800}
 .eyebrow::before{content:"";width:8px;height:8px;border-radius:99px;background:#56d49f;box-shadow:0 0 0 6px rgba(86,212,159,.14)}
@@ -192,6 +190,34 @@ img{max-width:100%;display:block}
 .footer .brand{color:#dfe8e3}
 .footer a{text-decoration:underline;text-underline-offset:3px}
 :focus-visible{outline:3px solid rgba(49,92,155,.45);outline-offset:3px}
+/* Dark mode surface overrides */
+.skip-link{background:#edf7f1;color:#070a09;border-color:#edf7f1}
+.site-header.is-scrolled{background:rgba(7,10,9,.86);box-shadow:0 1px 0 var(--line)}
+.site-header.is-scrolled .brand,.site-header.is-scrolled .nav-links{color:var(--ink)}
+.brand-mark,.tool-logo,.drop-icon{background:#12372a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 12px 28px rgba(72,213,151,.12)}
+.nav-cta,.primary-link{background:var(--green);color:#06100c;border-color:var(--green)}
+.site-header.is-scrolled .nav-cta{background:var(--green);color:#06100c;border-color:var(--green)}
+.secondary-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:#fff}
+.trust-strip,.tool-shell,.feature-card,.format-table,.faq details{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
+.tool-header,#bulk-bar,.file-card,#progress-wrap,.format-row.head{background:#121b16;border-color:var(--line)}
+#drop-zone{background:#0d1411;border-color:rgba(72,213,151,.35)}
+#drop-zone.drag-over{background:#12231b;border-color:var(--green)}
+.field input,#bulk-bar input,.rename-input,.paste-btn,.small-btn,.action-secondary,.del-btn,.rand-btn{background:#0b100e;color:var(--ink);border-color:var(--line-strong)}
+.pick-btn,.action-primary{background:var(--green);color:#06100c;border-color:var(--green)}
+.pick-btn:hover,.action-primary:hover{background:#75e3b1}
+.paste-btn:hover,.small-btn:hover,.action-secondary:hover{border-color:rgba(237,247,241,.4)}
+.rail-list div,.fname,.format-name,.faq summary,.feature-card h3,.trust-item strong{color:var(--ink)}
+.rail-num{background:var(--green-soft);color:var(--green)}
+.file-badge{background:var(--blue-soft);color:var(--blue)}
+.status-ready{background:var(--amber-soft);color:var(--amber)}
+.status-done{background:var(--green-soft);color:var(--green)}
+#progress-bar-bg{background:#24302a}
+.privacy-band,.footer{background:#050706;color:var(--ink)}
+.proof-item{background:rgba(255,255,255,.04);border-color:var(--line)}
+.proof-item span,.privacy-band .section-title p,.footer{color:#cbd8d1}
+.format-row{border-color:var(--line)}
+:focus-visible{outline-color:rgba(72,213,151,.5)}
+
 @media (max-width:900px){
   .nav-links a:not(.nav-cta){display:none}
   .trust-strip,.feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
@@ -377,7 +403,7 @@ img{max-width:100%;display:block}
       <div class="proof-list">
         <div class="proof-item">
           <strong>No server processing</strong>
-          <span>The GitHub Pages site ships static HTML, CSS, JavaScript, and a hero image.</span>
+          <span>The GitHub Pages site ships static HTML, CSS, JavaScript, and dark-mode assets.</span>
         </div>
         <div class="proof-item">
           <strong>No required login</strong>
