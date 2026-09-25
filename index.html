@@ -1,443 +1,862 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="apple-mobile-web-app-title" content="File Cleaner"/>
-<meta name="theme-color" content="#1a9e75"/>
-<title>File Cleaner</title>
-<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAE9klEQVR4nO3csVHcQBiG4b0bN2EIid2BnTPjyAUQHIE7gHEJnqMDAghcAKlz3IbDow0cMGDdoZN2pV3t/t//PiE2oODl80oavAoNOLm7eq59DZjv6fJmVfsaqlwAAftQI/DFviER+7ZU3EW/CRGjT8m4i3xhQkaMEmGvc39BYkasEq1k+wkhZMyRa62zLDQxY65cDc36qSBklDBnrScvNDGjlDltTQqamFHa1MaSgyZmLGVKa0lBEzOWltpcdNDEjFpS2osKmphRW2yDo0ETM1oR02L2V99ATYNBs85ozViTR4MmZrRqqE2OHJDSGzTrjNYda/Rd0MQMK/pa5cgBKXtBs86w5rBZFhpSCBpS3oLmuAGruu2y0JBC0JCyDoHjBux7bZiFhhSChhSChpQV52coYaENuT2/qH0JzSNoA3abbdhttiEEoh5D0A3rhtxF1Md9qH0B2NcXcJ/b84vw/fevwldjDwvdiGNrPISlfo+gK5sSchdR7yPoSuaG3EXU/xH0wnKG3EXUL7gpXECJgPtwo8hCF1VqjYd4X2qCLqBGyF2eoybojGqH3OU1aoLOoKWQuzxGzU3hRC0G3MfbjSILnajVNR7iaakJOpLFkLu8RE3QI6yH3OUhas7QPVQC7qN+pmahO5TWeIjyUhN08BNyl2rUroP2GHKXYtQug/Yecpda1G5uCgn4OKUbRfmFZo3jqCy1bNCEnE4harmgCXke61HLBE3I+ViO2vRNIQGXY/VG0eRCs8bLsLjUpoIm5OVZi9r0kcObrx8/1b6E5plaaGAMQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUMKQUOKy1+SPb2/rn0Ji/D4G/IsNKQQNKQQNKQQNKQQNKS4fMrh8e7fCxYaUggaUggaUggaUggaUggaUggaUggaUggaUly+KTy9v/5T+xpS7Tbbz7WvwQIWGlIIGlIIGlIIGlIIGlJcPuXgiYEuFhpSCBpSCFrc329fal/CogjaoNhIX/+ep6gJ2pjYSA//3EvUBG1IbKSpH1dC0EbERjoU7dnDY9ZrahFBGzEUY8wxxEPMIRC0KTFRp36eGpdvCk/vr3/W/P67zfbH1M89e3hMOgt7ijkEFtqk2Ei9xRwCQZs1FqvHmEMgaLNSn0N7QdAGpb4p9ISgjUmN1FvULp9yzHnKUNPYo7mhly9eztQstBExz5mnPqdWQtBGHIv18OPeoyZoQ2LjTf24EoI2JuZ40ffnHmIOgaBNSn1T6CXmEAhanqeYQyBoiCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSCFoSFmd3F09174IIJf10+XNqvZFADk8Xd6sOHJACkFDCkFDyjqEl7NH7QsB5nhtmIWGFIKGlLegOXbAqm67LDSkEDSk7AXNsQPWHDbLQkPKu6BZaVjR12rvQhM1WnesUY4ckHI0aFYarRpqc3ChiRqtGWuSIwekjAbNSqMVMS1GLTRRo7bYBqOPHESNWlLaSzpDEzWWltpc8k0hUWMpU1qb9JSDqFHa1MYmP7YjapQyp60sUfK/LyGHHCOZ5cUKa425cjWUPUTWGilyj2H2V9+sNWKVaKVofKw1+pQcvcXWlLh9W+pf7irHA+L2ocbxs4nzLoFraOH+6R+z5bjLEGlGigAAAABJRU5ErkJggg=="/>
-<link rel="apple-touch-icon" sizes="152x152" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAYAAAAYwiAhAAAEL0lEQVR4nO3aPU4bQRyG8THKJQIldW6Q9EipcgAKU+QGoBwhghtQQJED0KYn10hprkGKxGQw+zE7O+98/Of5lciYlfzo3VmLjcvs+O7yOfffxH9PFzebnH9P/scIqm7q4CRvTlRtUsSW9A0Jy4aUoSV5I8KyKUVoq96AsPqwJrSj2F8krn6s+ayjAiOu/sR+5oumj7Dg3LJbZvCCERf2lrQQFBhx4VBoE7OBERfGhLQR/RQJhJgMjPXCnLlGRgMjLoSaamUwMOLCUmPNcAaD1JvAWC/EGmqHBYPUq8BYL6x12BALBqmXwFgvpOK3xIJBisAgdeQct0ekt2+KBYMUgUGKwCC14fwFJRYsk9uz89KXUASBie221263vXbO9RkZgYn4Yfl6i4zAEhsLy9dTZO9KX4AFc0ENuT07d19//hBcTV1YsBVC1mpKD0tGYBHWhuWzHhmBLZAyLJ/lyAgsgCosn9XICGxCjrB8FiPjKfJAzqCGWHu6ZMH+yb1WUywtWfeB1RSWz0pk3QZWa1g+C5F1F1gLYflaj6ybwFoLy9dyZKafIlsNakirT5cmF6zltZrS4pKZCsxqWL7WIjMRWA9h+VqKrOnAegvL10pkTQbWc1i+FiJr5imSoIbV/nRZ/YKxVvNqXrJqAyOsZWqNrLrACCtejZE1cwZr3ef3H0pfQhHVLRhsITBIERikCAxSBAYpAoMUgUGKwCBFYJAiMEgRGKQIDFIEBikCgxSBQYrAIGXqHw5P7q9KX0ISlv6jlwWDFIFBisAgRWCQMnXIt3Q4toIFgxSBQYrAIEVgkCIwSBEYpAgMUgQGKVNftJ7cX/0qfQ1jdtvrj6WvoQQWDFIEBikCgxSBQcrUIb/Xg3TNWDBIERikCAxSBJbZ7y+fkr6udgSW0T6auXhCX9cCAsvkMJaxeEJf1woCy+T04fHNz0JiGvq9lhBYRlORWYzLOWNftJ7cX33P+fd22+tvS3/n9OGxi+XaY8EKmIvHSlzOEVgxYxFZiss5Aism9CmydQRWQOj3YBaYOuTHHLpzGzvQDx38LdwuWbCMpp4WQ74naxGBZRLyVYTFyAgsk5CYlryuFQSW0dTtMOZ1LSCwzEKjsRCXcwQGMQKDFIFBisAgRWCQIjBIERikCAxSBAYpAoMUgUGKwCBFYJDaOOfc8d3lc+kLgT1PFzcbFgxSBAYpAoPUkXN/75WlLwS27JtiwSBFYJB6CYzbJFLxW2LBIPUqMFYMax02xIJB6k1grBhiDbXDgkFqMDBWDEuNNTO6YESGUFOtTN4iiQxz5hrhDAap2cBYMYwJaSNowYgMh0KbCL5FEhn2lrQQFQ3/w9+nmJGJOuSzZv2J/cyjnyKJrB9rPuskkXDLtCnFiCRdIUKzIeXdSXKbI7Q2KY498nMUsdVNfZbOflAnuLJyP5z9AQ/Ud104LDN2AAAAAElFTkSuQmCC"/>
-<link rel="apple-touch-icon" sizes="120x120" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAADTklEQVR4nO3ZMW4aQRSH8VmUS8SUrnODpLeUKgdwAUVuYJQjRHADF6bIAdymd66REq7hFBHWGnZmdtlZ5r0/36+zwbDypzdvEU2YwM3Tw+sUr6tuv9w0pV+z2AsStaxSsUe9CFEvY0zss/6QsHWcE3o29A+IW885//tBgYlb39AGvUaesDb1ObKzE0xcu/q0SQYmrn25RtHAxPUj1WrwXTR86QzM9PoTa3YSmLh+dbWb5Z4AX44bsoPFvQVmenW0WzLB4ggsbhYCx7OiQ1MmWByBxTUcz9qYYHEEzni8u699CaMQOGK3WIfdYh1C8B35Q+0LsOQQtMvj3X34/vvXBa+mDCY4vJ/WFI+TfNWB+4Zt8xb5KgOfE7bNU+Sr2cFjgnbxspPlJ3jstKZ4mGTZwFOGbbMeWS7wpcK2WY4ssYMvHbSL1Z3seoJrTGuKxUl2Gdha2DZrkV0Fthy2zVJk8zvYQ9AuVnay2Qn2Mq0pFibZXGCFsG21I5sJrBa2rWbkqjtYNWiXWju5ygQrT2tKjUk2fxdd29ePn2pfwihmdjCmQWBxBBZHYHEEFkdgcQQWR2BxBBZHYHEEFkdgcQQW5+LbpPl2VfsSoqx/7ckEiyOwOAKLc7GDre85y5hgcQQWR2BxBBZHYHEEFufiY9J8u/pT4313i/XnGu9bEhMsjsDiCCzOxQ5W2IW1MMHiCJzx99uXUY/XRuCEQ7xYxNzjFhA44jja0J+tIHDE7fPLye9SE9v1fAsInJCKnHueFS4+Js23q5+lX3O3WP/o87zb55fk8Ws5bghMcC+xiNbjhkDgXnJ30ZYROMP752AXO7jvviwtdkPV9RHJ6nHNBEek7pb73l1bQOCI44hDf7aCwAmpie3zuAUEzsjFsxw3BALLI7A4AosjsDgCiyOwOAKLI7A4AosjsLjm5unhtfZFYDqz/XLT1L4ITGO/3DQc0eIILG4Wwv9Rrn0hKOvQlAkWR2Bxb4E5pnW0WzLB4t4FZor9O254MsFE9qurXecRTWR/Ys3YweKigZliP1KtkhNMZPtyjbJHNJHt6tNmUDy+O7ZhyNANuslimusb2mDwXTSR6znnfz8qFkf2ZYwZqmLTSOyySp2Ukxy3xD7PFOvvH++0L64RNVPBAAAAAElFTkSuQmCC"/>
-
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f0faf5;--surface:#ffffff;--surface2:#e8f7f0;
-  --border:rgba(26,158,117,0.15);--border2:rgba(26,158,117,0.28);
-  --text:#0d2e22;--text2:#3d7a5f;--text3:#7ab89a;
-  --accent:#1a9e75;--accent-fg:#ffffff;
-  --green-bg:#eaf3de;--green-txt:#3b6d11;
-  --blue-bg:#e6f1fb;--blue-txt:#185fa5;
-  --radius:16px;--radius-sm:10px;
-}
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#071a12;--surface:#0f2a1e;--surface2:#163d2c;
-    --border:rgba(26,158,117,0.18);--border2:rgba(26,158,117,0.32);
-    --text:#d4f0e5;--text2:#5fcca0;--text3:#2e7a56;
-    --green-bg:#04342c;--green-txt:#9fe1cb;
-    --blue-bg:#042c53;--blue-txt:#b5d4f4;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="File Cleaner is a private, browser-based tool for removing JPEG and PNG metadata, renaming files in bulk, and saving cleaner copies without uploads.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#12372a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="File Cleaner">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="canonical" href="https://kingmed-rgb.github.io/filecleaner/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kingmed-rgb.github.io/filecleaner/">
+<meta property="og:title" content="File Cleaner">
+<meta property="og:description" content="Clean metadata, rename files, and save polished copies directly in your browser.">
+<meta property="og:image" content="https://kingmed-rgb.github.io/filecleaner/assets/hero-workspace.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="File Cleaner">
+<meta name="twitter:description" content="A private browser app for cleaning image metadata and renaming files in batches.">
+<meta name="twitter:image" content="https://kingmed-rgb.github.io/filecleaner/assets/hero-workspace.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312372a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='white'%3EFC%3C/text%3E%3C/svg%3E">
+<title>File Cleaner | Private Metadata Remover and Bulk Renamer</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "File Cleaner",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "url": "https://kingmed-rgb.github.io/filecleaner/",
+  "description": "A private, browser-based utility for removing JPEG and PNG metadata and renaming files in bulk.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Text','Helvetica Neue',sans-serif;-webkit-tap-highlight-color:transparent}
-body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,16px) env(safe-area-inset-left,0px)}
-
-#topbar{background:var(--accent);padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
-#topbar img{width:30px;height:30px;border-radius:8px}
-#topbar .t{color:#fff;font-size:18px;font-weight:700;letter-spacing:-0.3px}
-#topbar .s{color:rgba(255,255,255,0.7);font-size:12px;margin-top:1px}
-
-#wrap{max-width:560px;margin:0 auto;padding:20px 16px 40px}
-
-/* Drop zone */
-#drop-zone{
-  border:2px dashed var(--border2);border-radius:var(--radius);
-  padding:30px 20px 24px;text-align:center;
-  background:var(--surface);margin-bottom:0;
-  transition:background 0.15s,border-color 0.15s;
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f6f4ef;color:#17211d;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:root{
+  --ink:#17211d;
+  --muted:#5d6a63;
+  --quiet:#7d8982;
+  --paper:#fbfaf7;
+  --cream:#f6f4ef;
+  --line:#dedbd2;
+  --line-strong:#c9d0c8;
+  --green:#176b52;
+  --green-dark:#12372a;
+  --green-soft:#e4f1ea;
+  --blue:#315c9b;
+  --blue-soft:#e8eef8;
+  --amber:#b7791f;
+  --amber-soft:#fff1d7;
+  --danger:#9d2d22;
+  --shadow:0 22px 80px rgba(24,32,28,.16);
+  --radius:8px;
 }
-#drop-zone.drag-over{background:var(--surface2);border-color:var(--accent)}
-#drop-zone img{width:48px;height:48px;border-radius:12px;margin:0 auto 10px;display:block}
-#drop-zone .dz-title{font-size:16px;font-weight:600;color:var(--text)}
-#drop-zone .dz-sub{font-size:13px;color:var(--text2);margin-top:4px;margin-bottom:16px}
+.skip-link{position:absolute;left:12px;top:-80px;z-index:100;background:#fff;color:#111;padding:10px 12px;border-radius:6px;border:1px solid #111}
+.skip-link:focus{top:12px}
+.site-header{position:fixed;left:0;right:0;top:0;z-index:50;padding:16px clamp(16px,4vw,42px);transition:background .2s ease,box-shadow .2s ease,backdrop-filter .2s ease}
+.site-header.is-scrolled{background:rgba(251,250,247,.88);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(23,33,29,.08)}
+.nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.site-header.is-scrolled .brand{color:var(--ink)}
+.brand-mark{width:36px;height:36px;border-radius:8px;background:#12372a;color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.nav-links{display:flex;align-items:center;gap:22px;color:#fff;font-size:14px;font-weight:700}
+.site-header.is-scrolled .nav-links{color:var(--ink)}
+.nav-links a{opacity:.9}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:#fff;color:#12372a;border:1px solid rgba(255,255,255,.52);border-radius:6px;padding:10px 14px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.site-header.is-scrolled .nav-cta{background:#12372a;color:#fff;border-color:#12372a;box-shadow:none}
+.hero{min-height:88vh;position:relative;display:grid;align-items:end;overflow:hidden;background:#12372a url("assets/hero-workspace.png") center/cover no-repeat;color:#fff}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,25,20,.88) 0%,rgba(10,25,20,.62) 43%,rgba(10,25,20,.16) 100%)}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:32%;background:linear-gradient(180deg,rgba(246,244,239,0),#f6f4ef 88%)}
+.hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;padding:150px clamp(18px,4vw,42px) 88px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);backdrop-filter:blur(12px);border-radius:999px;padding:8px 12px;color:#eef8f3;font-size:13px;font-weight:800}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:99px;background:#56d49f;box-shadow:0 0 0 6px rgba(86,212,159,.14)}
+.hero h1{max-width:700px;margin:20px 0 18px;font-size:clamp(48px,8vw,104px);line-height:.92;letter-spacing:0;font-weight:900}
+.hero-copy{max-width:640px;margin:0;color:#e8f2ed;font-size:clamp(17px,2.4vw,22px)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:6px;padding:0 18px;font-weight:850}
+.primary-link{background:#fff;color:#12372a;border:1px solid #fff}
+.secondary-link{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.34);color:#fff}
+.trust-strip{position:relative;z-index:3;width:min(1120px,calc(100% - 36px));margin:-42px auto 0;background:#fbfaf7;border:1px solid var(--line);box-shadow:var(--shadow);border-radius:8px;display:grid;grid-template-columns:repeat(3,1fr)}
+.trust-item{padding:24px;border-right:1px solid var(--line)}
+.trust-item:last-child{border-right:0}
+.trust-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--quiet);font-weight:900}
+.trust-item strong{display:block;margin-top:6px;font-size:18px;letter-spacing:-.01em}
+.section{padding:84px clamp(18px,4vw,42px)}
+.section-inner{max-width:1120px;margin:0 auto}
+.section-title{max-width:760px;margin:0 0 34px}
+.section-title h2{font-size:clamp(32px,5vw,56px);line-height:1;letter-spacing:0;margin:0 0 14px}
+.section-title p{font-size:18px;color:var(--muted);margin:0}
+.workspace-band{padding-top:76px}
+.workspace{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start}
+.rail{position:sticky;top:96px;border-left:3px solid var(--green);padding:8px 0 8px 18px}
+.rail h2{font-size:30px;line-height:1.05;margin:0 0 12px;letter-spacing:0}
+.rail p{color:var(--muted);margin:0 0 20px}
+.rail-list{display:grid;gap:10px;margin-top:18px}
+.rail-list div{display:flex;gap:10px;align-items:flex-start;color:#36433d;font-weight:700}
+.rail-num{width:24px;height:24px;border-radius:99px;background:var(--green-soft);color:var(--green-dark);display:grid;place-items:center;font-size:12px;flex:0 0 auto}
+.tool-shell{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+.tool-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);background:#fff}
+.tool-title{display:flex;align-items:center;gap:12px;font-weight:900}
+.tool-logo{width:34px;height:34px;border-radius:8px;background:var(--green-dark);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900}
+.tool-status{display:flex;align-items:center;gap:8px;color:var(--green);font-size:13px;font-weight:850;white-space:nowrap}
+.tool-status::before{content:"";width:8px;height:8px;border-radius:99px;background:#2fb47c}
+.app-area{padding:20px}
+#drop-zone{position:relative;border:1.5px dashed #9cb8aa;border-radius:8px;background:#f7fbf8;padding:32px 20px;text-align:center;transition:border-color .15s ease,background .15s ease,transform .15s ease}
+#drop-zone.drag-over{border-color:var(--green);background:#edf8f1;transform:translateY(-1px)}
+.drop-icon{width:58px;height:58px;margin:0 auto 14px;border-radius:8px;background:#12372a;color:#fff;display:grid;place-items:center;font-weight:950;font-size:18px;box-shadow:0 14px 34px rgba(18,55,42,.24)}
+.dz-title{font-size:24px;font-weight:900;letter-spacing:-.01em}
+.dz-sub{font-size:15px;color:var(--muted);margin-top:5px}
+.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.pick-btn,.paste-btn,.small-btn,.action-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid transparent;font-weight:850;min-height:44px;padding:0 16px}
+.pick-btn,.action-primary{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+.paste-btn,.small-btn,.action-secondary{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+.pick-btn:hover,.action-primary:hover{background:#0b2a1f}
+.paste-btn:hover,.small-btn:hover,.action-secondary:hover{border-color:#9da8a1}
 #file-input{display:none}
-
-.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.pick-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:0 22px;height:42px;
-  background:var(--accent);color:#fff;font-size:14px;font-weight:600;
-  border-radius:99px;cursor:pointer;border:none;-webkit-appearance:none;
+#paste-hint{display:none;margin-top:12px;color:var(--quiet);font-size:13px}
+.utility-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-top:14px}
+#bulk-bar{display:none;gap:10px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+.field{display:grid;gap:6px;text-align:left}
+.field label,.bulk-title{font-size:12px;color:var(--quiet);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.field input,#bulk-bar input,.rename-input{width:100%;height:42px;border:1px solid var(--line-strong);border-radius:6px;background:#fff;color:var(--ink);padding:0 11px;outline:none}
+.field input:focus,#bulk-bar input:focus,.rename-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(23,107,82,.12)}
+#bulk-bar .bulk-fields{display:grid;grid-template-columns:minmax(140px,1fr) 92px auto;gap:10px;align-items:end;width:100%}
+#file-list{display:grid;gap:10px;margin-top:14px}
+.file-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;animation:fadeIn .18s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.file-header{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;margin-bottom:12px}
+.file-badge{width:42px;height:42px;border-radius:6px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:950}
+.file-info{min-width:0}
+.fname{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fsize{font-size:13px;color:var(--quiet);margin-top:1px}
+.file-status{font-size:12px;padding:4px 9px;border-radius:999px;font-weight:900;white-space:nowrap}
+.status-ready{background:var(--amber-soft);color:var(--amber)}
+.status-done{background:var(--green-soft);color:var(--green)}
+.del-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--danger);font-size:22px;line-height:1}
+.rename-row{display:grid;grid-template-columns:minmax(0,1fr) 42px auto;gap:8px;align-items:center}
+.rand-btn{height:42px;width:42px;border-radius:6px;border:1px solid var(--line-strong);background:#fff;color:var(--green-dark);font-weight:950}
+.ext{font-size:13px;color:var(--muted);font-weight:900;min-width:44px;text-align:right}
+.opts{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.opt-label{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:700}
+.opt-label input{width:18px;height:18px;accent-color:var(--green)}
+#progress-wrap{display:none;margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+#progress-bar-bg{height:8px;border-radius:99px;background:#e8e5de;overflow:hidden}
+#progress-bar{height:100%;width:0;background:var(--green);border-radius:99px;transition:width .24s ease}
+#progress-label{margin-top:8px;color:var(--muted);font-size:13px;font-weight:800;text-align:center}
+#actions{display:none;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:14px}
+.action-btn{min-height:52px;width:100%}
+.action-btn:disabled{opacity:.45;cursor:not-allowed}
+.note{display:none;margin:14px 0 0;color:var(--muted);font-size:13px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature-card{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;padding:22px}
+.feature-token{width:42px;height:42px;border-radius:8px;display:grid;place-items:center;font-weight:950;margin-bottom:16px}
+.token-green{background:var(--green-soft);color:var(--green)}
+.token-blue{background:var(--blue-soft);color:var(--blue)}
+.token-amber{background:var(--amber-soft);color:var(--amber)}
+.feature-card h3{margin:0 0 8px;font-size:21px;letter-spacing:-.01em}
+.feature-card p{margin:0;color:var(--muted)}
+.privacy-band{background:#12372a;color:#fff}
+.privacy-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:34px;align-items:start}
+.privacy-band .section-title p{color:#d3e8dd}
+.privacy-band .section-title{margin-bottom:0}
+.proof-list{display:grid;gap:12px}
+.proof-item{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);border-radius:8px;padding:16px}
+.proof-item strong{display:block;margin-bottom:4px}
+.proof-item span{color:#d3e8dd}
+.format-table{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.format-row{display:grid;grid-template-columns:170px 1fr 1fr;border-bottom:1px solid var(--line)}
+.format-row:last-child{border-bottom:0}
+.format-row div{padding:14px 16px}
+.format-row.head{background:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--quiet);font-weight:950}
+.format-name{font-weight:900}
+.faq{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.faq details{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;padding:16px}
+.faq summary{font-weight:900;cursor:pointer}
+.faq p{color:var(--muted);margin:10px 0 0}
+.footer{padding:34px clamp(18px,4vw,42px);background:#111916;color:#dfe8e3}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
+.footer .brand{color:#dfe8e3}
+.footer a{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:3px solid rgba(49,92,155,.45);outline-offset:3px}
+@media (max-width:900px){
+  .nav-links a:not(.nav-cta){display:none}
+  .trust-strip,.feature-grid,.privacy-grid,.workspace,.faq{grid-template-columns:1fr}
+  .trust-strip{margin-top:-28px}
+  .trust-item{border-right:0;border-bottom:1px solid var(--line)}
+  .trust-item:last-child{border-bottom:0}
+  .rail{position:static;border-left:0;border-top:3px solid var(--green);padding:18px 0 0}
+  .workspace-band{padding-top:58px}
 }
-.paste-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:0 22px;height:42px;
-  background:var(--surface2);color:var(--text);font-size:14px;font-weight:600;
-  border-radius:99px;cursor:pointer;border:0.5px solid var(--border2);-webkit-appearance:none;
+@media (max-width:640px){
+  .site-header{padding:12px 14px}
+  .brand-mark{width:32px;height:32px}
+  .nav-cta{padding:9px 11px}
+  .site-header .brand span:last-child{display:none}
+  .nav{gap:10px}
+  .nav-links{gap:0}
+  .nav-cta{display:none}
+  .hero{min-height:86vh;background-position:58% center}
+  .hero::before{background:linear-gradient(90deg,rgba(10,25,20,.88),rgba(10,25,20,.64))}
+  .hero-inner{padding:120px 18px 74px}
+  .hero h1{font-size:clamp(46px,14vw,62px);max-width:7ch}
+  .hero-copy{max-width:330px}
+  .hero-actions{max-width:360px}
+  .section{padding:62px 18px}
+  .tool-header{align-items:flex-start;flex-direction:column}
+  .app-area{padding:14px}
+  #drop-zone{padding:26px 14px}
+  #bulk-bar .bulk-fields,.utility-row,.format-row{grid-template-columns:1fr}
+  .format-row.head{display:none}
+  .format-row div{padding:11px 14px}
+  .file-header{grid-template-columns:auto minmax(0,1fr) auto}
+  .file-status{grid-column:2/3;width:max-content}
+  .del-btn{grid-column:3;grid-row:1/3}
+  .rename-row{grid-template-columns:minmax(0,1fr) 42px}
+  .ext{grid-column:1/3;text-align:left}
+  #actions{grid-template-columns:1fr}
 }
-.paste-btn:active,.pick-btn:active{opacity:0.8;transform:scale(0.97)}
-
-/* Paste hint */
-#paste-hint{
-  display:none;margin-top:10px;
-  font-size:12px;color:var(--text3);text-align:center;
-}
-
-/* Bulk bar */
-#bulk-bar{display:none;margin-top:14px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px;flex-direction:column;gap:10px}
-#bulk-bar .bulk-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em}
-#bulk-bar .bulk-fields{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-#bulk-bar input{flex:1;min-width:90px;height:38px;padding:0 12px;font-size:14px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text)}
-#bulk-bar input:focus{outline:2px solid var(--accent)}
-#bulk-apply{height:38px;padding:0 16px;font-size:14px;font-weight:600;border-radius:var(--radius-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;white-space:nowrap}
-
-/* File list */
-#file-list{margin-top:14px;display:flex;flex-direction:column;gap:10px}
-
-.file-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px;animation:fadeIn 0.2s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.file-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.file-badge{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--blue-txt);flex-shrink:0}
-.file-info{flex:1;min-width:0}
-.file-info .fname{font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.file-info .fsize{font-size:12px;color:var(--text3);margin-top:1px}
-.file-status{font-size:11px;padding:3px 9px;border-radius:99px;font-weight:600;flex-shrink:0}
-.status-ready{background:var(--surface2);color:var(--text2)}
-.status-done{background:var(--green-bg);color:var(--green-txt)}
-.del-btn{background:none;border:none;color:var(--text3);font-size:22px;line-height:1;cursor:pointer;padding:2px 6px;border-radius:var(--radius-sm)}
-
-/* Rename row with random btn */
-.rename-row{display:flex;gap:6px;align-items:center;margin-bottom:10px}
-.rename-row input{flex:1;height:42px;padding:0 12px;font-size:15px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text)}
-.rename-row input:focus{outline:2px solid var(--accent)}
-.rename-row .ext{font-size:13px;color:var(--text2);font-weight:600;white-space:nowrap}
-.rand-btn{height:42px;width:42px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--surface2);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rand-btn:active{opacity:0.7}
-
-.opts{display:flex;gap:14px;flex-wrap:wrap}
-.opt-label{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--text2);cursor:pointer}
-.opt-label input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
-
-/* Actions */
-#actions{display:none;margin-top:16px;gap:10px}
-#actions button{flex:1;height:52px;font-size:16px;font-weight:700;border-radius:var(--radius);border:none;cursor:pointer;transition:opacity 0.15s,transform 0.1s}
-#actions button:active{transform:scale(0.97)}
-#process-btn{background:var(--accent);color:#fff}
-#process-btn:disabled{opacity:0.35;cursor:not-allowed}
-#clear-btn{background:var(--surface2);color:var(--text);border:0.5px solid var(--border2)!important}
-
-/* Progress */
-#progress-wrap{display:none;margin-top:14px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px}
-#progress-bar-bg{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden}
-#progress-bar{height:100%;background:var(--accent);border-radius:99px;width:0%;transition:width 0.3s ease}
-#progress-label{font-size:13px;color:var(--text2);margin-top:10px;text-align:center}
-
-.note{font-size:12px;color:var(--text3);margin-top:14px;line-height:1.6;display:none;padding:0 2px}
 </style>
 </head>
 <body>
-
-<div id="topbar">
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAABvUlEQVR4nO2bMVLDMBBFvzVcAihTcwPSZ4YqB0jhFNwAJkdgnBukgIIDpKUP10jpXAMqzwh5Ywt5115Jfo3HlqLkzd+sXcgFPLh7f/nxmTcVl+2+6JvTOUG7oEuXMDkQm6ALJWzcC7FLArSD6ZsQK66LuTaQArZTq3RTxQBpptnQuGWTaJFymjbZJKpK9LDaiK2tQrQuK9RlBUBO9kZkVQ8aMYrDaoPnr0/W7xs9UTu9LriTHU3UV9CGU1a0dP8rRsFVxiKJhqTXBUeyrKLcgjZDZQeXrpQYxZAyDk5UMr0uQpOd7D5K8XT7ILa2iiejMZhFU2MWTQ32rnv/8cq2Fufta040lCkeInzIJtFsRCWa0XfoZ+uyeuT8LTbqEz2vlyzrSDSj4FTO6yUWx9Ofc+p6CGoStaXsI4DBkoAiUSpJ9/oQJJrRm+/cuqx29vnieBKRBBQlCrQbD1cjAmSa0a5/Vhs3Sc5GBChKtJFxjwBPsmpEgfZ/kpIORZUoBVdDUi/KxSyaGtmIzrtSUsP4bOqNnct2X+STKOC3VTtWGre8EgXSTNV2MtcGYsd1aZVuCrKUQ96vg7hoF/apwl8KNKm1r8lSsAAAAABJRU5ErkJggg==" alt="logo"/>
-  <div>
-    <div class="t">File Cleaner</div>
-    <div class="s">Metadata remover &amp; renamer</div>
-  </div>
-</div>
-
-<div id="wrap">
-  <div id="drop-zone">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAABvUlEQVR4nO2bMVLDMBBFvzVcAihTcwPSZ4YqB0jhFNwAJkdgnBukgIIDpKUP10jpXAMqzwh5Ywt5115Jfo3HlqLkzd+sXcgFPLh7f/nxmTcVl+2+6JvTOUG7oEuXMDkQm6ALJWzcC7FLArSD6ZsQK66LuTaQArZTq3RTxQBpptnQuGWTaJFymjbZJKpK9LDaiK2tQrQuK9RlBUBO9kZkVQ8aMYrDaoPnr0/W7xs9UTu9LriTHU3UV9CGU1a0dP8rRsFVxiKJhqTXBUeyrKLcgjZDZQeXrpQYxZAyDk5UMr0uQpOd7D5K8XT7ILa2iiejMZhFU2MWTQ32rnv/8cq2Fufta040lCkeInzIJtFsRCWa0XfoZ+uyeuT8LTbqEz2vlyzrSDSj4FTO6yUWx9Ofc+p6CGoStaXsI4DBkoAiUSpJ9/oQJJrRm+/cuqx29vnieBKRBBQlCrQbD1cjAmSa0a5/Vhs3Sc5GBChKtJFxjwBPsmpEgfZ/kpIORZUoBVdDUi/KxSyaGtmIzrtSUsP4bOqNnct2X+STKOC3VTtWGre8EgXSTNV2MtcGYsd1aZVuCrKUQ96vg7hoF/apwl8KNKm1r8lSsAAAAABJRU5ErkJggg==" alt="logo"/>
-    <div class="dz-title">Remove metadata &amp; rename</div>
-    <div class="dz-sub">Pick files, paste an image, or drag &amp; drop</div>
-    <div class="btn-row">
-      <button class="pick-btn" id="pick-btn">Choose files</button>
-      <button class="paste-btn" id="paste-btn">Paste image</button>
+<a class="skip-link" href="#app">Skip to app</a>
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="#top" aria-label="File Cleaner home">
+      <span class="brand-mark">FC</span>
+      <span>File Cleaner</span>
+    </a>
+    <div class="nav-links">
+      <a href="#app">App</a>
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="#app">Launch app</a>
     </div>
-    <div id="paste-hint">Clipboard ready — tap "Paste image" after copying an image</div>
-    <input type="file" id="file-input" multiple/>
-  </div>
+  </nav>
+</header>
 
-  <div id="bulk-bar">
-    <div class="bulk-title">Bulk rename</div>
-    <div class="bulk-fields">
-      <input type="text" id="bulk-prefix" placeholder="Add prefix…"/>
-      <input type="text" id="bulk-sep" value="_" style="max-width:72px" placeholder="space→_"/>
-      <button id="bulk-apply">Apply all</button>
+<main id="top">
+  <section class="hero" aria-label="File Cleaner landing page">
+    <div class="hero-inner">
+      <span class="eyebrow">Client-side file cleanup</span>
+      <h1>File Cleaner</h1>
+      <p class="hero-copy">Remove image metadata, rename batches, and save cleaner copies in a fast web app that runs directly in your browser.</p>
+      <div class="hero-actions">
+        <a class="primary-link" href="#app">Clean files now</a>
+        <a class="secondary-link" href="#privacy">See privacy details</a>
+      </div>
     </div>
+  </section>
+
+  <section class="trust-strip" aria-label="Product highlights">
+    <div class="trust-item">
+      <span class="trust-kicker">Private by design</span>
+      <strong>No file uploads or account required.</strong>
+    </div>
+    <div class="trust-item">
+      <span class="trust-kicker">Image cleanup</span>
+      <strong>JPEG and PNG metadata stripped by redraw.</strong>
+    </div>
+    <div class="trust-item">
+      <span class="trust-kicker">Batch ready</span>
+      <strong>Rename, randomize, process, and save.</strong>
+    </div>
+  </section>
+
+  <section class="section workspace-band" id="app">
+    <div class="section-inner workspace">
+      <aside class="rail" aria-label="App summary">
+        <h2>Clean files without leaving the page.</h2>
+        <p>Drop files in, adjust names, and save processed copies. Images can have GPS, camera, and timestamp metadata removed before download.</p>
+        <div class="rail-list">
+          <div><span class="rail-num">1</span><span>Add files or paste an image.</span></div>
+          <div><span class="rail-num">2</span><span>Rename one by one or in bulk.</span></div>
+          <div><span class="rail-num">3</span><span>Process and download clean copies.</span></div>
+        </div>
+      </aside>
+
+      <section class="tool-shell" aria-label="File Cleaner app">
+        <div class="tool-header">
+          <div class="tool-title">
+            <span class="tool-logo">FC</span>
+            <span>Cleaner workspace</span>
+          </div>
+          <div class="tool-status">Runs locally</div>
+        </div>
+        <div class="app-area">
+          <div id="drop-zone">
+            <div class="drop-icon" aria-hidden="true">FC</div>
+            <div class="dz-title">Drop files here</div>
+            <div class="dz-sub">Choose files, paste an image, or drag files into this panel.</div>
+            <div class="btn-row">
+              <button class="pick-btn" id="pick-btn" type="button">Choose files</button>
+              <button class="paste-btn" id="paste-btn" type="button">Paste image</button>
+            </div>
+            <div id="paste-hint">Clipboard images are supported in modern secure browsers.</div>
+            <input type="file" id="file-input" multiple aria-label="Choose files">
+          </div>
+
+          <div id="bulk-bar" aria-label="Bulk rename controls">
+            <div class="bulk-fields">
+              <div class="field">
+                <label for="bulk-prefix">Prefix</label>
+                <input type="text" id="bulk-prefix" placeholder="project-">
+              </div>
+              <div class="field">
+                <label for="bulk-sep">Spaces</label>
+                <input type="text" id="bulk-sep" value="_" maxlength="4">
+              </div>
+              <button id="bulk-apply" class="small-btn" type="button">Apply all</button>
+            </div>
+          </div>
+
+          <div id="file-list" aria-live="polite"></div>
+
+          <div id="progress-wrap" role="status" aria-live="polite">
+            <div id="progress-bar-bg"><div id="progress-bar"></div></div>
+            <div id="progress-label">Processing...</div>
+          </div>
+
+          <div id="actions">
+            <button id="clear-btn" class="action-btn action-secondary" type="button">Clear</button>
+            <button id="process-btn" class="action-btn action-primary" type="button" disabled>Process and save</button>
+          </div>
+
+          <p class="note" id="note">JPEG and PNG files can be redrawn to remove embedded metadata. Other formats are downloaded with the selected filename only.</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>A small tool with the right professional details.</h2>
+        <p>File Cleaner is built for quick publishing workflows, client handoffs, marketplace uploads, and everyday document organization.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-token token-green">01</div>
+          <h3>Metadata removal</h3>
+          <p>JPEG and PNG images are loaded into canvas and exported as fresh files, removing embedded EXIF data from the saved copy.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-token token-blue">02</div>
+          <h3>Bulk naming</h3>
+          <p>Apply prefixes, replace spaces, generate random names, and keep extensions visible before processing.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-token token-amber">03</div>
+          <h3>Install-free web app</h3>
+          <p>The app works from GitHub Pages over HTTPS, with no backend, signup, or software install required.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section privacy-band" id="privacy">
+    <div class="section-inner privacy-grid">
+      <div class="section-title">
+        <h2>Designed for public use, without collecting private files.</h2>
+        <p>Processing happens inside the browser tab. There is no upload endpoint in this static site, and the app creates local downloads from the files you select.</p>
+      </div>
+      <div class="proof-list">
+        <div class="proof-item">
+          <strong>No server processing</strong>
+          <span>The GitHub Pages site ships static HTML, CSS, JavaScript, and a hero image.</span>
+        </div>
+        <div class="proof-item">
+          <strong>No required login</strong>
+          <span>Visitors can use the cleaner immediately on desktop or mobile browsers.</span>
+        </div>
+        <div class="proof-item">
+          <strong>Clear format behavior</strong>
+          <span>Image metadata removal is separated from rename-only file handling.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="formats">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>Supported behavior by file type.</h2>
+        <p>The app handles common workflow files while being honest about what can and cannot be stripped in the browser.</p>
+      </div>
+      <div class="format-table" role="table" aria-label="Supported file formats">
+        <div class="format-row head" role="row">
+          <div role="columnheader">Format</div>
+          <div role="columnheader">Metadata handling</div>
+          <div role="columnheader">Rename handling</div>
+        </div>
+        <div class="format-row" role="row">
+          <div class="format-name" role="cell">JPG, JPEG</div>
+          <div role="cell">Canvas redraw removes EXIF metadata.</div>
+          <div role="cell">Custom or random filename.</div>
+        </div>
+        <div class="format-row" role="row">
+          <div class="format-name" role="cell">PNG</div>
+          <div role="cell">Canvas redraw removes embedded metadata chunks.</div>
+          <div role="cell">Custom or random filename.</div>
+        </div>
+        <div class="format-row" role="row">
+          <div class="format-name" role="cell">PDF, DOCX, ZIP, media</div>
+          <div role="cell">Rename-only in the browser.</div>
+          <div role="cell">Custom or random filename.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-inner">
+      <div class="section-title">
+        <h2>Questions people ask before using it.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Are my files uploaded?</summary>
+          <p>No. This is a static browser app. Files are read locally by your browser and saved back as downloads.</p>
+        </details>
+        <details>
+          <summary>Does it remove metadata from every file type?</summary>
+          <p>No. JPEG and PNG files can be cleaned by redrawing them. Other file types are currently renamed only.</p>
+        </details>
+        <details>
+          <summary>Why do multiple download prompts appear?</summary>
+          <p>Each processed file is saved individually by the browser, so larger batches may trigger several download confirmations.</p>
+        </details>
+        <details>
+          <summary>Can I use it on mobile?</summary>
+          <p>Yes. File picking works on mobile browsers, and clipboard image support depends on the browser.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="brand">
+      <span class="brand-mark">FC</span>
+      <span>File Cleaner</span>
+    </div>
+    <span>Public static web app hosted on GitHub Pages.</span>
+    <a href="#app">Launch app</a>
   </div>
-
-  <div id="file-list"></div>
-
-  <div id="progress-wrap">
-    <div id="progress-bar-bg"><div id="progress-bar"></div></div>
-    <div id="progress-label">Processing…</div>
-  </div>
-
-  <div id="actions">
-    <button id="clear-btn">Clear</button>
-    <button id="process-btn" disabled>Process &amp; Save</button>
-  </div>
-
-  <p class="note" id="note">
-    JPEG &amp; PNG: EXIF data (GPS, camera info, timestamps) fully stripped via canvas redraw.
-    PDF, DOCX, and other formats are renamed only.
-  </p>
-</div>
+</footer>
 
 <script>
-var files = [];
+(function(){
+  "use strict";
 
-function randId() {
-  return Math.random().toString(36).slice(2,7).toUpperCase();
-}
-function randName() {
-  var ts = new Date();
-  var d = ts.getFullYear().toString().slice(2) +
-    String(ts.getMonth()+1).padStart(2,'0') +
-    String(ts.getDate()).padStart(2,'0');
-  return 'img_' + d + '_' + randId();
-}
+  var files = [];
+  var header = document.getElementById("site-header");
+  var dropZone = document.getElementById("drop-zone");
+  var fileInput = document.getElementById("file-input");
+  var pickBtn = document.getElementById("pick-btn");
+  var pasteBtn = document.getElementById("paste-btn");
+  var pasteHint = document.getElementById("paste-hint");
+  var bulkBar = document.getElementById("bulk-bar");
+  var bulkPrefix = document.getElementById("bulk-prefix");
+  var bulkSep = document.getElementById("bulk-sep");
+  var bulkApply = document.getElementById("bulk-apply");
+  var fileList = document.getElementById("file-list");
+  var actions = document.getElementById("actions");
+  var note = document.getElementById("note");
+  var processBtn = document.getElementById("process-btn");
+  var clearBtn = document.getElementById("clear-btn");
+  var progressWrap = document.getElementById("progress-wrap");
+  var progressBar = document.getElementById("progress-bar");
+  var progressLabel = document.getElementById("progress-label");
 
-function ext(n) { var i = n.lastIndexOf('.'); return i > 0 ? n.slice(i) : ''; }
-function base(n) { var i = n.lastIndexOf('.'); return i > 0 ? n.slice(0, i) : n; }
-function fmtSize(b) { return b < 1024 ? b + ' B' : b < 1048576 ? (b/1024).toFixed(1) + ' KB' : (b/1048576).toFixed(1) + ' MB'; }
-function typeLabel(n) {
-  var e = ext(n).toLowerCase();
-  var m = {'.jpg':'JPG','.jpeg':'JPG','.png':'PNG','.gif':'GIF','.webp':'WBP','.pdf':'PDF','.docx':'DOC','.xlsx':'XLS','.mp4':'MP4','.mov':'MOV','.mp3':'MP3','.zip':'ZIP'};
-  return m[e] || (e.slice(1,4).toUpperCase() || 'FILE');
-}
-
-function addFiles(newFiles) {
-  for (var i = 0; i < newFiles.length; i++) {
-    var f = newFiles[i];
-    files.push({ id: 'f' + Date.now() + i, file: f, newName: randName(), status: 'ready', stripExif: true });
-  }
-  render();
-}
-
-function addBlob(blob, suggestedName) {
-  var name = suggestedName || (randName() + '.png');
-  var file = new File([blob], name, { type: blob.type || 'image/png' });
-  files.push({ id: 'f' + Date.now(), file: file, newName: base(name), status: 'ready', stripExif: true });
-  render();
-}
-
-function render() {
-  var list = document.getElementById('file-list');
-  var bulk = document.getElementById('bulk-bar');
-  var actions = document.getElementById('actions');
-  var note = document.getElementById('note');
-  var btn = document.getElementById('process-btn');
-  var prog = document.getElementById('progress-wrap');
-
-  list.innerHTML = '';
-
-  for (var i = 0; i < files.length; i++) {
-    var f = files[i];
-    var e = ext(f.file.name).toLowerCase();
-    var isImg = ['.jpg','.jpeg','.png','.gif','.webp'].indexOf(e) >= 0;
-    var card = document.createElement('div');
-    card.className = 'file-card';
-    card.innerHTML =
-      '<div class="file-header">' +
-        '<div class="file-badge">' + typeLabel(f.file.name) + '</div>' +
-        '<div class="file-info">' +
-          '<div class="fname">' + f.file.name + '</div>' +
-          '<div class="fsize">' + fmtSize(f.file.size) + '</div>' +
-        '</div>' +
-        '<span class="file-status ' + (f.status==='done'?'status-done':'status-ready') + '">' + (f.status==='done'?'✓ done':'ready') + '</span>' +
-        '<button class="del-btn" data-id="' + f.id + '">×</button>' +
-      '</div>' +
-      '<div class="rename-row">' +
-        '<input type="text" value="' + f.newName + '" placeholder="filename" autocomplete="off" autocorrect="off" spellcheck="false" data-id="' + f.id + '" class="rename-input"/>' +
-        '<button class="rand-btn" data-id="' + f.id + '" title="Random name">⟳</button>' +
-        '<span class="ext">' + (e||'—') + '</span>' +
-      '</div>' +
-      '<div class="opts">' +
-        '<label class="opt-label">' +
-          '<input type="checkbox" ' + (f.stripExif?'checked':'') + ' ' + (!isImg?'disabled':'') + ' data-id="' + f.id + '" class="exif-check"/>' +
-          (isImg ? 'Strip EXIF / GPS' : 'Rename only') +
-        '</label>' +
-      '</div>';
-    list.appendChild(card);
+  function syncHeader(){
+    header.classList.toggle("is-scrolled", window.scrollY > 18);
   }
 
-  var delBtns = list.querySelectorAll('.del-btn');
-  for (var d = 0; d < delBtns.length; d++) {
-    delBtns[d].addEventListener('click', function() { removeFile(this.getAttribute('data-id')); });
-  }
-  var renameInputs = list.querySelectorAll('.rename-input');
-  for (var r = 0; r < renameInputs.length; r++) {
-    renameInputs[r].addEventListener('input', function() { updateName(this.getAttribute('data-id'), this.value); });
-  }
-  var exifChecks = list.querySelectorAll('.exif-check');
-  for (var c = 0; c < exifChecks.length; c++) {
-    exifChecks[c].addEventListener('change', function() { toggle(this.getAttribute('data-id'), 'stripExif', this.checked); });
-  }
-  var randBtns = list.querySelectorAll('.rand-btn');
-  for (var rb = 0; rb < randBtns.length; rb++) {
-    randBtns[rb].addEventListener('click', function() { reRandomize(this.getAttribute('data-id')); });
+  function randId(){
+    return Math.random().toString(36).slice(2, 7).toUpperCase();
   }
 
-  var show = files.length > 0;
-  bulk.style.display = show ? 'flex' : 'none';
-  actions.style.display = show ? 'flex' : 'none';
-  note.style.display = show ? 'block' : 'none';
-  btn.disabled = files.length === 0;
-  if (!show) prog.style.display = 'none';
-}
+  function randName(){
+    var ts = new Date();
+    var dateCode = ts.getFullYear().toString().slice(2) +
+      String(ts.getMonth() + 1).padStart(2, "0") +
+      String(ts.getDate()).padStart(2, "0");
+    return "clean_" + dateCode + "_" + randId();
+  }
 
-function removeFile(id) {
-  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files.splice(i,1); break; } }
-  render();
-}
-function updateName(id, v) {
-  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files[i].newName=v; break; } }
-}
-function toggle(id, k, v) {
-  for (var i = 0; i < files.length; i++) { if (files[i].id===id) { files[i][k]=v; break; } }
-}
-function reRandomize(id) {
-  for (var i = 0; i < files.length; i++) {
-    if (files[i].id===id) {
-      files[i].newName = randName();
-      break;
+  function ext(name){
+    var i = name.lastIndexOf(".");
+    return i > 0 ? name.slice(i) : "";
+  }
+
+  function base(name){
+    var i = name.lastIndexOf(".");
+    return i > 0 ? name.slice(0, i) : name;
+  }
+
+  function fmtSize(bytes){
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / 1048576).toFixed(1) + " MB";
+  }
+
+  function cleanFileName(value){
+    var safe = String(value || "")
+      .trim()
+      .replace(/[\\/:*?"<>|]+/g, "-")
+      .replace(/\s+/g, " ")
+      .slice(0, 120);
+    return safe || randName();
+  }
+
+  function typeLabel(name){
+    var e = ext(name).toLowerCase();
+    var labels = {
+      ".jpg":"JPG", ".jpeg":"JPG", ".png":"PNG", ".gif":"GIF",
+      ".webp":"WBP", ".pdf":"PDF", ".doc":"DOC", ".docx":"DOC",
+      ".xls":"XLS", ".xlsx":"XLS", ".mp4":"MP4", ".mov":"MOV",
+      ".mp3":"MP3", ".zip":"ZIP"
+    };
+    return labels[e] || (e ? e.slice(1, 4).toUpperCase() : "FILE");
+  }
+
+  function canStrip(file){
+    var e = ext(file.name).toLowerCase();
+    return e === ".jpg" || e === ".jpeg" || e === ".png";
+  }
+
+  function makeFileRecord(file, suggestedBase){
+    return {
+      id: "f" + Date.now() + Math.random().toString(36).slice(2),
+      file: file,
+      newName: suggestedBase || randName(),
+      status: "ready",
+      stripExif: canStrip(file)
+    };
+  }
+
+  function addFiles(newFiles){
+    Array.prototype.forEach.call(newFiles, function(file){
+      files.push(makeFileRecord(file));
+    });
+    render();
+  }
+
+  function addBlob(blob, suggestedName){
+    var name = suggestedName || (randName() + ".png");
+    var file = new File([blob], name, { type: blob.type || "image/png" });
+    files.push(makeFileRecord(file, base(name)));
+    render();
+  }
+
+  function setText(el, text){
+    el.textContent = text;
+    return el;
+  }
+
+  function createFileCard(item){
+    var supported = canStrip(item.file);
+    var card = document.createElement("article");
+    card.className = "file-card";
+
+    var headerRow = document.createElement("div");
+    headerRow.className = "file-header";
+
+    var badge = setText(document.createElement("div"), typeLabel(item.file.name));
+    badge.className = "file-badge";
+    headerRow.appendChild(badge);
+
+    var info = document.createElement("div");
+    info.className = "file-info";
+    var fname = setText(document.createElement("div"), item.file.name);
+    fname.className = "fname";
+    var fsize = setText(document.createElement("div"), fmtSize(item.file.size));
+    fsize.className = "fsize";
+    info.appendChild(fname);
+    info.appendChild(fsize);
+    headerRow.appendChild(info);
+
+    var status = setText(document.createElement("span"), item.status === "done" ? "done" : "ready");
+    status.className = "file-status " + (item.status === "done" ? "status-done" : "status-ready");
+    headerRow.appendChild(status);
+
+    var remove = setText(document.createElement("button"), String.fromCharCode(215));
+    remove.type = "button";
+    remove.className = "del-btn";
+    remove.setAttribute("aria-label", "Remove " + item.file.name);
+    remove.addEventListener("click", function(){ removeFile(item.id); });
+    headerRow.appendChild(remove);
+    card.appendChild(headerRow);
+
+    var renameRow = document.createElement("div");
+    renameRow.className = "rename-row";
+
+    var input = document.createElement("input");
+    input.className = "rename-input";
+    input.type = "text";
+    input.value = item.newName;
+    input.placeholder = "filename";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.setAttribute("aria-label", "New filename for " + item.file.name);
+    input.addEventListener("input", function(){ updateName(item.id, input.value); });
+    renameRow.appendChild(input);
+
+    var random = setText(document.createElement("button"), "R");
+    random.type = "button";
+    random.className = "rand-btn";
+    random.title = "Generate random name";
+    random.setAttribute("aria-label", "Generate random name for " + item.file.name);
+    random.addEventListener("click", function(){ reRandomize(item.id); });
+    renameRow.appendChild(random);
+
+    var extension = setText(document.createElement("span"), ext(item.file.name).toLowerCase() || "file");
+    extension.className = "ext";
+    renameRow.appendChild(extension);
+    card.appendChild(renameRow);
+
+    var opts = document.createElement("div");
+    opts.className = "opts";
+    var label = document.createElement("label");
+    label.className = "opt-label";
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = item.stripExif;
+    checkbox.disabled = !supported;
+    checkbox.addEventListener("change", function(){ toggleStrip(item.id, checkbox.checked); });
+    label.appendChild(checkbox);
+    label.appendChild(setText(document.createElement("span"), supported ? "Strip image metadata" : "Rename only"));
+    opts.appendChild(label);
+    card.appendChild(opts);
+
+    return card;
+  }
+
+  function render(){
+    fileList.replaceChildren();
+    files.forEach(function(item){
+      fileList.appendChild(createFileCard(item));
+    });
+
+    var hasFiles = files.length > 0;
+    bulkBar.style.display = hasFiles ? "flex" : "none";
+    actions.style.display = hasFiles ? "grid" : "none";
+    note.style.display = hasFiles ? "block" : "none";
+    processBtn.disabled = !hasFiles;
+    if (!hasFiles) {
+      progressWrap.style.display = "none";
+      progressBar.style.width = "0%";
+      progressLabel.textContent = "Processing...";
     }
   }
-  render();
-}
-function clearAll() { files = []; render(); }
 
-function applyBulk() {
-  var prefix = document.getElementById('bulk-prefix').value.trim();
-  var sep = document.getElementById('bulk-sep').value || '_';
-  for (var i = 0; i < files.length; i++) {
-    var n = base(files[i].file.name).replace(/\s+/g, sep);
-    if (prefix) n = prefix + n;
-    files[i].newName = n;
+  function removeFile(id){
+    files = files.filter(function(item){ return item.id !== id; });
+    render();
   }
-  render();
-}
 
-function stripImage(file) {
-  return new Promise(function(resolve) {
-    var img = new Image();
-    var url = URL.createObjectURL(file);
-    img.onload = function() {
-      var canvas = document.createElement('canvas');
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      canvas.getContext('2d').drawImage(img, 0, 0);
-      URL.revokeObjectURL(url);
-      var mime = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-      canvas.toBlob(function(b) { resolve(b || file); }, mime, 0.96);
-    };
-    img.onerror = function() { URL.revokeObjectURL(url); resolve(file); };
-    img.src = url;
-  });
-}
+  function updateName(id, value){
+    files.forEach(function(item){
+      if (item.id === id) item.newName = value;
+    });
+  }
 
-function processAll() {
-  var btn = document.getElementById('process-btn');
-  var prog = document.getElementById('progress-wrap');
-  var bar = document.getElementById('progress-bar');
-  var label = document.getElementById('progress-label');
-  btn.disabled = true; btn.textContent = 'Working…'; prog.style.display = 'block';
+  function toggleStrip(id, value){
+    files.forEach(function(item){
+      if (item.id === id) item.stripExif = value;
+    });
+  }
 
-  var i = 0;
-  function next() {
-    if (i >= files.length) {
-      bar.style.width = '100%';
-      label.textContent = 'Done! ' + files.length + ' file' + (files.length>1?'s':'') + ' saved.';
-      btn.textContent = 'Process & Save'; btn.disabled = false;
-      render();
-      document.getElementById('progress-wrap').style.display = 'block';
-      document.getElementById('progress-bar').style.width = '100%';
+  function reRandomize(id){
+    files.forEach(function(item){
+      if (item.id === id) item.newName = randName();
+    });
+    render();
+  }
+
+  function clearAll(){
+    files = [];
+    render();
+  }
+
+  function applyBulk(){
+    var prefix = bulkPrefix.value.trim();
+    var separator = bulkSep.value || "_";
+    files.forEach(function(item, index){
+      var original = base(item.file.name).replace(/\s+/g, separator);
+      item.newName = prefix + original;
+      if (!item.newName.trim()) item.newName = randName() + "_" + (index + 1);
+    });
+    render();
+  }
+
+  function stripImage(file){
+    return new Promise(function(resolve){
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      img.onload = function(){
+        var canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth || img.width;
+        canvas.height = img.naturalHeight || img.height;
+        var ctx = canvas.getContext("2d");
+        if (!ctx) {
+          URL.revokeObjectURL(url);
+          resolve(file);
+          return;
+        }
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        var mime = ext(file.name).toLowerCase() === ".png" ? "image/png" : "image/jpeg";
+        canvas.toBlob(function(blob){ resolve(blob || file); }, mime, 0.96);
+      };
+      img.onerror = function(){
+        URL.revokeObjectURL(url);
+        resolve(file);
+      };
+      img.src = url;
+    });
+  }
+
+  function downloadBlob(blob, fileName){
+    var link = document.createElement("a");
+    var url = URL.createObjectURL(blob);
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1200);
+  }
+
+  function processAll(){
+    if (!files.length) return;
+    processBtn.disabled = true;
+    processBtn.textContent = "Working...";
+    progressWrap.style.display = "block";
+    progressBar.style.width = "0%";
+
+    var index = 0;
+    function next(){
+      if (index >= files.length) {
+        progressBar.style.width = "100%";
+        progressLabel.textContent = "Done. " + files.length + " file" + (files.length === 1 ? "" : "s") + " saved.";
+        processBtn.textContent = "Process and save";
+        processBtn.disabled = false;
+        render();
+        progressWrap.style.display = "block";
+        progressBar.style.width = "100%";
+        return;
+      }
+
+      var item = files[index];
+      var percent = Math.round((index / files.length) * 100);
+      progressBar.style.width = percent + "%";
+      progressLabel.textContent = "Processing " + (index + 1) + " of " + files.length + "...";
+
+      var finalName = cleanFileName(item.newName) + ext(item.file.name);
+      var work = item.stripExif && canStrip(item.file) ? stripImage(item.file) : Promise.resolve(item.file);
+
+      work.then(function(blob){
+        downloadBlob(blob, finalName);
+        item.status = "done";
+        index += 1;
+        setTimeout(next, 420);
+      });
+    }
+    next();
+  }
+
+  function pasteFromClipboard(){
+    if (!navigator.clipboard || !navigator.clipboard.read) {
+      window.alert("Clipboard image reading is not supported in this browser. Try choosing a file instead.");
       return;
     }
-    bar.style.width = Math.round((i/files.length)*100) + '%';
-    label.textContent = 'Processing ' + (i+1) + ' of ' + files.length + '…';
-    var f = files[i];
-    var e = ext(f.file.name).toLowerCase();
-    var finalName = (f.newName.trim() || randName()) + ext(f.file.name);
-
-    function doDownload(blob) {
-      var a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = finalName;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
-      f.status = 'done'; i++;
-      setTimeout(next, 500);
-    }
-
-    if (f.stripExif && ['.jpg','.jpeg','.png'].indexOf(e) >= 0) {
-      stripImage(f.file).then(doDownload);
-    } else {
-      doDownload(f.file);
-    }
+    navigator.clipboard.read().then(function(items){
+      var found = false;
+      items.forEach(function(item){
+        item.types.forEach(function(type){
+          if (type.indexOf("image/") === 0) {
+            found = true;
+            item.getType(type).then(function(blob){
+              var imageExt = type === "image/jpeg" ? ".jpg" : ".png";
+              addBlob(blob, randName() + imageExt);
+            });
+          }
+        });
+      });
+      if (!found) window.alert("No image found in the clipboard. Copy an image first, then try again.");
+    }).catch(function(err){
+      console.error(err);
+      window.alert("Could not read the clipboard. Allow clipboard access or choose a file instead.");
+    });
   }
-  next();
-}
 
-/* ── Paste support ── */
-document.getElementById('paste-btn').addEventListener('click', function() {
-  if (!navigator.clipboard || !navigator.clipboard.read) {
-    alert('Paste not supported in this browser. Try copying the image and using the clipboard shortcut, or use Chrome/Safari 13.1+.');
-    return;
-  }
-  navigator.clipboard.read().then(function(items) {
-    var found = false;
-    for (var i = 0; i < items.length; i++) {
-      var item = items[i];
-      for (var t = 0; t < item.types.length; t++) {
-        var type = item.types[t];
-        if (type.startsWith('image/')) {
-          found = true;
-          item.getType(type).then(function(blob) {
-            var ext2 = type === 'image/png' ? '.png' : type === 'image/jpeg' ? '.jpg' : '.png';
-            addBlob(blob, randName() + ext2);
-          });
-        }
-      }
-    }
-    if (!found) {
-      alert('No image found in clipboard. Copy an image first, then tap Paste image.');
-    }
-  }).catch(function(err) {
-    alert('Could not read clipboard. Make sure you allow clipboard access when prompted.');
-    console.error(err);
+  window.addEventListener("scroll", syncHeader, { passive:true });
+  syncHeader();
+
+  pickBtn.addEventListener("click", function(){
+    fileInput.click();
   });
-});
 
-/* Global paste event (Ctrl+V / Command+V on desktop) */
-document.addEventListener('paste', function(e) {
-  var items = e.clipboardData && e.clipboardData.items;
-  if (!items) return;
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].type.startsWith('image/')) {
-      var blob = items[i].getAsFile();
-      if (blob) addBlob(blob, randName() + '.png');
-    }
+  pasteBtn.addEventListener("click", pasteFromClipboard);
+
+  if (navigator.clipboard && navigator.clipboard.read) {
+    pasteHint.style.display = "block";
   }
-});
 
-/* File input */
-document.getElementById('pick-btn').addEventListener('click', function(e) {
-  e.preventDefault(); e.stopPropagation();
-  document.getElementById('file-input').click();
-});
-document.getElementById('file-input').addEventListener('change', function() {
-  if (this.files && this.files.length > 0) addFiles(this.files);
-  this.value = '';
-});
+  fileInput.addEventListener("change", function(){
+    if (fileInput.files && fileInput.files.length) addFiles(fileInput.files);
+    fileInput.value = "";
+  });
 
-/* Drag & drop */
-var dz = document.getElementById('drop-zone');
-dz.addEventListener('dragover', function(e) { e.preventDefault(); dz.classList.add('drag-over'); });
-dz.addEventListener('dragleave', function() { dz.classList.remove('drag-over'); });
-dz.addEventListener('drop', function(e) {
-  e.preventDefault(); dz.classList.remove('drag-over');
-  if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
-});
+  dropZone.addEventListener("dragover", function(event){
+    event.preventDefault();
+    dropZone.classList.add("drag-over");
+  });
 
-document.getElementById('clear-btn').addEventListener('click', clearAll);
-document.getElementById('process-btn').addEventListener('click', processAll);
-document.getElementById('bulk-apply').addEventListener('click', applyBulk);
+  dropZone.addEventListener("dragleave", function(){
+    dropZone.classList.remove("drag-over");
+  });
+
+  dropZone.addEventListener("drop", function(event){
+    event.preventDefault();
+    dropZone.classList.remove("drag-over");
+    if (event.dataTransfer.files && event.dataTransfer.files.length) {
+      addFiles(event.dataTransfer.files);
+    }
+  });
+
+  document.addEventListener("paste", function(event){
+    var items = event.clipboardData && event.clipboardData.items;
+    if (!items) return;
+    Array.prototype.forEach.call(items, function(item){
+      if (item.type.indexOf("image/") === 0) {
+        var blob = item.getAsFile();
+        if (blob) addBlob(blob, randName() + (item.type === "image/jpeg" ? ".jpg" : ".png"));
+      }
+    });
+  });
+
+  clearBtn.addEventListener("click", clearAll);
+  processBtn.addEventListener("click", processAll);
+  bulkApply.addEventListener("click", applyBulk);
+})();
 </script>
 </body>
 </html>
