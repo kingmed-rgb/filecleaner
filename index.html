@@ -172,22 +172,21 @@ img{max-width:100%;display:block}
 .link-btn{border:0;background:transparent;color:inherit;padding:0;font:inherit;font-weight:800;cursor:pointer;opacity:.9}
 .link-btn:hover{opacity:1}
 button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.account-panel{display:grid;gap:12px;border:1px solid var(--line);background:#0d1411;border-radius:8px;padding:14px;margin-top:14px}
-.account-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.account-title{font-weight:900;color:var(--ink)}
-.account-sub{color:var(--muted);font-size:13px;margin-top:2px}
-.plan-pill{display:inline-flex;align-items:center;border-radius:999px;background:var(--green-soft);color:var(--green);padding:5px 10px;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.06em}
-.quota-meter{height:8px;border-radius:99px;background:#24302a;overflow:hidden}
-.quota-meter span{display:block;height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .2s ease}
-.account-actions{display:flex;gap:10px;flex-wrap:wrap}
-.auth-form{display:none;grid-template-columns:minmax(180px,1fr) minmax(92px,.45fr) auto;gap:8px;align-items:end}
+.account-panel{margin:18px auto 0;text-align:center;max-width:680px;padding:0 12px;color:var(--muted)}
+.account-row{display:block}
+.account-title,.plan-pill,.quota-meter{display:none}
+.account-sub{display:inline-flex;align-items:baseline;justify-content:center;gap:12px;color:var(--ink);font-size:clamp(36px,5vw,52px);line-height:1;font-weight:500;font-family:Georgia,"Times New Roman",serif;letter-spacing:0}
+.account-sub::after{content:"IMAGES TODAY";font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.account-actions{display:flex;justify-content:center;margin-top:18px}
+#sign-in-toggle{border:0;background:transparent;color:#ff4a2a;min-height:auto;padding:0;border-radius:0;text-decoration:underline;text-underline-offset:4px;font-size:18px;font-weight:500}
+#sign-in-toggle:hover{color:#ff6a4d}
+#google-sign-in,#upgrade-pro{display:none}
+.auth-form{display:none;grid-template-columns:minmax(180px,1fr) minmax(88px,.35fr) auto auto;gap:8px;align-items:center;margin:18px auto 0;max-width:720px}
 .auth-form.is-open{display:grid}
-.auth-form input{height:42px;border:1px solid var(--line-strong);border-radius:6px;background:#0b100e;color:var(--ink);padding:0 11px;outline:none}
+.auth-form input{height:44px;border:1px solid var(--line-strong);border-radius:6px;background:#0b100e;color:var(--ink);padding:0 12px;outline:none}
 .auth-form input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(72,213,151,.12)}
-.message{display:none;border:1px solid rgba(72,213,151,.26);background:rgba(72,213,151,.08);border-radius:8px;padding:10px 12px;color:#cdeee0;font-size:13px}
+.message{display:none;margin:12px auto 0;max-width:720px;color:var(--muted);font-size:13px}
 .message.is-visible{display:block}
-.google-btn{gap:8px}
-#upgrade-pro{display:none}
 .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .feature-card{background:#fbfaf7;border:1px solid var(--line);border-radius:8px;padding:20px}
 .feature-token{width:42px;height:42px;border-radius:8px;display:grid;place-items:center;font-weight:950;margin-bottom:16px}
@@ -323,16 +322,13 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
           <div class="account-panel" id="account-panel" aria-live="polite">
             <div class="account-row">
-              <div>
-                <div class="account-title">Free guest usage</div>
-                <div class="account-sub" id="usage-label">0/3 images used today.</div>
-              </div>
+              <div class="account-title">Free guest usage</div>
+              <div class="account-sub" id="usage-label">0/3</div>
               <span class="plan-pill" id="plan-label">Guest</span>
             </div>
             <div class="quota-meter" aria-hidden="true"><span id="quota-fill"></span></div>
             <div class="account-actions">
-              <button class="small-btn action-primary" id="sign-in-toggle" type="button">Sign up free for 10 images/day</button>
-              <button class="small-btn" id="google-sign-in" type="button">Continue with Google</button>
+              <button class="link-btn" id="sign-in-toggle" type="button">Sign up free for 10 images/day - 3x your limit</button>
               <button class="small-btn" id="upgrade-pro" type="button">Upgrade to Pro</button>
             </div>
             <form class="auth-form" id="auth-form">
@@ -340,6 +336,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
               <input id="auth-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Code" aria-label="Registration code">
               <button class="small-btn" id="send-code" type="button">Send code</button>
               <button class="small-btn" id="verify-code" type="button">Verify</button>
+              <button class="small-btn" id="google-sign-in" type="button">Continue with Google</button>
             </form>
             <div class="message" id="account-message"></div>
           </div>
@@ -688,10 +685,10 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     var name = state.plan === "pro" ? "Pro" : state.plan === "free" ? "Free" : "Guest";
     planLabel.textContent = name;
     if (state.limit == null) {
-      usageLabel.textContent = "Unlimited images. " + (state.email ? "Signed in as " + state.email + "." : "");
+      usageLabel.textContent = "Unlimited";
       quotaFill.style.width = "100%";
     } else {
-      usageLabel.textContent = state.used + "/" + state.limit + " images used today. " + state.remaining + " left.";
+      usageLabel.textContent = state.used + "/" + state.limit;
       quotaFill.style.width = Math.min(100, Math.round((state.used / state.limit) * 100)) + "%";
     }
     signInToggle.style.display = state.authenticated ? "none" : "inline-flex";
