@@ -21,10 +21,10 @@ Quota reservations are atomic in Redis and expire within 48 hours. Login send/ve
 
 ## Google AdSense
 
-Ads are disabled by default. No publisher ID has been configured.
+Publisher `pub-8412484885269791` is configured in `adsense.json`. Ads remain disabled by default.
 
-1. Create an AdSense account and add your production domain.
-2. Set `ADSENSE_PUBLISHER_ID=ca-pub-YOUR_16_DIGIT_ID` and rebuild. The build adds the account verification meta tag and generates `/ads.txt`.
+1. Add your production domain to your AdSense account.
+2. Deploy this branch. The build automatically adds the account verification meta tag (`ca-pub-8412484885269791`) and generates `/ads.txt` (`pub-8412484885269791`). `ADSENSE_PUBLISHER_ID` can override this public default; an empty override disables publisher configuration.
 3. Complete site approval and configure Auto ads and the required consent messages in AdSense Privacy & messaging. Use Google's certified consent-management tooling for applicable regions.
 4. Set `ADSENSE_ENABLED=true` and redeploy when ready. The build inserts Google's Auto ads script on all HTML pages. Leave it false to keep ad requests disabled.
 

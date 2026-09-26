@@ -8,9 +8,13 @@ const { build } = require('../scripts/build');
 test('AdSense disabled by default, verification-only when configured, enabled explicitly', t => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'filecleaner-build-'));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
-  build(dir, {});
+  build(dir, { ADSENSE_PUBLISHER_ID: '' });
   assert.doesNotMatch(fs.readFileSync(path.join(dir, 'index.html'), 'utf8'), /adsbygoogle\.js|google-adsense-account/);
   assert.doesNotMatch(fs.readFileSync(path.join(dir, 'ads.txt'), 'utf8'), /pub-/);
+  build(dir, {});
+  assert.match(fs.readFileSync(path.join(dir, 'index.html'), 'utf8'), /content="ca-pub-8412484885269791"/);
+  assert.equal(fs.readFileSync(path.join(dir, 'ads.txt'), 'utf8'), 'google.com, pub-8412484885269791, DIRECT, f08c47fec0942fa0\n');
+  assert.doesNotMatch(fs.readFileSync(path.join(dir, 'index.html'), 'utf8'), /adsbygoogle\.js/);
   const env = { ADSENSE_PUBLISHER_ID: 'ca-pub-1234567890123456' };
   build(dir, env);
   const html = fs.readFileSync(path.join(dir, 'index.html'), 'utf8');
@@ -22,10 +26,10 @@ test('AdSense disabled by default, verification-only when configured, enabled ex
     assert.equal((page.match(/adsbygoogle\.js/g) || []).length, 1);
   }
   assert.match(fs.readFileSync(path.join(dir, 'privacy.html'), 'utf8'), /advertising is enabled/);
-  build(dir, {});
+  build(dir, { ADSENSE_PUBLISHER_ID: '' });
   assert.doesNotMatch(fs.readFileSync(path.join(dir, 'index.html'), 'utf8'), /adsbygoogle\.js/);
 });
 test('invalid or missing publisher ID cannot enable ads', () => {
-  assert.throws(() => build('/unused', { ADSENSE_ENABLED: 'true' }), /requires a publisher/);
+  assert.throws(() => build('/unused', { ADSENSE_ENABLED: 'true', ADSENSE_PUBLISHER_ID: '' }), /requires a publisher/);
   assert.throws(() => build('/unused', { ADSENSE_PUBLISHER_ID: '"><script>' }), /Invalid/);
 });
