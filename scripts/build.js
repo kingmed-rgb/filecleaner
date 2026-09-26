@@ -11,7 +11,7 @@ function build(output = path.join(__dirname, '..', 'public'), env = process.env)
   fs.mkdirSync(output, { recursive: true });
   const tags = publisher ? `<meta name="google-adsense-account" content="${publisher}">\n` +
     (enabled ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}" crossorigin="anonymous"></script>\n` : '') : '';
-  for (const file of fs.readdirSync(root).filter(name => /\.(html|xml|txt)$/.test(name))) {
+  for (const file of fs.readdirSync(root).filter(name => /\.(html|xml|txt|css)$/.test(name))) {
     if (file === 'ads.txt') continue;
     let content = fs.readFileSync(path.join(root, file), 'utf8');
     if (file.endsWith('.html')) content = content.replace('</head>', tags + '</head>');

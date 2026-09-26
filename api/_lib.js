@@ -310,16 +310,20 @@ async function usageStatus(viewer) {
     plan: viewer.authenticated ? 'free' : 'guest', limit, used,
     remaining: limit == null ? null : Math.max(0, limit - used),
     canBatch: true,
+    authMethods: {
+      email: development() || Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM),
+      google: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+    },
     resetsAt: limit == null ? null : new Date(Date.parse(today()) + DAY_SECONDS * 1000).toISOString()
   };
 }
 
 async function consumeUsage(viewer, count) {
   if (!Number.isSafeInteger(count) || count < 1 || count > 500) {
-    return { ok: false, status: 400, code: 'invalid_count', message: 'Choose between 1 and 500 images per batch.' };
+    return { ok: false, status: 400, code: 'invalid_count', message: 'Choose between 1 and 500 files per batch.' };
   }
   if (!viewer.authenticated && !await reserve(`usage:${today()}:${viewer.identity}`, count, GUEST_LIMIT, DAY_SECONDS * 2)) {
-    return { ok: false, status: 429, code: 'daily_limit_reached', message: 'Daily limit reached. Sign up free for unlimited images.' };
+    return { ok: false, status: 429, code: 'daily_limit_reached', message: 'Daily limit reached. Sign up free for unlimited files.' };
   }
   return { ok: true, status: await usageStatus(viewer) };
 }

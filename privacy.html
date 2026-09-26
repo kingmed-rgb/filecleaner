@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Privacy policy for File Cleaner, a browser-based metadata cleaner that processes supported images locally without uploads.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://kingmed-rgb.github.io/filecleaner/privacy.html">
+<link rel="canonical" href="https://aimetadataeraser.vercel.app/privacy.html">
 <title>Privacy Policy | File Cleaner</title>
-<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;background:#070a09;color:#edf7f1;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}a{color:#48d597}.wrap{max-width:860px;margin:0 auto;padding:48px 20px}.brand{display:inline-flex;align-items:center;gap:10px;color:#edf7f1;text-decoration:none;font-weight:850}.mark{width:34px;height:34px;border-radius:8px;background:#12372a;display:grid;place-items:center}main{padding:54px 0}h1{font-size:clamp(34px,6vw,58px);line-height:1.04;margin:0 0 18px}h2{font-size:26px;margin:34px 0 10px}p,li{color:#a5b5ac}ul{padding-left:22px}.card{border:1px solid rgba(237,247,241,.12);background:#101713;border-radius:8px;padding:22px;margin:18px 0}.nav{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;background:#48d597;color:#06100c;text-decoration:none;border-radius:6px;padding:10px 14px;font-weight:850}.muted{color:#74837a;font-size:14px}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
-  <a class="brand" href="index.html"><span class="mark">FC</span><span>File Cleaner</span></a>
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true">fc</span><span>File Cleaner</span></a>
   <main>
     <h1>Privacy Policy</h1>
 <div class="card">
@@ -24,7 +23,7 @@
 <p>The app does not intentionally upload your selected files to a File Cleaner server, and it does not store copies of your files. Downloads are created on your device by your browser.</p>
 <h2>Accounts and usage</h2>
 <p>We store your email address and, if you use Google sign-in, your name and profile image. A session cookie keeps you signed in for up to 30 days. Signing out removes that cookie from this browser.</p>
-<p>Guests can process 3 images per UTC day. We use a keyed hash of your network address to enforce this allowance and limit login attempts; raw network addresses are not stored in our usage database. Guest usage records expire within 48 hours. People sharing a network may share the guest allowance. Free accounts have unlimited daily usage.</p>
+<p>Guests can process 3 files per UTC day. We use a keyed hash of your network address to enforce this allowance and limit login attempts; raw network addresses are not stored in our usage database. Guest usage records expire within 48 hours. People sharing a network may share the guest allowance. Free accounts have unlimited daily usage.</p>
 <p>Login challenges and attempt counters expire after 10 minutes. Account details remain stored to support future sign-ins. Our hosting and email providers may also retain operational logs.</p>
 <h2>Advertising</h2>
 <p>Google AdSense is our intended source of revenue. Ads are currently disabled while site approval and consent setup are completed. When enabled, Google and its partners may use cookies and device information to serve and measure ads, subject to applicable consent choices. Signing in does not remove advertising.</p>
@@ -32,7 +31,7 @@
 <h2>Limits</h2>
 <p>Browser-based metadata removal cannot remove visible marks, invisible watermarks, or information baked into pixels. It only works on file-level metadata for supported image formats.</p>
 
-    <div class="nav"><a class="btn" href="index.html#app">Launch app</a><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <nav class="document-nav" aria-label="Footer"><a href="index.html">Back to cleaner</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
   </main>
   <p class="muted">Last updated: September 26, 2026</p>
 </div>

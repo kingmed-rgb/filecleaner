@@ -22,10 +22,10 @@ function createServer() {
         if (handler) return await handler(req, res);
       } else {
         const name = pathname === '/' ? 'index.html' : pathname.slice(1);
-        if (/^[a-zA-Z0-9.-]+\.(html|txt|xml)$/.test(name)) {
+        if (/^[a-zA-Z0-9.-]+\.(html|txt|xml|css)$/.test(name)) {
           const file = path.join(root, 'public', name);
           if (fs.existsSync(file)) {
-            const types = { '.html': 'text/html', '.txt': 'text/plain', '.xml': 'application/xml' };
+            const types = { '.html': 'text/html', '.txt': 'text/plain', '.xml': 'application/xml', '.css': 'text/css' };
             res.setHeader('Content-Type', types[path.extname(file)] + '; charset=utf-8');
             res.setHeader('Cache-Control', 'no-store');
             return res.end(fs.readFileSync(file));

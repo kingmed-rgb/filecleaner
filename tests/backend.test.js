@@ -169,3 +169,13 @@ test('Google refuses profiles without verified emails', async t => {
   assert.match(result.headers.Location, /auth_error=/);
   assert.ok(!JSON.stringify(result.headers['Set-Cookie']).includes('fc_session='));
 });
+
+test('frontend receives only configured login methods', async () => {
+  const viewer = { authenticated: true, email: 'test@example.test' };
+  assert.deepEqual((await lib.usageStatus(viewer)).authMethods, { email: true, google: false });
+  process.env.NODE_ENV = 'production';
+  assert.deepEqual((await lib.usageStatus(viewer)).authMethods, { email: false, google: false });
+  process.env.RESEND_API_KEY = 'test'; process.env.EMAIL_FROM = 'test@example.test';
+  process.env.GOOGLE_CLIENT_ID = 'test'; process.env.GOOGLE_CLIENT_SECRET = 'test';
+  assert.deepEqual((await lib.usageStatus(viewer)).authMethods, { email: true, google: true });
+});

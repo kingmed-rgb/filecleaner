@@ -2,9 +2,9 @@
 
 Free browser-based image metadata cleanup, funded only by Google AdSense when configured. Files remain on the user's device.
 
-- Guests: 3 images per UTC day. A batch counts each image separately.
-- Signed-in users: unlimited daily images and free batch processing.
-- Maximum batch size: 500 images to keep requests bounded; this is not a daily quota.
+- Guests: 3 files per UTC day. A batch counts each file separately, including rename-only files.
+- Signed-in users: unlimited daily files and free batch processing.
+- Maximum batch size: 500 files to keep requests bounded; this is not a daily quota.
 - No payments, subscriptions, or paid feature gates. Ads apply to both guests and accounts.
 
 ## Deployment
@@ -17,7 +17,7 @@ Optional Google login requires a Google OAuth web client with callback `https://
 
 Guest quotas use a daily keyed hash of the trusted client network address. Clearing cookies does not reset the allowance. Shared networks share the guest allowance; signing in removes that restriction. Vercel's overwritten `x-vercel-forwarded-for` header is trusted only on Vercel; elsewhere the direct socket address is used. Another reverse proxy requires an explicit trusted-IP adapter. Client-side file processing inherently remains bypassable by someone modifying the browser code.
 
-Quota reservations are atomic in Redis and expire within 48 hours. Login send/verify counters use 10-minute windows per email and network. Login challenges are hashed, expire in 10 minutes, and are consumed atomically. A processing attempt consumes its image allowance before local work begins; failed downloads are not refunded. Daily usage is not stored for signed-in accounts.
+Quota reservations are atomic in Redis and expire within 48 hours. Login send/verify counters use 10-minute windows per email and network. Login challenges are hashed, expire in 10 minutes, and are consumed atomically. A processing attempt consumes its file allowance before local work begins; failed downloads are not refunded. Daily usage is not stored for signed-in accounts.
 
 ## Google AdSense
 

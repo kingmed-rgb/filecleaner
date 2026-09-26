@@ -3,44 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Free browser-based metadata cleaner for JPEG and PNG images. Remove EXIF, GPS, C2PA, AI tags, and Stable Diffusion PNG metadata without uploads.">
+<meta name="description" content="Remove embedded metadata from JPEG and PNG images on your device. Three free files daily, or unlimited use with a free account. No uploads.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#070a09">
+<meta name="theme-color" content="#f5f7f4">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="File Cleaner">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="canonical" href="https://aimetadataeraser.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aimetadataeraser.vercel.app/">
-<meta property="og:title" content="Free Metadata Cleaner & AI Tag Remover">
-<meta property="og:description" content="Remove EXIF, GPS, C2PA, AI tags, and PNG metadata from images directly in your browser. 3 free images daily, or unlimited with a free account. No file uploads.">
+<meta property="og:title" content="File Cleaner — Free Image Metadata Remover">
+<meta property="og:description" content="Remove EXIF, GPS, C2PA, AI tags, and PNG metadata from images directly in your browser. 3 free files daily, or unlimited with a free account. No file uploads.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Metadata Cleaner & AI Tag Remover">
+<meta name="twitter:title" content="File Cleaner — Free Image Metadata Remover">
 <meta name="twitter:description" content="Clean JPEG and PNG metadata locally in your browser, including EXIF, GPS, AI tags, and Stable Diffusion PNG chunks.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312372a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='white'%3EFC%3C/text%3E%3C/svg%3E">
-<title>Free Metadata Cleaner & AI Tag Remover | Remove EXIF, GPS, C2PA</title>
+<title>File Cleaner — Free Image Metadata Remover</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["SoftwareApplication", "WebApplication"],
-      "@id": "https://aimetadataeraser.vercel.app/#app",
+      "@type": "WebApplication",
       "name": "File Cleaner",
-      "alternateName": "Free Metadata Cleaner & AI Tag Remover",
+      "url": "https://aimetadataeraser.vercel.app/",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web",
-      "url": "https://aimetadataeraser.vercel.app/",
-      "description": "A free browser-based metadata cleaner that removes EXIF, GPS, C2PA, AI tags, and PNG metadata from JPEG and PNG images without uploading files.",
-      "browserRequirements": "Requires a modern browser with HTML5 File API and Canvas support.",
-      "featureList": [
-        "Remove EXIF metadata from JPEG images",
-        "Remove GPS location metadata from photos",
-        "Remove PNG text chunks and Stable Diffusion parameters",
-        "Remove file-level AI and C2PA metadata from supported images",
-        "Bulk rename files before download",
-        "Process images locally in the browser"
-      ],
+      "description": "Browser-based JPEG and PNG metadata cleanup. Three free files daily for guests and unlimited daily use with a free account.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -48,501 +37,139 @@
       }
     },
     {
-      "@type": "HowTo",
-      "@id": "https://aimetadataeraser.vercel.app/#how-it-works",
-      "name": "How to remove metadata from an image online",
-      "description": "Clean JPEG and PNG image metadata locally in your browser.",
-      "step": [
-        {"@type": "HowToStep", "name": "Choose images", "text": "Select JPEG or PNG images, paste an image, or drag files into the cleaner."},
-        {"@type": "HowToStep", "name": "Redraw the image", "text": "The browser redraws supported images to a fresh canvas export, leaving embedded metadata behind."},
-        {"@type": "HowToStep", "name": "Download clean copies", "text": "Save the processed images with custom or random filenames."}
-      ]
-    },
-    {
       "@type": "FAQPage",
-      "@id": "https://aimetadataeraser.vercel.app/#faq-schema",
       "mainEntity": [
-        {"@type": "Question", "name": "Are my files uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. File Cleaner runs as a static browser app. Selected files are read locally by your browser and saved back as downloads."}},
-        {"@type": "Question", "name": "Does it remove EXIF and GPS metadata?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Supported JPEG and PNG images are redrawn in the browser, which removes embedded file metadata such as EXIF camera data, GPS location tags, timestamps, and PNG text chunks."}},
-        {"@type": "Question", "name": "Can it remove AI metadata and C2PA tags?", "acceptedAnswer": {"@type": "Answer", "text": "It can remove file-level metadata from supported images when the browser redraws the image. It cannot remove invisible watermarks or signals baked into the pixels."}},
-        {"@type": "Question", "name": "Does it clean every file type?", "acceptedAnswer": {"@type": "Answer", "text": "No. JPEG and PNG files can be cleaned. PDF, DOCX, ZIP, video, and other files are currently renamed only."}}
+        {
+          "@type": "Question",
+          "name": "Is everything free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Guests can process 3 files per day, resetting at midnight UTC. Each file in a batch counts as one use. People on the same network share the guest allowance. Sign in to a free account for unlimited daily use and batches of up to 500 files. No subscription or payment details required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do my files leave my device?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. File cleanup happens in your browser and downloads are created on your device. Our server handles sign-in and usage limits, but does not receive your files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What metadata can it remove?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JPEG and PNG images are redrawn as new files. This removes embedded data such as EXIF camera details, GPS tags and PNG text fields, including some AI generation metadata. It does not remove visible or invisible watermarks, or guarantee how an AI detector will classify an image."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will my images change?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JPEG images are re-encoded at high quality. PNG output is lossless, but browser rendering can change color profiles or other image properties. Your original files stay untouched. Each output downloads separately; your browser may ask you to allow multiple downloads."
+          }
+        }
       ]
     }
   ]
 }
 </script>
-<style>
-[hidden]{display:none!important}
-
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#050807;color:#eef6f1;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-button,input{font:inherit}
-button{cursor:pointer}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-:root{
-  --ink:#eef6f1;
-  --muted:#9aa8a0;
-  --quiet:#707c75;
-  --bg:#050807;
-  --surface:#0d1411;
-  --surface-2:#111a15;
-  --line:rgba(238,246,241,.11);
-  --line-strong:rgba(238,246,241,.2);
-  --accent:#49d596;
-  --accent-strong:#68e3ac;
-  --accent-soft:rgba(73,213,150,.12);
-  --blue:#91b8ff;
-  --blue-soft:rgba(80,131,230,.12);
-  --amber:#f0bb63;
-  --amber-soft:rgba(240,187,99,.13);
-  --danger:#ff806f;
-  --shadow:0 18px 70px rgba(0,0,0,.24);
-  --radius:8px;
-}
-.skip-link{position:absolute;left:12px;top:-80px;z-index:100;background:var(--ink);color:#06100c;padding:10px 12px;border-radius:6px;border:1px solid var(--ink)}
-.skip-link:focus{top:12px}
-.site-header{position:fixed;left:0;right:0;top:0;z-index:50;padding:16px clamp(18px,4vw,44px);transition:background .2s ease,box-shadow .2s ease,backdrop-filter .2s ease}
-.site-header.is-scrolled{background:rgba(5,8,7,.86);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
-.nav{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:0;color:var(--ink)}
-.brand-mark{width:30px;height:30px;border-radius:7px;background:#123729;color:#dffbed;display:grid;place-items:center;font-size:12px;font-weight:900;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
-.nav-links{display:flex;align-items:center;gap:22px;color:#dce8e1;font-size:13px;font-weight:750}
-.nav-links a{opacity:.78;transition:opacity .15s ease,color .15s ease}
-.nav-links a:hover{opacity:1;color:var(--ink)}
-.nav-cta{background:var(--accent);color:#04100b;border:1px solid var(--accent);border-radius:6px;padding:9px 14px;font-weight:850;box-shadow:none}
-.nav-cta:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
-button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.section{padding:78px clamp(20px,4vw,44px)}
-.section-inner{max-width:1080px;margin:0 auto}
-.section-title{max-width:680px;margin:0 0 26px}
-.section-title h2{font-size:44px;line-height:1.06;letter-spacing:0;margin:0 0 12px;font-weight:900}
-.section-title p{font-size:15px;color:var(--muted);margin:0;max-width:680px}
-.workspace-band{padding-top:104px;padding-bottom:74px}
-.workspace{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;max-width:860px}
-.rail{position:static;border-left:0;padding:0;text-align:center;max-width:800px;margin:0 auto}
-.rail h1{font-size:56px;line-height:1.04;margin:0 0 14px;letter-spacing:0;font-weight:900;color:var(--ink)}
-.rail p{color:var(--muted);margin:0 auto;font-size:17px;max-width:690px}
-.tool-shell{background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;width:100%;max-width:860px;margin:0 auto}
-.app-area{padding:18px}
-#drop-zone{position:relative;border:1px dashed rgba(73,213,150,.4);border-radius:8px;background:#0a100d;padding:42px 22px;text-align:center;transition:border-color .15s ease,background .15s ease,transform .15s ease}
-#drop-zone.drag-over{border-color:var(--accent);background:#0f1a14;transform:translateY(-1px)}
-.dz-title{font-size:20px;font-weight:900;letter-spacing:0;color:var(--ink)}
-.dz-sub{font-size:13px;color:var(--muted);margin-top:5px}
-.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
-.pick-btn,.paste-btn,.small-btn,.action-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid transparent;font-weight:850;min-height:42px;padding:0 15px}
-.pick-btn,.action-primary{background:var(--accent);color:#04100b;border-color:var(--accent)}
-.pick-btn:hover,.action-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
-.paste-btn,.small-btn,.action-secondary{background:#0a100d;color:var(--ink);border-color:var(--line-strong)}
-.paste-btn:hover,.small-btn:hover,.action-secondary:hover{border-color:rgba(238,246,241,.36)}
-#file-input{display:none}
-#paste-hint{display:none;margin-top:10px;color:var(--quiet);font-size:12px}
-.account-panel{margin:22px auto 2px;text-align:center;max-width:680px;padding:0 12px;color:var(--muted)}
-.account-row{display:block}
-.account-title,.plan-pill,.quota-meter{display:none}
-.account-sub{display:inline-flex;align-items:baseline;justify-content:center;gap:12px;color:var(--ink);font-size:36px;line-height:1;font-weight:500;font-family:Georgia,"Times New Roman",serif;letter-spacing:0}
-.account-sub::after{content:"IMAGES TODAY";font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:11px;font-weight:750;letter-spacing:0;color:var(--quiet);text-transform:uppercase}
-.account-actions{display:flex;justify-content:center;margin-top:14px}
-#sign-in-toggle{border:0;background:transparent;color:var(--accent-strong);min-height:auto;padding:0;border-radius:0;text-decoration:underline;text-underline-offset:4px;font-size:14px;font-weight:550}
-#sign-in-toggle:hover{color:#8df0bf}
-
-.auth-modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}
-.auth-modal.is-open{display:flex}
-.auth-dialog{position:relative;width:min(520px,100%);max-height:calc(100vh - 44px);overflow:auto;background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.5)}
-.auth-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 26px 20px;border-bottom:1px solid var(--line)}
-.auth-head h2{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;font-size:32px;line-height:1.08;margin:0;font-weight:900;letter-spacing:0;color:var(--ink)}
-.auth-close{width:38px;height:38px;border:1px solid transparent;background:transparent;color:var(--muted);font-size:32px;line-height:1;display:grid;place-items:center;border-radius:6px}
-.auth-close:hover{background:rgba(255,255,255,.05);border-color:var(--line);color:var(--ink)}
-.auth-body{padding:26px}
-.google-auth-btn{width:100%;min-height:54px;border:1px solid var(--line-strong);border-radius:6px;background:#0a100d;color:var(--ink);font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:12px}
-.google-auth-btn:hover{border-color:rgba(73,213,150,.48);background:#0f1a14}
-.google-g{width:25px;height:25px;border-radius:999px;background:conic-gradient(from -45deg,#4285f4 0 25%,#34a853 0 50%,#fbbc05 0 75%,#ea4335 0);color:#fff;display:grid;place-items:center;font-weight:900;font-size:16px;font-family:Arial,sans-serif}
-.auth-divider{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;margin:24px 0;color:var(--quiet);font-size:12px;font-weight:850;letter-spacing:0;text-transform:uppercase}
-.auth-divider::before,.auth-divider::after{content:"";height:1px;background:var(--line)}
-.auth-form{display:grid;gap:16px}
-.modal-field{display:grid;gap:8px}
-.modal-field span{color:var(--muted);text-transform:uppercase;letter-spacing:0;font-size:11px;font-weight:900}
-.modal-field input,.code-row input{width:100%;height:52px;border:1px solid var(--line-strong);border-radius:6px;background:#070c09;color:var(--ink);padding:0 15px;outline:none;font-size:16px}
-.modal-field input::placeholder,.code-row input::placeholder{color:var(--quiet)}
-.modal-field input:focus,.code-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(73,213,150,.13)}
-.code-row{display:none;grid-template-columns:1fr auto;gap:10px;align-items:end}
-.code-row.is-visible{display:grid}
-.code-row label{display:grid;gap:8px}
-.code-row span{color:var(--muted);text-transform:uppercase;letter-spacing:0;font-size:11px;font-weight:900}
-.auth-primary{height:54px;border:1px solid var(--accent);border-radius:6px;background:var(--accent);color:#04100b;font-size:16px;font-weight:900}
-.auth-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
-.auth-secondary{height:52px;border:1px solid var(--line-strong);border-radius:6px;background:#0a100d;color:var(--ink);font-weight:850;padding:0 18px}
-.auth-secondary:hover{border-color:rgba(73,213,150,.48);background:#0f1a14}
-.auth-switch{margin:20px 0 0;text-align:center;color:var(--muted);font-size:14px}
-.auth-switch button{border:0;background:transparent;color:var(--accent-strong);text-decoration:underline;text-underline-offset:3px;font:inherit;font-weight:750;cursor:pointer}
-.auth-switch button:hover{color:#8df0bf}
-.message{display:none;margin:14px 0 0;color:var(--muted);font-size:13px;text-align:center}
-.message.is-visible{display:block}
-.utility-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-top:14px}
-#bulk-bar{display:none;gap:10px;align-items:end;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:14px}
-.field{display:grid;gap:6px;text-align:left}
-.field label,.bulk-title{font-size:11px;color:var(--quiet);font-weight:900;text-transform:uppercase;letter-spacing:0}
-.field input,#bulk-bar input,.rename-input{width:100%;height:42px;border:1px solid var(--line-strong);border-radius:6px;background:#070c09;color:var(--ink);padding:0 11px;outline:none}
-.field input:focus,#bulk-bar input:focus,.rename-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(73,213,150,.12)}
-#bulk-bar .bulk-fields{display:grid;grid-template-columns:minmax(140px,1fr) 92px auto;gap:10px;align-items:end;width:100%}
-#file-list{display:grid;gap:10px;margin-top:14px}
-.file-card{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:14px;animation:fadeIn .18s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.file-header{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;margin-bottom:12px}
-.file-badge{width:40px;height:40px;border-radius:6px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:950}
-.file-info{min-width:0}.fname{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}.fsize{font-size:13px;color:var(--quiet);margin-top:1px}
-.file-status{font-size:12px;padding:4px 9px;border-radius:999px;font-weight:900;white-space:nowrap}.status-ready{background:var(--amber-soft);color:var(--amber)}.status-done{background:var(--accent-soft);color:var(--accent)}
-.del-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:6px;background:#070c09;color:var(--danger);font-size:22px;line-height:1}
-.rename-row{display:grid;grid-template-columns:minmax(0,1fr) 42px auto;gap:8px;align-items:center}.rand-btn{height:42px;width:42px;border-radius:6px;border:1px solid var(--line-strong);background:#070c09;color:var(--accent);font-weight:950}.ext{font-size:13px;color:var(--muted);font-weight:900;min-width:44px;text-align:right}
-.opts{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.opt-label{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;font-weight:700}.opt-label input{width:18px;height:18px;accent-color:var(--accent)}
-#progress-wrap{display:none;margin-top:14px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:14px}#progress-bar-bg{height:8px;border-radius:99px;background:#24302a;overflow:hidden}#progress-bar{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .24s ease}#progress-label{margin-top:8px;color:var(--muted);font-size:13px;font-weight:800;text-align:center}
-#actions{display:none;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:14px}.action-btn{min-height:52px;width:100%}.action-btn:disabled{opacity:.45;cursor:not-allowed}.note{display:none;margin:14px 0 0;color:var(--muted);font-size:13px}
-.link-btn{border:0;background:transparent;color:inherit;padding:0;font:inherit;font-weight:800;cursor:pointer;opacity:.9}.link-btn:hover{opacity:1}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature-card,.seo-card,.format-table,.faq details{background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:none}.feature-card{padding:20px}.feature-token{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:950;margin-bottom:16px}.token-green{background:var(--accent-soft);color:var(--accent)}.token-blue{background:var(--blue-soft);color:var(--blue)}.token-amber{background:var(--amber-soft);color:var(--amber)}.feature-card h3{margin:0 0 8px;font-size:18px;letter-spacing:0;color:var(--ink)}.feature-card p{margin:0;color:var(--muted);font-size:14px}
-.seo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.seo-card{padding:19px}.seo-card h3{margin:0 0 8px;font-size:18px;line-height:1.25;color:var(--ink)}.seo-card p{margin:0;color:var(--muted);font-size:14px}.step-card{display:grid;gap:10px}.step-number{width:30px;height:30px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:13px;font-weight:950}
-.privacy-band{background:#070a09}.privacy-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:34px;align-items:start}.privacy-band .section-title{margin-bottom:0}.proof-list{display:grid;gap:10px}.proof-item{border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:8px;padding:15px}.proof-item strong{display:block;margin-bottom:4px;color:var(--ink)}.proof-item span{color:var(--muted);font-size:14px}
-.format-table{overflow:hidden}.format-row{display:grid;grid-template-columns:170px 1fr 1fr;border-bottom:1px solid var(--line)}.format-row:last-child{border-bottom:0}.format-row div{padding:14px 16px}.format-row.head{background:rgba(255,255,255,.025);font-size:11px;text-transform:uppercase;letter-spacing:0;color:var(--quiet);font-weight:950}.format-name{font-weight:900;color:var(--ink)}
-.faq{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.faq details{padding:15px}.faq summary{font-weight:900;cursor:pointer;color:var(--ink)}.faq p{color:var(--muted);margin:10px 0 0}
-.footer{padding:32px clamp(20px,4vw,44px);background:#040605;color:#cbd8d1}.footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}.footer .brand{color:#dfe8e3}.footer-links{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.footer a,.footer .link-btn{text-decoration:underline;text-underline-offset:3px;color:#dce8e1}
-:focus-visible{outline:3px solid rgba(73,213,150,.45);outline-offset:3px}
-@media (max-width:900px){.nav-links a:not(.nav-cta){display:none}.feature-grid,.privacy-grid,.workspace,.faq,.seo-grid{grid-template-columns:1fr}.workspace-band{padding-top:92px;padding-bottom:58px}}
-@media (max-width:640px){.site-header{padding:12px 14px}.brand-mark{width:30px;height:30px}.site-header .brand span:last-child{display:none}.nav{gap:10px}.nav-links{gap:0}.nav-cta{padding:9px 11px}.section{padding:52px 18px}.rail h1{font-size:42px}.app-area{padding:12px}#drop-zone{padding:32px 14px}.account-sub{font-size:32px}.account-sub::after{display:block;font-size:10px;letter-spacing:0}.auth-modal{padding:14px}.auth-head{padding:20px 18px 16px}.auth-head h2{font-size:28px}.auth-body{padding:20px 18px}.code-row,.auth-form,#bulk-bar .bulk-fields,.utility-row,.format-row{grid-template-columns:1fr}.format-row.head{display:none}.format-row div{padding:11px 14px}.file-header{grid-template-columns:auto minmax(0,1fr) auto}.file-status{grid-column:2/3;width:max-content}.del-btn{grid-column:3;grid-row:1/3}.rename-row{grid-template-columns:minmax(0,1fr) 42px}.ext{grid-column:1/3;text-align:left}#actions{grid-template-columns:1fr}}
-
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip-link" href="#app">Skip to app</a>
+<a class="skip-link" href="#app">Skip to cleaner</a>
 <header class="site-header" id="site-header">
   <nav class="nav" aria-label="Primary">
-    <a class="brand" href="#top" aria-label="File Cleaner home">
-      <span class="brand-mark">FC</span>
-      <span>File Cleaner</span>
-    </a>
-    <div class="nav-links">
-      <a href="#app">App</a>
-      <a href="#features">Features</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#faq">FAQ</a>
-      <button class="nav-cta" id="nav-register" type="button">Register</button>
-    </div>
+    <a class="brand" href="index.html" aria-label="File Cleaner home"><span class="brand-mark" aria-hidden="true">fc</span>File Cleaner</a>
+    <button class="nav-cta" id="nav-register" type="button">Sign in</button>
   </nav>
 </header>
-
 <main id="top">
-  <section class="section workspace-band" id="app">
-    <div class="section-inner workspace">
-      <aside class="rail" aria-label="App summary">
-        <h1>Free Metadata Cleaner & AI Tag Remover</h1>
-        <p>Remove EXIF, GPS, camera details, AI image tags, C2PA metadata, and Stable Diffusion PNG chunks from supported images without uploading private files.</p>
-      </aside>
-
-      <section class="tool-shell" aria-label="File Cleaner app">
-        <div class="app-area">
-          <div id="drop-zone">
-            <div class="dz-title">Drop files here</div>
-            <div class="dz-sub">Choose files, paste an image, or drag files into this panel.</div>
-            <div class="btn-row">
-              <button class="pick-btn" id="pick-btn" type="button">Choose files</button>
-              <button class="paste-btn" id="paste-btn" type="button">Paste image</button>
-            </div>
-            <div id="paste-hint">Clipboard images are supported in modern secure browsers.</div>
-            <input type="file" id="file-input" multiple aria-label="Choose files">
+  <section class="workspace" aria-labelledby="page-title">
+    <div class="intro">
+      <p class="eyebrow">Free image metadata cleaner</p>
+      <h1 id="page-title">Less metadata.<br>More peace of mind.</h1>
+      <p class="intro-copy">Remove hidden details from your images before sharing.<br class="desktop-break"> Your files stay on your device.</p>
+    </div>
+    <section class="tool-shell" id="app" aria-label="File cleaner">
+      <div class="app-area">
+        <div id="drop-zone">
+          <div class="upload-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 22V7m-6 6 6-6 6 6M7 21v5h18v-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h2 class="dz-title">Drop your files here</h2>
+          <p class="dz-sub">Clean JPEG &amp; PNG metadata, or rename other files.</p>
+          <div class="btn-row">
+            <button class="pick-btn" id="pick-btn" type="button">Choose files <span aria-hidden="true">↗</span></button>
+            <button class="paste-btn" id="paste-btn" type="button" hidden>Paste image</button>
           </div>
-
-          <div class="account-panel" id="account-panel" aria-live="polite">
-            <div class="account-row">
-              <div class="account-title">Free guest usage</div>
-              <div class="account-sub" id="usage-label">Connecting…</div>
-              <span class="plan-pill" id="plan-label">Guest</span>
-            </div>
-            <div class="quota-meter" aria-hidden="true"><span id="quota-fill"></span></div>
-            <div class="account-actions">
-              <button class="link-btn" id="sign-in-toggle" type="button">Sign up free for unlimited images</button>
-              <button class="small-btn" id="sign-out" type="button" hidden>Sign out</button>
-            </div>
+          <input type="file" id="file-input" multiple aria-label="Choose files">
+        </div>
+        <div class="account-panel" id="account-panel" aria-live="polite">
+          <div class="account-summary"><strong id="usage-label">Checking your allowance…</strong><span id="usage-detail">3 free files daily · Unlimited with a free account</span></div>
+          <div class="account-actions">
+            <button class="link-btn" id="sign-in-toggle" type="button">Get unlimited free <span aria-hidden="true">→</span></button>
+            <button class="link-btn" id="sign-out" type="button" hidden>Sign out</button>
+            <button class="link-btn" id="retry-usage" type="button" hidden>Retry connection</button>
           </div>
-
-          <div id="bulk-bar" aria-label="Bulk rename controls">
-            <div class="bulk-fields">
-              <div class="field">
-                <label for="bulk-prefix">Prefix</label>
-                <input type="text" id="bulk-prefix" placeholder="project-">
-              </div>
-              <div class="field">
-                <label for="bulk-sep">Spaces</label>
-                <input type="text" id="bulk-sep" value="_" maxlength="4">
-              </div>
-              <button id="bulk-apply" class="small-btn" type="button">Apply all</button>
-            </div>
+        </div>
+        <div id="bulk-bar" aria-label="Bulk rename controls">
+          <div class="bulk-fields">
+            <div class="field"><label for="bulk-prefix">Filename prefix</label><input type="text" id="bulk-prefix" placeholder="project-"></div>
+            <div class="field"><label for="bulk-sep">Replace spaces with</label><input type="text" id="bulk-sep" value="_" maxlength="4"></div>
+            <button id="bulk-apply" class="small-btn" type="button">Apply to all</button>
           </div>
-
-          <div id="file-list" aria-live="polite"></div>
-
-          <div id="progress-wrap" role="status" aria-live="polite">
-            <div id="progress-bar-bg"><div id="progress-bar"></div></div>
-            <div id="progress-label">Processing...</div>
-          </div>
-
-          <p id="app-message" role="status" aria-live="polite"></p>
-          <div id="actions">
-            <button id="clear-btn" class="action-btn action-secondary" type="button">Clear</button>
-            <button id="process-btn" class="action-btn action-primary" type="button" disabled>Process and save</button>
-          </div>
-
-          <p class="note" id="note">JPEG and PNG files can be redrawn to remove embedded metadata. Other formats are downloaded with the selected filename only.</p>
         </div>
-
-      </section>
+        <div id="file-list" aria-live="polite"></div>
+        <div id="progress-wrap" role="status" aria-live="polite"><div id="progress-bar-bg"><div id="progress-bar"></div></div><div id="progress-label">Processing…</div></div>
+        <p id="app-message" class="message" role="status" aria-live="polite"></p>
+        <div id="actions"><button id="clear-btn" class="action-btn action-secondary" type="button">Clear files</button><button id="process-btn" class="action-btn action-primary" type="button" disabled>Process and download</button></div>
+        <p class="note" id="note">Each file counts as one use. Downloads start separately; your browser may ask for permission.</p>
+      </div>
+    </section>
+    <p class="privacy-note"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2 6 2.5v5c0 3.5-6 7-6 7s-6-3.5-6-7v-5L10 2Z" stroke="currentColor" stroke-width="1.3"/><path d="m7 9 2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Files processed locally. Originals left untouched.</p>
+  </section>
+  <section class="support-section" aria-labelledby="formats-title">
+    <div class="section-heading"><h2 id="formats-title">What you can clean</h2><p>A clear distinction, before you start.</p></div>
+    <div class="format-grid">
+      <article class="format-card"><span class="format-tag">JPEG &amp; PNG</span><h3>Metadata cleanup</h3><p>Export a fresh image without the original embedded metadata. Rename it at the same time.</p></article>
+      <article class="format-card"><span class="format-tag neutral">All other files</span><h3>Renaming only</h3><p>Give PDFs, documents, videos and other files a new name. Their contents and metadata stay unchanged.</p></article>
     </div>
   </section>
-
-  <section class="section" id="features">
-    <div class="section-inner">
-      <div class="section-title">
-        <h2>A small tool with the right professional details.</h2>
-        <p>File Cleaner is built for quick publishing workflows, client handoffs, marketplace uploads, and everyday document organization.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <div class="feature-token token-green">01</div>
-          <h3>Metadata removal</h3>
-          <p>JPEG and PNG images are loaded into canvas and exported as fresh files, removing embedded EXIF data from the saved copy.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-token token-blue">02</div>
-          <h3>Bulk naming</h3>
-          <p>Apply prefixes, replace spaces, generate random names, and keep extensions visible before processing.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-token token-amber">03</div>
-          <h3>Register only when useful</h3>
-          <p>Start with 3 guest images per day, then register free for 10 daily images when you need more room.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="removes">
-    <div class="section-inner">
-      <div class="section-title">
-        <h2>What this metadata cleaner removes.</h2>
-        <p>File Cleaner is focused on the hidden image data people search for before publishing, selling, or sharing files online.</p>
-      </div>
-      <div class="seo-grid">
-        <article class="seo-card">
-          <h3>EXIF camera data</h3>
-          <p>Remove camera make, model, lens details, software fields, timestamps, and other EXIF information from supported JPEG images.</p>
-        </article>
-        <article class="seo-card">
-          <h3>GPS location tags</h3>
-          <p>Strip embedded location metadata from photos before posting, sending to clients, or uploading to public marketplaces.</p>
-        </article>
-        <article class="seo-card">
-          <h3>AI tags and C2PA metadata</h3>
-          <p>Redrawing supported images can remove file-level provenance tags, Content Credentials metadata, and AI generator labels stored in the image file.</p>
-        </article>
-        <article class="seo-card">
-          <h3>Stable Diffusion PNG chunks</h3>
-          <p>PNG text chunks can store prompts, seeds, model names, workflow data, and generation parameters. A fresh export helps leave those chunks behind.</p>
-        </article>
-        <article class="seo-card">
-          <h3>XMP and IPTC fields</h3>
-          <p>Creator, copyright, caption, keyword, editor, and workflow fields can be removed from supported images through browser canvas export.</p>
-        </article>
-        <article class="seo-card">
-          <h3>File names in bulk</h3>
-          <p>Rename batches with prefixes, random names, or safer formatting so clean downloads are ready for publishing workflows.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="how-it-works">
-    <div class="section-inner">
-      <div class="section-title">
-        <h2>How online image metadata removal works.</h2>
-        <p>The cleaner uses browser APIs instead of uploads. That keeps the workflow fast, private, and simple enough for everyday image cleanup.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card step-card">
-          <div class="step-number">1</div>
-          <h3>Choose JPEG or PNG images</h3>
-          <p>Pick files, paste an image, or drag photos into the app. The file is read by your browser on your device.</p>
-        </article>
-        <article class="feature-card step-card">
-          <div class="step-number">2</div>
-          <h3>Redraw to a clean file</h3>
-          <p>Supported images are rendered to canvas and exported again, which drops embedded metadata while preserving the visible pixels.</p>
-        </article>
-        <article class="feature-card step-card">
-          <div class="step-number">3</div>
-          <h3>Download renamed copies</h3>
-          <p>Save each processed image locally with a custom or random filename. Originals stay untouched unless you delete them yourself.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section privacy-band" id="privacy">
-    <div class="section-inner privacy-grid">
-      <div class="section-title">
-        <h2>Designed for public use, without collecting private files.</h2>
-        <p>Image processing happens inside the browser tab. The backend manages accounts and guest daily limits without receiving the private files you select.</p>
-      </div>
-      <div class="proof-list">
-        <div class="proof-item">
-          <strong>No server processing</strong>
-          <span>The app keeps image cleanup in the browser while the backend handles account and quota state.</span>
-        </div>
-        <div class="proof-item">
-          <strong>Guest-first workflow</strong>
-          <span>Visitors can clean files immediately, then sign up free for unlimited images.</span>
-        </div>
-        <div class="proof-item">
-          <strong>Clear format behavior</strong>
-          <span>Image metadata removal is separated from rename-only file handling.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="formats">
-    <div class="section-inner">
-      <div class="section-title">
-        <h2>Supported behavior by file type.</h2>
-        <p>The app handles common workflow files while being honest about what can and cannot be stripped in the browser.</p>
-      </div>
-      <div class="format-table" role="table" aria-label="Supported file formats">
-        <div class="format-row head" role="row">
-          <div role="columnheader">Format</div>
-          <div role="columnheader">Metadata handling</div>
-          <div role="columnheader">Rename handling</div>
-        </div>
-        <div class="format-row" role="row">
-          <div class="format-name" role="cell">JPG, JPEG</div>
-          <div role="cell">Canvas redraw removes EXIF metadata.</div>
-          <div role="cell">Custom or random filename.</div>
-        </div>
-        <div class="format-row" role="row">
-          <div class="format-name" role="cell">PNG</div>
-          <div role="cell">Canvas redraw removes embedded metadata chunks.</div>
-          <div role="cell">Custom or random filename.</div>
-        </div>
-        <div class="format-row" role="row">
-          <div class="format-name" role="cell">PDF, DOCX, ZIP, media</div>
-          <div role="cell">Rename-only in the browser.</div>
-          <div role="cell">Custom or random filename.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="section-inner">
-      <div class="section-title">
-        <h2>Questions people ask before using it.</h2>
-      </div>
-      <div class="faq">
-        <details>
-          <summary>Are my files uploaded?</summary>
-          <p>No. This is a static browser app. Files are read locally by your browser and saved back as downloads.</p>
-        </details>
-        <details>
-          <summary>Does it remove EXIF and GPS metadata?</summary>
-          <p>Yes. JPEG and PNG files can be redrawn as fresh images, which removes embedded EXIF camera data, GPS location tags, timestamps, and many file-level metadata fields.</p>
-        </details>
-        <details>
-          <summary>Does it remove AI tags and C2PA metadata?</summary>
-          <p>For supported images, canvas export can remove file-level AI metadata, C2PA Content Credentials metadata, and PNG text chunks. It cannot remove invisible watermarks or anything baked into the pixels.</p>
-        </details>
-        <details>
-          <summary>Does it remove Stable Diffusion prompts?</summary>
-          <p>Stable Diffusion prompts and workflow data are often stored in PNG text chunks. Redrawing the PNG and exporting a new file helps remove those embedded chunks.</p>
-        </details>
-        <details>
-          <summary>Does it remove metadata from every file type?</summary>
-          <p>No. JPEG and PNG files can be cleaned by redrawing them. PDF, DOCX, ZIP, video, audio, and other file types are currently renamed only.</p>
-        </details>
-        <details>
-          <summary>Will image quality change?</summary>
-          <p>Cleaned images are exported as new JPEG or PNG files. PNG keeps lossless output, while JPEG is re-encoded at high quality.</p>
-        </details>
-        <details>
-          <summary>Why do multiple download prompts appear?</summary>
-          <p>Each processed file is saved individually by the browser, so larger batches may trigger several download confirmations.</p>
-        </details>
-        <details>
-          <summary>Can I use it on mobile?</summary>
-          <p>Yes. File picking works on mobile browsers, and clipboard image support depends on the browser.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
+  <section class="faq-section" aria-labelledby="faq-title"><h2 id="faq-title">A few things to know</h2><div class="faq">
+<details><summary>Is everything free?</summary><p>Yes. Guests can process 3 files per day, resetting at midnight UTC. Each file in a batch counts as one use. People on the same network share the guest allowance. Sign in to a free account for unlimited daily use and batches of up to 500 files. No subscription or payment details required.</p></details>
+<details><summary>Do my files leave my device?</summary><p>No. File cleanup happens in your browser and downloads are created on your device. Our server handles sign-in and usage limits, but does not receive your files.</p></details>
+<details><summary>What metadata can it remove?</summary><p>JPEG and PNG images are redrawn as new files. This removes embedded data such as EXIF camera details, GPS tags and PNG text fields, including some AI generation metadata. It does not remove visible or invisible watermarks, or guarantee how an AI detector will classify an image.</p></details>
+<details><summary>Will my images change?</summary><p>JPEG images are re-encoded at high quality. PNG output is lossless, but browser rendering can change color profiles or other image properties. Your original files stay untouched. Each output downloads separately; your browser may ask you to allow multiple downloads.</p></details>
+  </div></section>
 </main>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="brand">
-      <span class="brand-mark">FC</span>
-      <span>File Cleaner</span>
-    </div>
-    <span>Free browser metadata cleaner with registration-backed daily limits.</span>
-    <div class="footer-links" aria-label="Footer links">
-      <a href="privacy.html">Privacy</a>
-      <a href="disclaimer.html">Disclaimer</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <button class="link-btn" type="button" data-auth-open>Register</button>
-    </div>
-  </div>
-</footer>
-
-<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-title">
-  <section class="auth-dialog" aria-label="Create account">
-    <div class="auth-head">
-      <h2 id="auth-title">Free account</h2>
-      <button class="auth-close" type="button" data-auth-close aria-label="Close account window">&times;</button>
-    </div>
+<footer class="footer"><div class="footer-inner"><span class="footer-name">File Cleaner <span>Simple. Private. Free.</span></span><nav class="footer-links" aria-label="Footer"><a href="privacy.html">Privacy</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></footer>
+<div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-title" aria-describedby="auth-description">
+  <section class="auth-dialog">
+    <div class="auth-head"><h2 id="auth-title">Your free account</h2><button class="auth-close" type="button" data-auth-close aria-label="Close sign-in window">&times;</button></div>
     <div class="auth-body">
-      <p>Free forever. Create an account or sign in for unlimited images. No payment required.</p>
-      <button class="google-auth-btn" id="google-sign-in" type="button">
-        <span class="google-g" aria-hidden="true">G</span>
-        <span>Continue with Google</span>
-      </button>
-      <div class="auth-divider"><span>OR</span></div>
+      <p id="auth-description">Sign in or create an account for unlimited files.<br>No password. No payment details.</p>
+      <button class="google-auth-btn" id="google-sign-in" type="button" hidden>Continue with Google</button>
+      <div class="auth-divider" id="auth-divider" hidden><span>or use email</span></div>
       <form class="auth-form" id="auth-form">
-        <label class="modal-field" for="auth-email">
-          <span>Email address</span>
-          <input id="auth-email" type="email" inputmode="email" autocomplete="email" placeholder="Enter your email address" required>
-        </label>
-        <div class="code-row" id="code-row">
-          <label for="auth-code">
-            <span>Email code</span>
-            <input id="auth-code" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" aria-label="Registration code">
-          </label>
-          <button class="auth-secondary" id="verify-code" type="button">Verify</button>
-        </div>
-        <button class="auth-primary" id="send-code" type="submit">Create Account</button>
+        <label class="modal-field" for="auth-email"><span>Email address</span><input id="auth-email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <button class="auth-primary" id="send-code" type="submit">Send sign-in code</button>
+        <div class="code-row" id="code-row"><label for="auth-code"><span>6-digit email code</span><input id="auth-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000"></label><button class="auth-secondary" id="verify-code" type="submit">Verify code</button></div>
       </form>
-      <div class="message" id="account-message"></div>
-      <p class="auth-switch">Already have an account? <button type="button" id="auth-sign-in-link">Sign In</button></p>
+      <div class="message" id="account-message" role="status" aria-live="polite"></div>
+      <p class="auth-note">The same sign-in works for new and returning users.</p>
     </div>
   </section>
 </div>
-
 <script>
 (function(){
   "use strict";
 
   var files = [];
-  var header = document.getElementById("site-header");
   var dropZone = document.getElementById("drop-zone");
   var fileInput = document.getElementById("file-input");
   var pickBtn = document.getElementById("pick-btn");
   var pasteBtn = document.getElementById("paste-btn");
-  var pasteHint = document.getElementById("paste-hint");
   var bulkBar = document.getElementById("bulk-bar");
   var bulkPrefix = document.getElementById("bulk-prefix");
   var bulkSep = document.getElementById("bulk-sep");
@@ -555,9 +182,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   var progressWrap = document.getElementById("progress-wrap");
   var progressBar = document.getElementById("progress-bar");
   var progressLabel = document.getElementById("progress-label");
-  var planLabel = document.getElementById("plan-label");
   var usageLabel = document.getElementById("usage-label");
-  var quotaFill = document.getElementById("quota-fill");
   var signInToggle = document.getElementById("sign-in-toggle");
   var navRegister = document.getElementById("nav-register");
   var authModal = document.getElementById("auth-modal");
@@ -569,16 +194,15 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   var verifyCodeBtn = document.getElementById("verify-code");
   var accountMessage = document.getElementById("account-message");
   var googleSignIn = document.getElementById("google-sign-in");
-  var authSignInLink = document.getElementById("auth-sign-in-link");
   var signOut = document.getElementById("sign-out");
   var processing = false;
+  var previousFocus = null;
+  var retryUsage = document.getElementById("retry-usage");
+  var usageDetail = document.getElementById("usage-detail");
   var apiBase = (window.FILECLEANER_API_BASE || "").replace(/\/$/, "");
   var usageState = null;
   var backendOnline = false;
 
-  function syncHeader(){
-    header.classList.toggle("is-scrolled", window.scrollY > 18);
-  }
 
 
   function apiUrl(path){
@@ -588,7 +212,9 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   function apiRequest(path, options){
     return fetch(apiUrl(path), Object.assign({ credentials:"include" }, options || {})).then(function(response){
       return response.text().then(function(text){
-        var data = text ? JSON.parse(text) : {};
+        var data;
+        try { data = text ? JSON.parse(text) : {}; }
+        catch (_) { throw new Error("Service temporarily unavailable. Please try again."); }
         if (!response.ok) {
           var message = data.message || data.error || "Request failed";
           var error = new Error(message);
@@ -602,7 +228,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   }
 
   function showMessage(text){
-    document.getElementById("app-message").textContent = text;
+    document.getElementById("app-message").textContent = authModal.classList.contains("is-open") ? "" : text;
     accountMessage.textContent = text;
     accountMessage.classList.add("is-visible");
   }
@@ -615,28 +241,22 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
   function updateUsageUI(){
     var state = usageState;
+    retryUsage.hidden = !!state;
+    signInToggle.hidden = !state || state.authenticated;
     if (!state) {
-      planLabel.textContent = "Connecting";
-      usageLabel.textContent = "Unavailable";
-      quotaFill.style.width = "0%";
+      usageLabel.textContent = "Connection unavailable";
+      usageDetail.textContent = "Reconnect to check your allowance.";
       render();
       return;
     }
-    var name = state.authenticated ? "Free account" : "Guest";
-    planLabel.textContent = name;
-    if (state.limit == null) {
-      usageLabel.textContent = "Unlimited";
-      quotaFill.style.width = "100%";
-    } else {
-      usageLabel.textContent = state.used + "/" + state.limit;
-      quotaFill.style.width = Math.min(100, Math.round((state.used / state.limit) * 100)) + "%";
-    }
-    signInToggle.style.display = state.authenticated ? "none" : "inline-flex";
-    googleSignIn.style.display = state.authenticated ? "none" : "inline-flex";
+    usageLabel.textContent = state.authenticated ? "Unlimited free files" : state.remaining + " of " + state.limit + " free files left today";
+    usageDetail.textContent = state.authenticated ? state.email : "Resets at midnight UTC · Each file counts as one use";
     signOut.hidden = !state.authenticated;
     navRegister.hidden = state.authenticated;
-    document.querySelector(".account-title").textContent = state.authenticated ? "Unlimited free usage" : "Free guest usage";
-    document.querySelectorAll("[data-auth-open]").forEach(function(button){ button.hidden = state.authenticated; });
+    var methods = state.authMethods || { email: true, google: true };
+    googleSignIn.hidden = !methods.google;
+    document.getElementById("auth-divider").hidden = !methods.google || !methods.email;
+    authForm.hidden = !methods.email;
     render();
   }
 
@@ -645,12 +265,13 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
       backendOnline = true;
       usageState = data;
       updateUsageUI();
+      if (!authModal.classList.contains("is-open")) clearMessage();
       return data;
     }).catch(function(){
       backendOnline = false;
       usageState = null;
       updateUsageUI();
-      showMessage("Could not connect. Check your connection and retry before processing images.");
+      showMessage("Could not connect. Check your connection and retry before processing files.");
       return usageState;
     });
   }
@@ -672,24 +293,29 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   }
 
   function openAuth(){
+    previousFocus = document.activeElement;
     clearMessage();
+    document.querySelectorAll("body > header, body > main, body > footer").forEach(function(el){ el.inert = true; });
     authModal.classList.add("is-open");
     authModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    window.setTimeout(function(){ authEmail.focus(); }, 0);
+    window.setTimeout(function(){ (authForm.hidden ? googleSignIn : authEmail).focus(); }, 0);
   }
 
   function closeAuth(){
     authModal.classList.remove("is-open");
     authModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    document.querySelectorAll("body > header, body > main, body > footer").forEach(function(el){ el.inert = false; });
+    (previousFocus && previousFocus.offsetParent !== null ? previousFocus : pickBtn).focus();
+    clearMessage();
   }
 
 
   function sendCode(event){
     if (event) event.preventDefault();
     clearMessage();
-    if (!authForm.reportValidity()) return;
+    if (!authEmail.reportValidity()) return;
     sendCodeBtn.disabled = true;
     apiRequest("/api/auth/start", {
       method:"POST",
@@ -699,10 +325,13 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
       backendOnline = true;
       codeRow.classList.add("is-visible");
       sendCodeBtn.textContent = "Resend code";
-      showMessage(data.devCode ? "Dev registration code: " + data.devCode : "Check your email for a 6-digit registration code.");
+      sendCodeBtn.type = "button";
+      authCode.required = true;
+      authCode.value = "";
+      showMessage(data.devCode ? "Development sign-in code: " + data.devCode : "Check your email for a 6-digit sign-in code.");
       authCode.focus();
     }).catch(function(error){
-      showMessage(error.message || "Could not send a registration code.");
+      showMessage(error.message || "Could not send a sign-in code.");
     }).finally(function(){
       sendCodeBtn.disabled = false;
     });
@@ -710,14 +339,23 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
   function verifyCode(){
     clearMessage();
+    if (!authForm.reportValidity()) return;
     verifyCodeBtn.disabled = true;
     apiRequest("/api/auth/verify", {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({ email:authEmail.value, code:authCode.value })
     }).then(function(){
-      closeAuth();
-      return refreshUsage();
+      return refreshUsage().then(function(state){
+        if (state && state.authenticated) {
+          closeAuth();
+          authForm.reset();
+          authCode.required = false;
+          codeRow.classList.remove("is-visible");
+          sendCodeBtn.type = "submit";
+          sendCodeBtn.textContent = "Send sign-in code";
+        }
+      });
     }).catch(function(error){
       showMessage(error.message || "Could not verify that code.");
     }).finally(function(){
@@ -794,6 +432,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
   function addFiles(newFiles){
     if (processing) return;
+    if (files.length + newFiles.length > 500) { showMessage("Choose up to 500 files per batch."); return; }
     Array.prototype.forEach.call(newFiles, function(file){
       files.push(makeFileRecord(file));
     });
@@ -802,6 +441,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
   function addBlob(blob, suggestedName){
     if (processing) return;
+    if (files.length >= 500) { showMessage("Choose up to 500 files per batch."); return; }
     var name = suggestedName || (randName() + ".png");
     var file = new File([blob], name, { type: blob.type || "image/png" });
     files.push(makeFileRecord(file, base(name)));
@@ -835,8 +475,8 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     info.appendChild(fsize);
     headerRow.appendChild(info);
 
-    var status = setText(document.createElement("span"), item.status === "done" ? "done" : "ready");
-    status.className = "file-status " + (item.status === "done" ? "status-done" : "status-ready");
+    var status = setText(document.createElement("span"), item.status === "done" ? "Prepared" : item.status === "failed" ? "Failed" : "Ready");
+    status.className = "file-status " + (item.status === "done" ? "status-done" : item.status === "failed" ? "status-failed" : "status-ready");
     headerRow.appendChild(status);
 
     var remove = setText(document.createElement("button"), String.fromCharCode(215));
@@ -861,7 +501,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     input.addEventListener("input", function(){ updateName(item.id, input.value); });
     renameRow.appendChild(input);
 
-    var random = setText(document.createElement("button"), "R");
+    var random = setText(document.createElement("button"), "↻");
     random.type = "button";
     random.className = "rand-btn";
     random.title = "Generate random name";
@@ -876,6 +516,11 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
     var opts = document.createElement("div");
     opts.className = "opts";
+    if (!supported) {
+      opts.textContent = "Rename only — metadata unchanged";
+      card.appendChild(opts);
+      return card;
+    }
     var label = document.createElement("label");
     label.className = "opt-label";
     var checkbox = document.createElement("input");
@@ -898,11 +543,14 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     });
 
     var hasFiles = files.length > 0;
-    bulkBar.style.display = hasFiles ? "flex" : "none";
+    bulkBar.style.display = files.length > 1 ? "flex" : "none";
     actions.style.display = hasFiles ? "grid" : "none";
     note.style.display = hasFiles ? "block" : "none";
+    note.textContent = (usageState && usageState.authenticated ? "Up to 500 files per batch. " : "Each file counts as one use. ") + "Downloads start separately; your browser may ask for permission.";
     processBtn.disabled = !hasFiles || processing;
-    processBtn.textContent = processing ? "Working..." : "Process and save";
+    processBtn.textContent = processing ? "Working…" : "Process and download";
+    fileList.querySelectorAll("button, input").forEach(function(control){ control.disabled = processing; });
+    [pickBtn, pasteBtn, clearBtn, bulkApply, bulkPrefix, bulkSep, signOut].forEach(function(control){ control.disabled = processing; });
     if (!hasFiles) {
       progressWrap.style.display = "none";
       progressBar.style.width = "0%";
@@ -957,28 +605,27 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   }
 
   function stripImage(file){
-    return new Promise(function(resolve){
+    return new Promise(function(resolve, reject){
       var img = new Image();
       var url = URL.createObjectURL(file);
+      function fail(){
+        URL.revokeObjectURL(url);
+        reject(new Error("Could not clean " + file.name + ". No unchanged copy was downloaded. Try a valid JPEG or PNG image."));
+      }
       img.onload = function(){
-        var canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth || img.width;
-        canvas.height = img.naturalHeight || img.height;
-        var ctx = canvas.getContext("2d");
-        if (!ctx) {
+        try {
+          var canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth || img.width;
+          canvas.height = img.naturalHeight || img.height;
+          var ctx = canvas.getContext("2d");
+          if (!ctx) return fail();
+          ctx.drawImage(img, 0, 0);
           URL.revokeObjectURL(url);
-          resolve(file);
-          return;
-        }
-        ctx.drawImage(img, 0, 0);
-        URL.revokeObjectURL(url);
-        var mime = ext(file.name).toLowerCase() === ".png" ? "image/png" : "image/jpeg";
-        canvas.toBlob(function(blob){ resolve(blob || file); }, mime, 0.96);
+          var mime = ext(file.name).toLowerCase() === ".png" ? "image/png" : "image/jpeg";
+          canvas.toBlob(function(blob){ if (blob) resolve(blob); else fail(); }, mime, 0.96);
+        } catch (_) { fail(); }
       };
-      img.onerror = function(){
-        URL.revokeObjectURL(url);
-        resolve(file);
-      };
+      img.onerror = fail;
       img.src = url;
     });
   }
@@ -997,6 +644,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
   function processAll(){
     if (!files.length || processing) return;
     processing = true;
+    render();
     processBtn.disabled = true;
     processBtn.textContent = "Checking limit...";
     clearMessage();
@@ -1006,7 +654,7 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     }).catch(function(error){
       processing = false;
       if (error.code === "daily_limit_reached") openAuth();
-      showMessage(error.message || "Could not process images.");
+      showMessage(error.message || "Could not process files.");
       processBtn.disabled = false;
       render();
     });
@@ -1023,8 +671,8 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
       if (index >= files.length) {
         processing = false;
         progressBar.style.width = "100%";
-        progressLabel.textContent = "Done. " + files.length + " file" + (files.length === 1 ? "" : "s") + " saved.";
-        processBtn.textContent = "Process and save";
+        progressLabel.textContent = "Ready. " + files.length + " download" + (files.length === 1 ? "" : "s") + " started.";
+        processBtn.textContent = "Process and download";
         processBtn.disabled = false;
         render();
         progressWrap.style.display = "block";
@@ -1046,6 +694,12 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
         item.status = "done";
         index += 1;
         setTimeout(next, 420);
+      }).catch(function(error){
+        item.status = "failed";
+        processing = false;
+        render();
+        progressLabel.textContent = "Stopped. " + index + " download" + (index === 1 ? "" : "s") + " started.";
+        showMessage(error.message || "Could not prepare this file. Please try again.");
       });
     }
     next();
@@ -1076,8 +730,6 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
     });
   }
 
-  window.addEventListener("scroll", syncHeader, { passive:true });
-  syncHeader();
   refreshUsage();
   var authError = new URLSearchParams(window.location.search).get("auth_error");
   if (authError) {
@@ -1092,30 +744,37 @@ button.nav-cta{font:inherit;display:inline-flex;align-items:center;justify-conte
 
   pasteBtn.addEventListener("click", pasteFromClipboard);
   signInToggle.addEventListener("click", openAuth);
+  retryUsage.addEventListener("click", refreshUsage);
   navRegister.addEventListener("click", openAuth);
-  authForm.addEventListener("submit", sendCode);
-  verifyCodeBtn.addEventListener("click", verifyCode);
-  googleSignIn.addEventListener("click", startGoogleSignIn);
-  authSignInLink.addEventListener("click", function(){
-    codeRow.classList.add("is-visible");
-    sendCodeBtn.textContent = "Send code";
-    authEmail.focus();
+  authForm.addEventListener("submit", function(event){
+    event.preventDefault();
+    if (codeRow.classList.contains("is-visible")) verifyCode();
+    else sendCode();
   });
+  sendCodeBtn.addEventListener("click", function(){
+    if (sendCodeBtn.type === "button") sendCode();
+  });
+  googleSignIn.addEventListener("click", startGoogleSignIn);
   signOut.addEventListener("click", function(){
     apiRequest("/api/auth/logout", { method:"POST", headers:{"Content-Type":"application/json"}, body:"{}" }).then(refreshUsage).catch(function(error){ showMessage(error.message); });
   });
   Array.prototype.forEach.call(document.querySelectorAll("[data-auth-open]"), function(button){ button.addEventListener("click", openAuth); });
   Array.prototype.forEach.call(document.querySelectorAll("[data-auth-close]"), function(button){ button.addEventListener("click", closeAuth); });
   document.addEventListener("keydown", function(event){
-    if (event.key === "Escape" && authModal.classList.contains("is-open")) closeAuth();
+    if (!authModal.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeAuth();
+    if (event.key === "Tab") {
+      var controls = Array.from(authModal.querySelectorAll('button:not(:disabled), input:not(:disabled), a[href]')).filter(function(el){ return el.offsetParent !== null; });
+      var first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
   });
   authModal.addEventListener("click", function(event){
     if (event.target === authModal) closeAuth();
   });
 
-  if (navigator.clipboard && navigator.clipboard.read) {
-    pasteHint.style.display = "block";
-  }
+  pasteBtn.hidden = !(navigator.clipboard && navigator.clipboard.read);
 
   fileInput.addEventListener("change", function(){
     if (fileInput.files && fileInput.files.length) addFiles(fileInput.files);
