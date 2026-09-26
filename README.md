@@ -1,47 +1,44 @@
 # File Cleaner
 
-A browser-based image metadata cleaner with Vercel-backed usage limits, email-code sign-in, and Stripe Pro subscriptions.
+Free browser-based image metadata cleanup, funded only by Google AdSense when configured. Files remain on the user's device.
 
-## Plans
+- Guests: 3 images per UTC day. A batch counts each image separately.
+- Signed-in users: unlimited daily images and free batch processing.
+- Maximum batch size: 500 images to keep requests bounded; this is not a daily quota.
+- No payments, subscriptions, or paid feature gates. Ads apply to both guests and accounts.
 
-- Guest: 3 image uses per day
-- Signed-in Free: 10 image uses per day
-- Pro: $10/month or $89/year with unlimited images, batch processing, no ads, priority support, and cancel anytime
+## Deployment
 
-Files are still processed locally in the browser. The Vercel backend only stores account, quota, and billing state.
+Deploy this repository on Vercel using its included build configuration. Serve the frontend and API from the same domain (session cookies use SameSite=Lax).
 
-## Deploy on Vercel
+Set the variables in `.env.example`: `APP_URL`, `ALLOWED_ORIGINS`, a random `SESSION_SECRET` of at least 32 characters, Redis REST credentials, and Resend credentials plus a verified sender for email login. Missing deployment credentials fail closed. Only explicit local `NODE_ENV=development` or `test` permits temporary in-memory storage and development login codes; Vercel deployments never permit these fallbacks.
 
-1. Import this repository into Vercel.
-2. Add Vercel KV or Upstash Redis and copy `KV_REST_API_URL` and `KV_REST_API_TOKEN` into the project environment variables.
-3. Create a Stripe product with two recurring prices: monthly `$10` and yearly `$89`.
-4. Add the environment variables from `.env.example`.
-5. Optional Google OAuth: create a Google OAuth web client and add this authorized redirect URI:
+Optional Google login requires a Google OAuth web client with callback `https://YOUR_DOMAIN/api/auth/google/callback`. Only verified Google email addresses are accepted.
 
-   `https://your-filecleaner-app.vercel.app/api/auth/google/callback`
+Guest quotas use a daily keyed hash of the trusted client network address. Clearing cookies does not reset the allowance. Shared networks share the guest allowance; signing in removes that restriction. Vercel's overwritten `x-vercel-forwarded-for` header is trusted only on Vercel; elsewhere the direct socket address is used. Another reverse proxy requires an explicit trusted-IP adapter. Client-side file processing inherently remains bypassable by someone modifying the browser code.
 
-6. Add a Stripe webhook pointing to:
+Quota reservations are atomic in Redis and expire within 48 hours. Login send/verify counters use 10-minute windows per email and network. Login challenges are hashed, expire in 10 minutes, and are consumed atomically. A processing attempt consumes its image allowance before local work begins; failed downloads are not refunded. Daily usage is not stored for signed-in accounts.
 
-   `https://your-filecleaner-app.vercel.app/api/stripe/webhook`
+## Google AdSense
 
-   Subscribe to these events:
+Ads are disabled by default. No publisher ID has been configured.
 
-   - `checkout.session.completed`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
+1. Create an AdSense account and add your production domain.
+2. Set `ADSENSE_PUBLISHER_ID=ca-pub-YOUR_16_DIGIT_ID` and rebuild. The build adds the account verification meta tag and generates `/ads.txt`.
+3. Complete site approval and configure Auto ads and the required consent messages in AdSense Privacy & messaging. Use Google's certified consent-management tooling for applicable regions.
+4. Set `ADSENSE_ENABLED=true` and redeploy when ready. The build inserts Google's Auto ads script on all HTML pages. Leave it false to keep ad requests disabled.
 
-7. Deploy.
+References: [AdSense setup](https://support.google.com/adsense/answer/7584263), [Auto ads](https://support.google.com/adsense/answer/9261307), [ads.txt](https://support.google.com/adsense/answer/12171612).
 
-## GitHub Pages front end
+## Verification and development
 
-If you keep the static front end on GitHub Pages while the API is on Vercel, set the API base before the main script in `index.html`:
+- `npm run check` checks API and inline frontend JavaScript syntax.
+- `npm test` covers quotas, concurrency, authentication, deployment safeguards, origins, and ad builds.
+- `npm run build` writes the deployable static pages to `public/`.
+- `npm run dev` runs a local-only development server with test storage and explicit development login codes.
 
-```html
-<script>window.FILECLEANER_API_BASE = "https://your-filecleaner-app.vercel.app";</script>
-```
+## Removing the old billing setup
 
-Also include `https://kingmed-rgb.github.io` in `ALLOWED_ORIGINS`.
+The application no longer exposes billing endpoints or reads subscription fields. Existing accounts receive unlimited access regardless of their previous plan; logging in again drops legacy billing fields from their stored account record. Old session tokens require a fresh sign-in.
 
-## Local notes
-
-Without KV credentials, the API falls back to in-memory storage for development. That is not durable and should not be used for production quotas.
+Deployment cleanup: remove former Stripe environment variables and webhook configuration. If any real subscriptions were created, cancel their future renewals in the Stripe account before considering billing retired. Removing code does not cancel external subscriptions. Historical customer mapping records can be removed according to your retention policy; do not delete account records.

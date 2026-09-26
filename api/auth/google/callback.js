@@ -38,13 +38,13 @@ module.exports = async function handler(req, res) {
     const cookies = parseCookies(req);
     const expected = verifyPayload(cookies.fc_oauth_state);
     appendCookie(res, clearCookie('fc_oauth_state'));
-    if (!code || !state || !expected || expected.state !== state) throw new Error('Invalid Google sign-in state');
+    if (!code || !state || !expected || expected.kind !== 'oauth' || expected.state !== state) throw new Error('Invalid Google sign-in state');
     if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) throw new Error('Missing Google OAuth environment variables');
 
     const token = await exchangeCode(code);
     const profile = await getProfile(token.access_token);
     const email = normalizeEmail(profile.email);
-    if (!email) throw new Error('Google account did not provide an email address');
+    if (!email || profile.email_verified !== true) throw new Error('Google account did not provide an email address');
 
     const user = await getUser(email);
     await saveUser(Object.assign({}, user, {
@@ -53,14 +53,14 @@ module.exports = async function handler(req, res) {
       picture: profile.picture || user.picture,
       provider: 'google'
     }));
-    const session = signPayload({ email, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30 });
+    const session = signPayload({ kind: 'session', email, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30 });
     appendCookie(res, cookie(SESSION_COOKIE, session, { maxAge: 60 * 60 * 24 * 30 }));
     res.statusCode = 302;
     res.setHeader('Location', `${appUrl()}/?registered=google#app`);
     res.end();
   } catch (error) {
     res.statusCode = 302;
-    res.setHeader('Location', `${appUrl()}/?auth_error=${encodeURIComponent(error.message)}#app`);
+    res.setHeader('Location', `${appUrl()}/?auth_error=${encodeURIComponent('Google sign-in failed. Please try again.')}#app`);
     res.end();
   }
 };

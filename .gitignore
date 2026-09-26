@@ -1,1 +1,4 @@
-.vercel
+.vercel/
+public/
+.env*
+!.env.example
