@@ -2,9 +2,10 @@ const crypto = require('crypto');
 
 const DAY_SECONDS = 60 * 60 * 24;
 const SESSION_COOKIE = 'fc_session';
-const ANON_COOKIE = 'fc_anon';
 const GUEST_LIMIT = 3;
-const FREE_LIMIT = 10;
+function development() {
+  return !process.env.VERCEL && ['development', 'test'].includes(process.env.NODE_ENV);
+}
 
 const memory = global.__FILECLEANER_MEMORY__ || (global.__FILECLEANER_MEMORY__ = new Map());
 
@@ -18,12 +19,21 @@ function allowedOrigins() {
 function setCors(req, res) {
   const origin = req.headers.origin || '';
   const allowed = allowedOrigins();
-  const canEcho = origin && (!allowed.length || allowed.includes(origin));
+  if (!allowed.length && development()) allowed.push(appUrl());
   res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Origin', canEcho ? origin : '*');
+  res.setHeader('Cache-Control', 'no-store');
+  if (origin && !allowed.includes(origin)) {
+    json(res, 403, { error: 'origin_not_allowed', message: 'Request origin is not allowed.' });
+    return true;
+  }
+  if (origin) res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Stripe-Signature');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  if (req.method === 'POST' && !String(req.headers['content-type'] || '').toLowerCase().startsWith('application/json')) {
+    json(res, 415, { error: 'json_required', message: 'Send an application/json request.' });
+    return true;
+  }
   if (req.method === 'OPTIONS') {
     res.statusCode = 204;
     res.end();
@@ -63,7 +73,7 @@ function parseCookies(req) {
     if (index < 0) return cookies;
     const name = item.slice(0, index).trim();
     const value = item.slice(index + 1).trim();
-    if (name) cookies[name] = decodeURIComponent(value);
+    if (name) { try { cookies[name] = decodeURIComponent(value); } catch (_) {} }
     return cookies;
   }, {});
 }
@@ -75,9 +85,10 @@ function appendCookie(res, value) {
 }
 
 function cookie(name, value, options = {}) {
-  const parts = [`${name}=${encodeURIComponent(value)}`, 'Path=/', 'Secure'];
+  const parts = [`${name}=${encodeURIComponent(value)}`, 'Path=/'];
+  if (!development()) parts.push('Secure');
   parts.push(options.httpOnly === false ? '' : 'HttpOnly');
-  parts.push(options.sameSite || 'SameSite=None');
+  parts.push(options.sameSite || 'SameSite=Lax');
   if (options.maxAge != null) parts.push(`Max-Age=${options.maxAge}`);
   return parts.filter(Boolean).join('; ');
 }
@@ -91,7 +102,10 @@ function base64url(input) {
 }
 
 function sessionSecret() {
-  return process.env.SESSION_SECRET || 'dev-only-change-me';
+  const secret = process.env.SESSION_SECRET;
+  if (secret && secret.length >= 32 && !secret.startsWith('replace-')) return secret;
+  if (development()) return 'local-development-secret-not-for-deployment';
+  throw new Error('Session configuration unavailable');
 }
 
 function signPayload(payload) {
@@ -101,13 +115,13 @@ function signPayload(payload) {
 }
 
 function verifyPayload(token) {
-  if (!token || !token.includes('.')) return null;
+  if (typeof token !== 'string' || token.split('.').length !== 2) return null;
   const [encoded, sig] = token.split('.');
   const expected = crypto.createHmac('sha256', sessionSecret()).update(encoded).digest('base64url');
   if (!safeEqual(sig, expected)) return null;
   try {
     const payload = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
-    if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
+    if (!payload || !Number.isFinite(payload.exp) || payload.exp <= Math.floor(Date.now() / 1000)) return null;
     return payload;
   } catch (_) {
     return null;
@@ -125,7 +139,7 @@ function normalizeEmail(email) {
 }
 
 function validEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function today() {
@@ -135,7 +149,10 @@ function today() {
 async function kv(args) {
   const url = process.env.KV_REST_API_URL;
   const token = process.env.KV_REST_API_TOKEN;
-  if (!url || !token) return memoryKv(args);
+  if (!url || !token) {
+    if (development()) return memoryKv(args);
+    throw new Error('Storage configuration unavailable');
+  }
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -146,6 +163,7 @@ async function kv(args) {
   });
   if (!response.ok) throw new Error(`KV command failed: ${response.status}`);
   const data = await response.json();
+  if (data.error) throw new Error('Storage command failed');
   return data.result;
 }
 
@@ -160,6 +178,25 @@ function memoryKv(args) {
   pruneMemory();
   const [command, key, value, flag, ttl] = args;
   const cmd = String(command).toUpperCase();
+  if (cmd === 'EVAL') {
+    const script = key;
+    const actualKey = args[3];
+    if (script === BUDGET_SCRIPT) {
+      const [amount, limit, seconds] = args.slice(4).map(Number);
+      const used = Number(memoryKv(['GET', actualKey]) || 0);
+      if (used + amount > limit) return -1;
+      const expiresAt = memory.has(actualKey) ? memory.get(actualKey).expiresAt : Date.now() + seconds * 1000;
+      memory.set(actualKey, { value: String(used + amount), expiresAt });
+      return used + amount;
+    }
+    if (script === VERIFY_SCRIPT) {
+      const raw = memoryKv(['GET', actualKey]);
+      if (!raw || JSON.parse(raw).digest !== args[4]) return 0;
+      memoryKv(['DEL', actualKey]);
+      return 1;
+    }
+    throw new Error('Unsupported script');
+  }
   if (cmd === 'GET') return memory.has(key) ? memory.get(key).value : null;
   if (cmd === 'SET') {
     memory.set(key, { value, expiresAt: String(flag).toUpperCase() === 'EX' ? Date.now() + Number(ttl) * 1000 : null });
@@ -200,74 +237,102 @@ async function setJsonKey(key, value, ttlSeconds) {
 async function getUser(email) {
   const clean = normalizeEmail(email);
   if (!clean) return null;
-  return getJsonKey(`user:${clean}`, { email: clean, plan: 'free' });
+  return getJsonKey(`user:${clean}`, { email: clean });
 }
 
 async function saveUser(user) {
   const clean = normalizeEmail(user.email);
-  const next = Object.assign({ email: clean, plan: 'free' }, user, { email: clean, updatedAt: new Date().toISOString() });
+  const next = { email: clean, name: user.name, picture: user.picture, provider: user.provider, updatedAt: new Date().toISOString() };
   await setJsonKey(`user:${clean}`, next);
   return next;
 }
 
-function isPro(user) {
-  return user && user.plan === 'pro' && (!user.subscriptionStatus || ['active', 'trialing'].includes(user.subscriptionStatus));
+// A single Redis operation checks and reserves usage, including under concurrency.
+const BUDGET_SCRIPT = `
+local used = tonumber(redis.call('GET', KEYS[1]) or '0')
+local amount = tonumber(ARGV[1])
+if used + amount > tonumber(ARGV[2]) then return -1 end
+local next = redis.call('INCRBY', KEYS[1], amount)
+if next == amount then redis.call('EXPIRE', KEYS[1], ARGV[3]) end
+return next`;
+const VERIFY_SCRIPT = `
+local raw = redis.call('GET', KEYS[1])
+if not raw then return 0 end
+if cjson.decode(raw).digest ~= ARGV[1] then return 0 end
+redis.call('DEL', KEYS[1])
+return 1`;
+
+function digest(value) {
+  return crypto.createHmac('sha256', sessionSecret()).update(value).digest('hex');
 }
 
-function quotaFor(viewer) {
-  if (viewer.pro) return null;
-  return viewer.authenticated ? FREE_LIMIT : GUEST_LIMIT;
+function clientIdentity(req) {
+  // Vercel overwrites this header. Never trust arbitrary forwarded headers elsewhere.
+  const address = process.env.VERCEL ? req.headers['x-vercel-forwarded-for'] : req.socket && req.socket.remoteAddress;
+  if (!address) throw new Error('Client identity unavailable');
+  return digest(String(address).split(',')[0].trim());
 }
 
-async function getViewer(req, res) {
-  const cookies = parseCookies(req);
-  const payload = verifyPayload(cookies[SESSION_COOKIE]);
-  if (payload && payload.email) {
+async function reserve(key, amount, limit, ttl) {
+  const result = await kv(['EVAL', BUDGET_SCRIPT, 1, key, amount, limit, ttl]);
+  if (!Number.isSafeInteger(result)) throw new Error('Invalid storage response');
+  return result >= 0;
+}
+
+async function loginLimit(req, email, action) {
+  const bucket = Math.floor(Date.now() / (10 * 60 * 1000));
+  const max = action === 'send' ? 3 : 5;
+  const ipOK = await reserve(`auth-rate:${action}:ip:${bucket}:${clientIdentity(req)}`, 1, max * 5, 600);
+  if (!ipOK) return false;
+  return reserve(`auth-rate:${action}:email:${bucket}:${digest(email)}`, 1, max, 600);
+}
+
+async function verifyLoginCode(email, code) {
+  return Number(await kv(['EVAL', VERIFY_SCRIPT, 1, `auth:${email}`, digest(`${email}:${code}`)])) === 1;
+}
+
+async function getViewer(req) {
+  sessionSecret();
+  const payload = verifyPayload(parseCookies(req)[SESSION_COOKIE]);
+  if (payload && payload.kind === 'session' && validEmail(payload.email || '')) {
     const user = await getUser(payload.email);
-    return { authenticated: true, identity: `user:${user.email}`, email: user.email, user, pro: isPro(user) };
+    return { authenticated: true, identity: `user:${user.email}`, email: user.email, user };
   }
-  let anonId = cookies[ANON_COOKIE];
-  if (!anonId) {
-    anonId = crypto.randomUUID();
-    appendCookie(res, cookie(ANON_COOKIE, anonId, { maxAge: 60 * 60 * 24 * 365 }));
-  }
-  return { authenticated: false, identity: `anon:${anonId}`, email: null, user: null, pro: false };
+  // Daily network identity survives cookie deletion without storing raw IP addresses.
+  return { authenticated: false, identity: `guest:${digest(today() + ':' + clientIdentity(req))}`, email: null, user: null };
 }
 
 async function usageStatus(viewer) {
-  const limit = quotaFor(viewer);
-  const used = Number(await kv(['GET', `usage:${today()}:${viewer.identity}`]) || 0);
+  const limit = viewer.authenticated ? null : GUEST_LIMIT;
+  const used = viewer.authenticated ? 0 : Number(await kv(['GET', `usage:${today()}:${viewer.identity}`]) || 0);
   return {
-    authenticated: viewer.authenticated,
-    email: viewer.email,
-    plan: viewer.pro ? 'pro' : viewer.authenticated ? 'free' : 'guest',
-    limit,
-    used,
+    authenticated: viewer.authenticated, email: viewer.email,
+    plan: viewer.authenticated ? 'free' : 'guest', limit, used,
     remaining: limit == null ? null : Math.max(0, limit - used),
-    canBatch: viewer.pro,
-    pro: viewer.pro
+    canBatch: true,
+    authMethods: {
+      email: development() || Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM),
+      google: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+    },
+    resetsAt: limit == null ? null : new Date(Date.parse(today()) + DAY_SECONDS * 1000).toISOString()
   };
 }
 
 async function consumeUsage(viewer, count) {
-  const amount = Math.max(1, Math.min(Number(count || 1), 500));
-  if (!viewer.pro && amount > 1) {
-    return { ok: false, status: 402, code: 'batch_requires_pro', message: 'Batch processing is included with Pro.' };
+  if (!Number.isSafeInteger(count) || count < 1 || count > 500) {
+    return { ok: false, status: 400, code: 'invalid_count', message: 'Choose between 1 and 500 files per batch.' };
   }
-  const limit = quotaFor(viewer);
-  if (limit == null) return { ok: true, status: await usageStatus(viewer) };
-  const key = `usage:${today()}:${viewer.identity}`;
-  const used = Number(await kv(['GET', key]) || 0);
-  if (used + amount > limit) {
-    return { ok: false, status: 429, code: 'daily_limit_reached', message: `Daily limit reached. ${viewer.authenticated ? 'Upgrade to Pro for unlimited images.' : 'Sign in for 10 images per day.'}` };
+  if (!viewer.authenticated && !await reserve(`usage:${today()}:${viewer.identity}`, count, GUEST_LIMIT, DAY_SECONDS * 2)) {
+    return { ok: false, status: 429, code: 'daily_limit_reached', message: 'Daily limit reached. Sign up free for unlimited files.' };
   }
-  const next = Number(await kv(['INCRBY', key, amount]));
-  if (next === amount) await kv(['EXPIRE', key, DAY_SECONDS * 2]);
   return { ok: true, status: await usageStatus(viewer) };
 }
 
 async function sendLoginCode(email, code) {
-  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return { sent: false };
+  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) {
+    if (development()) return { sent: false };
+    throw new Error('Email delivery unavailable');
+  }
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -285,40 +350,12 @@ async function sendLoginCode(email, code) {
   return { sent: true };
 }
 
-async function stripeRequest(path, params) {
-  if (!process.env.STRIPE_SECRET_KEY) throw new Error('Missing STRIPE_SECRET_KEY');
-  const response = await fetch(`https://api.stripe.com/v1/${path}`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: new URLSearchParams(params)
-  });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error && data.error.message ? data.error.message : `Stripe error: ${response.status}`);
-  return data;
-}
-
 function appUrl() {
   return (process.env.APP_URL || 'http://localhost:3000').replace(/\/$/, '');
 }
 
-function verifyStripeSignature(rawBody, signature) {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (!secret || !signature) return false;
-  const parts = Object.fromEntries(signature.split(',').map((part) => {
-    const [key, value] = part.split('=');
-    return [key, value];
-  }));
-  const signed = `${parts.t}.${rawBody.toString('utf8')}`;
-  const expected = crypto.createHmac('sha256', secret).update(signed).digest('hex');
-  return safeEqual(parts.v1, expected);
-}
-
 module.exports = {
   SESSION_COOKIE,
-  ANON_COOKIE,
   DAY_SECONDS,
   setCors,
   json,
@@ -337,12 +374,13 @@ module.exports = {
   setJsonKey,
   getUser,
   saveUser,
-  isPro,
   getViewer,
   usageStatus,
   consumeUsage,
   sendLoginCode,
-  stripeRequest,
   appUrl,
-  verifyStripeSignature
+  digest,
+  loginLimit,
+  verifyLoginCode,
+  development
 };

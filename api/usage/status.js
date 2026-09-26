@@ -7,6 +7,6 @@ module.exports = async function handler(req, res) {
     const viewer = await getViewer(req, res);
     return json(res, 200, await usageStatus(viewer));
   } catch (error) {
-    return json(res, 500, { error: 'usage_status_failed', message: error.message });
+    return json(res, 500, { error: 'usage_status_failed', message: 'Service temporarily unavailable. Please try again.' });
   }
 };

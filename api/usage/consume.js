@@ -10,6 +10,6 @@ module.exports = async function handler(req, res) {
     if (!result.ok) return json(res, result.status, { error: result.code, message: result.message });
     return json(res, 200, result.status);
   } catch (error) {
-    return json(res, 500, { error: 'usage_consume_failed', message: error.message });
+    return json(res, 500, { error: 'usage_consume_failed', message: 'Service temporarily unavailable. Please try again.' });
   }
 };
