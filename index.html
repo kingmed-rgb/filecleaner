@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Remove embedded metadata from JPEG and PNG images on your device. Three free files daily, or unlimited use with a free account. No uploads.">
+<meta name="description" content="Free metadata remover for JPEG and PNG. Strip EXIF, GPS, C2PA and AI tags from Midjourney, DALL·E and Stable Diffusion images in your browser. No uploads.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#f5f7f4">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,22 +14,63 @@
 <meta property="og:url" content="https://aimetadataeraser.vercel.app/">
 <meta property="og:title" content="AI Metadata Eraser — Free Image Metadata Remover">
 <meta property="og:description" content="Remove EXIF, GPS, C2PA, AI tags, and PNG metadata from images directly in your browser. 3 free files daily, or unlimited with a free account. No file uploads.">
-<meta name="twitter:card" content="summary">
+<meta property="og:site_name" content="AI Metadata Eraser">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://aimetadataeraser.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI Metadata Eraser: remove EXIF, GPS, C2PA and AI tags from images">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI Metadata Eraser — Free Image Metadata Remover">
 <meta name="twitter:description" content="Clean JPEG and PNG metadata locally in your browser, including EXIF, GPS, AI tags, and Stable Diffusion PNG chunks.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312372a'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial,sans-serif' font-size='22' font-weight='800' fill='white'%3EFC%3C/text%3E%3C/svg%3E">
+<meta name="twitter:image" content="https://aimetadataeraser.vercel.app/og-image.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <title>AI Metadata Eraser — Free Image Metadata Remover</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebApplication",
+      "@type": "Organization",
+      "@id": "https://aimetadataeraser.vercel.app/#organization",
       "name": "AI Metadata Eraser",
       "url": "https://aimetadataeraser.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aimetadataeraser.vercel.app/icon-512.png",
+        "width": 512,
+        "height": 512
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aimetadataeraser.vercel.app/#website",
+      "name": "AI Metadata Eraser",
+      "url": "https://aimetadataeraser.vercel.app/",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://aimetadataeraser.vercel.app/#organization" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "AI Metadata Eraser",
+      "alternateName": ["Metadata Remover", "EXIF Remover", "AI Metadata Remover", "C2PA Remover"],
+      "url": "https://aimetadataeraser.vercel.app/",
+      "image": "https://aimetadataeraser.vercel.app/og-image.png",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web",
-      "description": "Browser-based JPEG and PNG metadata cleanup. Three free files daily for guests and unlimited daily use with a free account.",
+      "browserRequirements": "Requires a modern browser with JavaScript enabled",
+      "description": "Browser-based JPEG and PNG metadata remover. Strips EXIF, GPS, XMP, C2PA Content Credentials and AI generation tags, including Stable Diffusion PNG parameters. Files are processed on your device and never uploaded.",
+      "featureList": [
+        "Remove EXIF camera data and GPS location",
+        "Remove C2PA Content Credentials and XMP metadata",
+        "Remove AI generation tags and Stable Diffusion PNG parameters",
+        "Batch processing of up to 500 files with a free account",
+        "Bulk rename files",
+        "Local processing with no file uploads"
+      ],
+      "publisher": { "@id": "https://aimetadataeraser.vercel.app/#organization" },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -70,6 +111,46 @@
             "@type": "Answer",
             "text": "JPEG images are re-encoded at high quality. PNG output is lossless, but browser rendering can change color profiles or other image properties. Your original files stay untouched. Each output downloads separately; your browser may ask you to allow multiple downloads."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I remove AI metadata from Midjourney, DALL·E or Stable Diffusion images?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Drop the JPEG or PNG file into the cleaner and select Process and download. The image is redrawn as a new file from its pixels only, so embedded AI generation data is left behind. This includes Stable Diffusion prompt and parameter text in PNG files, XMP tags and C2PA manifests."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it remove C2PA Content Credentials?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for C2PA data embedded in a JPEG or PNG file. The cleaned copy contains no C2PA manifest. It cannot remove invisible watermarks stored in the pixels themselves, such as Google SynthID, and cannot change records a platform keeps on its own servers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it remove GPS location from photos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. GPS coordinates are stored in EXIF metadata, which is not carried over to the cleaned image. Camera make and model, serial numbers, capture dates and editing software tags are removed the same way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which file types are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Metadata cleanup works with JPEG and PNG images. Other files, such as PDFs, videos, WebP or HEIC images, can be renamed in bulk, but their contents and metadata stay unchanged."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. AI Metadata Eraser runs in any modern browser on desktop or mobile. There is no app, extension or plugin to install."
+          }
         }
       ]
     }
@@ -90,7 +171,7 @@
   <section class="workspace" aria-labelledby="page-title">
     <div class="intro">
       <p class="eyebrow"><svg class="trust-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5c0 4.5 3 7.8 7.5 10 4.5-2.2 7.5-5.5 7.5-10V6L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.5 11.5 2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Zero Server Upload · Instant Processing</span></p>
-      <h1 id="page-title">Free Metadata Cleaner &amp; AI Label Remover</h1>
+      <h1 id="page-title">Free AI Metadata Eraser &amp; EXIF Remover</h1>
       <p class="intro-copy">Online metadata remover that strips EXIF, GPS, C2PA, AI generation tags, and Stable Diffusion parameters from your images — protecting your privacy before you share, entirely in your browser.</p>
     </div>
     <section class="tool-shell" id="app" aria-label="File cleaner">
@@ -141,6 +222,11 @@
 <details><summary>Do my files leave my device?</summary><p>No. File cleanup happens in your browser and downloads are created on your device. Our server handles sign-in and usage limits, but does not receive your files.</p></details>
 <details><summary>What metadata can it remove?</summary><p>JPEG and PNG images are redrawn as new files. This removes embedded data such as EXIF camera details, GPS tags and PNG text fields, including some AI generation metadata. It does not remove visible or invisible watermarks, or guarantee how an AI detector will classify an image.</p></details>
 <details><summary>Will my images change?</summary><p>JPEG images are re-encoded at high quality. PNG output is lossless, but browser rendering can change color profiles or other image properties. Your original files stay untouched. Each output downloads separately; your browser may ask you to allow multiple downloads.</p></details>
+<details><summary>How do I remove AI metadata from Midjourney, DALL·E or Stable Diffusion images?</summary><p>Drop the JPEG or PNG file into the cleaner and select Process and download. The image is redrawn as a new file from its pixels only, so embedded AI generation data is left behind. This includes Stable Diffusion prompt and parameter text in PNG files, XMP tags and C2PA manifests.</p></details>
+<details><summary>Does it remove C2PA Content Credentials?</summary><p>Yes, for C2PA data embedded in a JPEG or PNG file. The cleaned copy contains no C2PA manifest. It cannot remove invisible watermarks stored in the pixels themselves, such as Google SynthID, and cannot change records a platform keeps on its own servers.</p></details>
+<details><summary>Does it remove GPS location from photos?</summary><p>Yes. GPS coordinates are stored in EXIF metadata, which is not carried over to the cleaned image. Camera make and model, serial numbers, capture dates and editing software tags are removed the same way.</p></details>
+<details><summary>Which file types are supported?</summary><p>Metadata cleanup works with JPEG and PNG images. Other files, such as PDFs, videos, WebP or HEIC images, can be renamed in bulk, but their contents and metadata stay unchanged.</p></details>
+<details><summary>Do I need to install anything?</summary><p>No. AI Metadata Eraser runs in any modern browser on desktop or mobile. There is no app, extension or plugin to install.</p></details>
   </div></section>
 </main>
 <footer class="footer"><div class="footer-inner"><span class="footer-name">AI Metadata Eraser <span>Simple. Private. Free.</span></span><nav class="footer-links" aria-label="Footer"><a href="privacy.html">Privacy</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div></footer>

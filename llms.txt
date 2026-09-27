@@ -1,0 +1,20 @@
+# AI Metadata Eraser
+
+> Free browser-based tool that removes EXIF, GPS, XMP, C2PA Content Credentials and AI generation metadata (including Stable Diffusion PNG parameters) from JPEG and PNG images. Files are processed on the user's device and are never uploaded.
+
+Key facts:
+
+- Supported formats for metadata removal: JPEG and PNG. Other file types can be bulk renamed only; their metadata is unchanged.
+- How it works: each image is redrawn in the browser as a new file from its pixels, so embedded metadata is not carried over. JPEG is re-encoded at high quality; PNG output is lossless.
+- Removes: EXIF camera data, GPS location, capture dates, serial numbers, editing software tags, XMP, C2PA manifests, and AI prompt/parameter text written by tools such as Stable Diffusion.
+- Does not remove: visible watermarks, invisible pixel watermarks such as Google SynthID, or records a platform stores on its own servers. It does not guarantee how an AI detector will classify an image.
+- Pricing: free. Guests can clean 3 files per day; a free account (email code or Google sign-in) gives unlimited daily use and batches of up to 500 files. No payment details are required.
+- Privacy: the server handles only sign-in and usage limits and never receives image files.
+
+## Pages
+
+- [Metadata cleaner](https://aimetadataeraser.vercel.app/): the tool and FAQ
+- [About](https://aimetadataeraser.vercel.app/about.html): what the tool is and why it exists
+- [Disclaimer](https://aimetadataeraser.vercel.app/disclaimer.html): limitations of metadata removal
+- [Privacy policy](https://aimetadataeraser.vercel.app/privacy.html): what data is and is not collected
+- [Contact](https://aimetadataeraser.vercel.app/contact.html)
